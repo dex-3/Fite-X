@@ -1153,33 +1153,108 @@ body.profile-open
 
     border:0;
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(70,135,180,.12),
-            rgba(3,8,14,.20) 60%,
-            transparent 75%
-        );
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+    display:block;
 
     overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3,8,14,.08) 0%,
+            rgba(3,8,14,.08) 38%,
+            rgba(3,8,14,.62) 78%,
+            rgba(3,8,14,.94) 100%
+        );
+
+}
+
+.character-portrait img{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center top;
+
+    display:block;
+
+    filter:
+        saturate(.88)
+        contrast(1.04)
+        brightness(.88);
+
+    transform:scale(1.015);
+
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+.character-portrait:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,20,.04) 0%,
+            rgba(5,12,20,.02) 28%,
+            rgba(5,12,20,.30) 55%,
+            rgba(3,8,14,.82) 82%,
+            rgba(3,8,14,.96) 100%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(110,195,255,.10),
+            transparent 38%,
+            rgba(3,8,14,.16)
+        );
 }
 
 .character-portrait:before{
 
-    content:"PORTRAIT";
+    content:"";
 
-    font-size:8px;
+    position:absolute;
 
-    letter-spacing:.18em;
+    inset:0;
 
-    color:
-        rgba(140,195,230,.22);
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+        repeating-linear-gradient(
+            180deg,
+            transparent 0,
+            transparent 3px,
+            rgba(150,215,255,.025) 4px,
+            transparent 5px
+        );
+
+    mix-blend-mode:screen;
+}
+
+.character-item:hover .character-portrait img{
+
+    transform:scale(1.055);
+
+    filter:
+        saturate(1)
+        contrast(1.06)
+        brightness(.98);
 }
 
 
@@ -2131,14 +2206,42 @@ rowSizes.forEach(
             );
 
 
+            const imageName = name
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
+
             item.innerHTML = `
 
                 <span
                     class="character-portrait"
                     title="${name}"
-                ></span>
+                >
+                    <img
+                        src="images/${imageName}.png"
+                        alt="${name}"
+                        loading="lazy"
+                    >
+                </span>
 
             `;
+
+            const portraitImage =
+                item.querySelector(".character-portrait img");
+
+            portraitImage.addEventListener("error", function(){
+
+                this.style.display = "none";
+
+                const portrait =
+                    item.querySelector(".character-portrait");
+
+                portrait.style.background =
+                    "radial-gradient(circle at center, rgba(70,135,180,.14), rgba(3,8,14,.88) 72%)";
+
+                portrait.dataset.missing = "true";
+
+            });
 
 
             item.addEventListener(
