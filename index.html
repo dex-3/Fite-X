@@ -1657,6 +1657,52 @@ audio{
 
 }
 
+
+/* CHARACTER BIO PANEL */
+
+.bio-panel{
+    position:fixed; inset:0; z-index:50;
+    display:flex; align-items:center; justify-content:center;
+    padding:30px; background:rgba(1,5,9,.78);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    opacity:0; pointer-events:none; transition:opacity .35s ease;
+}
+.bio-panel.open{opacity:1; pointer-events:auto}
+.bio-window{
+    width:min(900px,92vw); max-height:82vh; position:relative;
+    display:grid; grid-template-columns:280px 1fr; overflow:hidden;
+    border:1px solid rgba(100,183,246,.65);
+    background:linear-gradient(135deg,rgba(13,31,48,.97),rgba(3,8,14,.99));
+    box-shadow:0 0 55px rgba(55,145,220,.18),inset 0 0 35px rgba(80,160,220,.045);
+    clip-path:polygon(24px 0,calc(100% - 24px) 0,100% 24px,100% calc(100% - 24px),calc(100% - 24px) 100%,24px 100%,0 calc(100% - 24px),0 24px);
+}
+.bio-image{position:relative;min-height:390px;overflow:hidden;border-right:1px solid rgba(90,166,235,.25)}
+.bio-image img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.86) saturate(.9)}
+.bio-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,8,14,.02),rgba(3,8,14,.18) 45%,rgba(3,8,14,.78));pointer-events:none}
+.bio-content{padding:42px 44px;overflow-y:auto}
+.bio-label{font-size:9px;letter-spacing:.28em;color:rgba(120,180,225,.55);text-transform:uppercase;margin-bottom:10px}
+.bio-name{font-size:36px;line-height:1.1;font-weight:600;letter-spacing:.08em;margin-bottom:24px}
+.bio-divider{width:100%;height:1px;margin-bottom:25px;background:linear-gradient(90deg,rgba(100,183,246,.65),transparent)}
+.bio-text{color:#b8c8d9;font-size:14px;line-height:1.9;letter-spacing:.04em}
+.bio-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.bio-stat{padding:13px 15px;border:1px solid rgba(86,157,218,.22);background:rgba(5,12,20,.45)}
+.bio-stat-label{display:block;font-size:8px;letter-spacing:.2em;color:rgba(120,180,225,.45);margin-bottom:5px}
+.bio-stat-value{font-size:12px;color:#dceeff;letter-spacing:.08em}
+.bio-close{
+    position:absolute;top:18px;right:20px;z-index:5;
+    border:1px solid rgba(100,183,246,.45);background:rgba(3,8,14,.72);
+    color:#dceeff;padding:9px 13px;font-family:"Oxanium",sans-serif;
+    font-size:10px;letter-spacing:.16em;cursor:pointer;
+}
+.bio-close:hover{background:rgba(40,91,135,.3);box-shadow:0 0 18px rgba(67,157,225,.18)}
+@media(max-width:700px){
+    .bio-panel{padding:15px}
+    .bio-window{width:95vw;max-height:88vh;grid-template-columns:1fr;grid-template-rows:220px 1fr}
+    .bio-image{min-height:0;border-right:0;border-bottom:1px solid rgba(90,166,235,.25)}
+    .bio-content{padding:25px}
+    .bio-name{font-size:24px}
+}
+
 </style>
 </head>
 
@@ -1871,6 +1917,41 @@ audio{
 
 </section>
 
+
+
+<!-- CHARACTER BIO PANEL -->
+<div class="bio-panel" id="bioPanel" aria-hidden="true">
+    <div class="bio-window">
+        <button class="bio-close" id="closeBio" type="button">CLOSE ×</button>
+        <div class="bio-image">
+            <img id="bioImage" src="" alt="">
+        </div>
+        <div class="bio-content">
+            <div class="bio-label">CHARACTER DATABASE // PROFILE</div>
+            <h2 class="bio-name" id="bioName">CHARACTER NAME</h2>
+            <div class="bio-divider"></div>
+            <p class="bio-text" id="bioText">Biography not added yet.</p>
+            <div class="bio-stats">
+                <div class="bio-stat">
+                    <span class="bio-stat-label">NAME</span>
+                    <span class="bio-stat-value" id="bioStatName">—</span>
+                </div>
+                <div class="bio-stat">
+                    <span class="bio-stat-label">AGE</span>
+                    <span class="bio-stat-value" id="bioStatAge">—</span>
+                </div>
+                <div class="bio-stat">
+                    <span class="bio-stat-label">NATIONALITY</span>
+                    <span class="bio-stat-value" id="bioStatNationality">—</span>
+                </div>
+                <div class="bio-stat">
+                    <span class="bio-stat-label">TYPE</span>
+                    <span class="bio-stat-value" id="bioStatType">—</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- =======================================================
      MUSIC CONTROL
@@ -2146,6 +2227,16 @@ const characters = [
 ];
 
 
+
+const characterBios = {
+    "Rion Adachi": {
+        age: "23",
+        nationality: "Japan",
+        type: "Balanced",
+        bio: ""Hope you don't mind I'm about to beat you!""
+    }
+};
+
 /* =========================================================
    ROW STRUCTURE
    ========================================================= */
@@ -2163,6 +2254,54 @@ const characterGrid =
     document.getElementById(
         "characterGrid"
     );
+
+
+
+const bioPanel = document.getElementById("bioPanel");
+const closeBio = document.getElementById("closeBio");
+const bioImage = document.getElementById("bioImage");
+const bioName = document.getElementById("bioName");
+const bioText = document.getElementById("bioText");
+const bioStatName = document.getElementById("bioStatName");
+const bioStatAge = document.getElementById("bioStatAge");
+const bioStatNationality = document.getElementById("bioStatNationality");
+const bioStatType = document.getElementById("bioStatType");
+
+function openBio(name){
+    const data = characterBios[name] || {
+        bio:"Biography not added yet.",
+        age:"—",
+        nationality:"—",
+        type:"—"
+    };
+
+    const imageName = name.toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-|-$/g,"");
+
+    bioName.textContent = name;
+    bioText.textContent = data.bio;
+    bioStatName.textContent = name;
+    bioStatAge.textContent = data.age || "—";
+    bioStatNationality.textContent = data.nationality || "—";
+    bioStatType.textContent = data.type || "—";
+    bioImage.src = "images/" + imageName + ".png";
+    bioImage.alt = name;
+
+    bioPanel.classList.add("open");
+    bioPanel.setAttribute("aria-hidden","false");
+}
+
+function closeBioPanel(){
+    bioPanel.classList.remove("open");
+    bioPanel.setAttribute("aria-hidden","true");
+}
+
+closeBio.addEventListener("click",closeBioPanel);
+
+bioPanel.addEventListener("click",function(event){
+    if(event.target === bioPanel) closeBioPanel();
+});
 
 
 let characterIndex = 0;
@@ -2263,6 +2402,8 @@ rowSizes.forEach(
                     item.classList.add(
                         "active"
                     );
+
+                    openBio(name);
 
                 }
             );
@@ -2369,6 +2510,11 @@ closeProfile.addEventListener(
 document.addEventListener(
     "keydown",
     function(event){
+
+        if(event.key === "Escape" && bioPanel.classList.contains("open")){
+            closeBioPanel();
+            return;
+        }
 
         if(
             event.key === "Escape" &&
