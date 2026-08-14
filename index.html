@@ -358,24 +358,28 @@ body.profile-open .page{
 
     top:68px;
     left:80px;
+
 }
 
 .top-right{
 
     top:68px;
     right:80px;
+
 }
 
 .bottom-left{
 
     bottom:68px;
     left:80px;
+
 }
 
 .bottom-right{
 
     bottom:68px;
     right:80px;
+
 }
 
 
@@ -755,9 +759,11 @@ body.profile-open
 
     display:flex;
 
-    flex-direction:column;
+    flex-direction:row;
 
-    align-items:flex-start;
+    align-items:center;
+
+    gap:18px;
 }
 
 .character-title-main{
@@ -771,6 +777,12 @@ body.profile-open
 
 .character-title-sub{
 
+    position:absolute;
+
+    left:75px;
+
+    top:76px;
+
     margin-top:8px;
 
     font-size:10px;
@@ -779,6 +791,76 @@ body.profile-open
 
     color:
         rgba(120,180,225,.55);
+}
+
+
+/* =========================================================
+   PRESETS BUTTON
+   ========================================================= */
+
+.presets-button{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:11px 17px;
+
+    border:
+        1px solid
+        rgba(100,183,246,.55);
+
+    background:
+        rgba(5,12,20,.5);
+
+    color:#dceeff;
+
+    text-decoration:none;
+
+    font-family:
+        "Oxanium",sans-serif;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    letter-spacing:.20em;
+
+    cursor:pointer;
+
+    transition:
+        background .25s,
+        color .25s,
+        border-color .25s,
+        box-shadow .25s,
+        transform .25s;
+}
+
+.presets-button:hover{
+
+    color:#fff;
+
+    background:
+        rgba(40,91,135,.25);
+
+    border-color:
+        rgba(125,205,255,.80);
+
+    box-shadow:
+        0 0 22px
+        rgba(67,157,225,.18);
+
+    transform:
+        translateY(-2px);
+}
+
+.presets-icon{
+
+    font-size:13px;
+
+    line-height:1;
 }
 
 
@@ -1354,6 +1436,14 @@ audio{
             0 18px;
     }
 
+    .character-title{
+
+        gap:8px;
+
+        max-width:
+            calc(100% - 70px);
+    }
+
     .character-title-main{
 
         font-size:15px;
@@ -1361,7 +1451,30 @@ audio{
 
     .character-title-sub{
 
+        position:absolute;
+
+        left:18px;
+
+        top:48px;
+
         font-size:5px;
+    }
+
+    .presets-button{
+
+        padding:
+            7px 8px;
+
+        font-size:6px;
+
+        letter-spacing:.12em;
+
+        gap:4px;
+    }
+
+    .presets-icon{
+
+        font-size:8px;
     }
 
     .close-profile{
@@ -1626,6 +1739,18 @@ audio{
             <span class="character-title-main">
                 CHARACTER PROFILE
             </span>
+
+            <!-- PRESETS -->
+            <a
+                class="presets-button"
+                href="https://drive.google.com/drive/u/1/folders/1a80VVGi8gMLn3PPjYD0iPaKx3eGbpyL9"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open presets"
+            >
+                <span class="presets-icon">📁</span>
+                PRESETS
+            </a>
 
             <span class="character-title-sub">
                 CHARACTER DATABASE // 26 ENTRIES
