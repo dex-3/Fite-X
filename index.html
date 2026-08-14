@@ -11,13 +11,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================================================
+   BASIC
+   ========================================================= */
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
 }
@@ -27,8 +33,8 @@ body{
     color:#f4f8ff;
     font-family:"Oxanium",sans-serif;
     overflow:hidden;
-    position:relative;
 }
+
 
 /* =========================================================
    ANIMATED BACKGROUND
@@ -37,8 +43,8 @@ body{
 .background{
     position:fixed;
     inset:-80px;
-    pointer-events:none;
     overflow:hidden;
+    pointer-events:none;
     z-index:0;
 }
 
@@ -63,16 +69,14 @@ body{
 }
 
 @keyframes gridMove{
-    0%{
+    from{
         background-position:0 0,0 0;
     }
 
-    100%{
+    to{
         background-position:72px 72px,72px 72px;
     }
 }
-
-/* Atmospheric glow */
 
 .glow{
     position:absolute;
@@ -105,6 +109,7 @@ body{
 }
 
 @keyframes glowMove{
+
     0%{
         transform:translate(-54%,-48%) scale(.95);
     }
@@ -117,8 +122,6 @@ body{
         transform:translate(-51%,-45%) scale(.98);
     }
 }
-
-/* Diagonal light */
 
 .diagonal-light{
     position:absolute;
@@ -136,6 +139,7 @@ body{
 }
 
 @keyframes diagonalMove{
+
     0%{
         transform:translate(-2%,-2%);
     }
@@ -148,8 +152,6 @@ body{
         transform:translate(-2%,-2%);
     }
 }
-
-/* Scanline */
 
 .scanline{
     position:absolute;
@@ -171,6 +173,7 @@ body{
 }
 
 @keyframes scan{
+
     0%{
         top:-10%;
         opacity:0;
@@ -189,6 +192,7 @@ body{
         opacity:0;
     }
 }
+
 
 /* =========================================================
    PARTICLES
@@ -218,11 +222,12 @@ body{
 }
 
 @keyframes particleFloat{
-    0%{
+
+    from{
         transform:translate(0,0);
     }
 
-    100%{
+    to{
         transform:
             translate(
                 var(--move-x),
@@ -232,6 +237,7 @@ body{
 }
 
 @keyframes particleBlink{
+
     0%,100%{
         opacity:.15;
     }
@@ -241,8 +247,9 @@ body{
     }
 }
 
+
 /* =========================================================
-   PAGE
+   LANDING PAGE
    ========================================================= */
 
 .page{
@@ -261,15 +268,20 @@ body{
     position:relative;
     z-index:2;
 
-    transform:
-        translate3d(
-            calc(var(--mouse-x, 0) * 1px),
-            calc(var(--mouse-y, 0) * 1px),
-            0
-        );
-
-    transition:transform .8s cubic-bezier(.2,.8,.2,1);
+    transition:
+        transform .9s cubic-bezier(.77,0,.18,1),
+        opacity .7s ease;
 }
+
+
+/* Landing page moves slightly downward */
+
+body.profile-open .page{
+    transform:translateY(18vh) scale(.96);
+    opacity:.25;
+    pointer-events:none;
+}
+
 
 /* =========================================================
    CORNERS
@@ -337,6 +349,7 @@ body{
     right:60px;
 }
 
+
 /* =========================================================
    LOGO
    ========================================================= */
@@ -360,6 +373,7 @@ body{
 }
 
 @keyframes logoGlow{
+
     0%{
         text-shadow:
             0 0 20px rgba(110,180,255,.18);
@@ -370,6 +384,7 @@ body{
             0 0 34px rgba(110,180,255,.38);
     }
 }
+
 
 /* =========================================================
    DIVIDER
@@ -413,6 +428,7 @@ body{
     font-size:10px;
 }
 
+
 /* =========================================================
    FOLLOW
    ========================================================= */
@@ -428,6 +444,7 @@ body{
 
     margin-bottom:28px;
 }
+
 
 /* =========================================================
    SOCIALS
@@ -483,8 +500,9 @@ body{
     transform:translateY(-1px);
 }
 
+
 /* =========================================================
-   PROFILE
+   CHARACTER PROFILE BUTTON
    ========================================================= */
 
 .profile{
@@ -500,6 +518,8 @@ body{
     text-decoration:none;
 
     position:relative;
+
+    cursor:pointer;
 
     clip-path:
         polygon(
@@ -561,6 +581,7 @@ body{
         0 0 12px rgba(110,195,255,.9);
 }
 
+
 /* =========================================================
    STATUS
    ========================================================= */
@@ -582,17 +603,603 @@ body{
     text-transform:uppercase;
 }
 
+
 /* =========================================================
-   MUSIC CONTROL
+   CHARACTER DATABASE PANEL
+   ========================================================= */
+
+.character-screen{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:100vh;
+
+    z-index:10;
+
+    background:
+        linear-gradient(
+            rgba(3,8,14,.88),
+            rgba(3,8,14,.96)
+        );
+
+    transform:translateY(-105%);
+
+    transition:
+        transform 1s cubic-bezier(.77,0,.18,1);
+
+    overflow:hidden;
+}
+
+body.profile-open .character-screen{
+    transform:translateY(0);
+}
+
+
+/* =========================================================
+   CHARACTER SCREEN HEADER
+   ========================================================= */
+
+.character-header{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:110px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 60px;
+
+    border-bottom:
+        1px solid rgba(86,157,218,.30);
+
+    background:
+        rgba(3,8,14,.55);
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+}
+
+.character-title{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+}
+
+.character-title-main{
+
+    font-size:24px;
+
+    font-weight:600;
+
+    letter-spacing:.12em;
+
+}
+
+.character-title-sub{
+
+    margin-top:6px;
+
+    font-size:8px;
+
+    letter-spacing:.28em;
+
+    color:
+        rgba(120,180,225,.55);
+
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.close-profile{
+
+    border:
+        1px solid rgba(100,183,246,.55);
+
+    background:
+        rgba(5,12,20,.5);
+
+    color:#dceeff;
+
+    padding:
+        10px 18px;
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:9px;
+
+    letter-spacing:.20em;
+
+    cursor:pointer;
+
+    transition:
+        background .25s,
+        color .25s,
+        box-shadow .25s;
+}
+
+.close-profile:hover{
+
+    color:#fff;
+
+    background:
+        rgba(40,91,135,.25);
+
+    box-shadow:
+        0 0 18px rgba(67,157,225,.18);
+}
+
+
+/* =========================================================
+   CHARACTER CONTENT
+   ========================================================= */
+
+.character-content{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:110px;
+    bottom:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:60px;
+
+    padding:40px 70px;
+}
+
+
+/* =========================================================
+   CHARACTER SELECTOR
+   ========================================================= */
+
+.character-selector{
+
+    width:300px;
+
+    max-height:65vh;
+
+    overflow-y:auto;
+
+    padding-right:8px;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        rgba(100,183,246,.45)
+        transparent;
+}
+
+.character-selector::-webkit-scrollbar{
+    width:3px;
+}
+
+.character-selector::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.character-selector::-webkit-scrollbar-thumb{
+    background:
+        rgba(100,183,246,.45);
+}
+
+
+/* Character list */
+
+.character-item{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:
+        13px 15px;
+
+    margin-bottom:4px;
+
+    border:
+        1px solid transparent;
+
+    background:
+        rgba(5,12,20,.22);
+
+    color:
+        rgba(220,238,255,.65);
+
+    font-family:"Oxanium",sans-serif;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        color .2s,
+        border-color .2s,
+        transform .2s;
+}
+
+.character-item:hover{
+
+    background:
+        rgba(40,91,135,.16);
+
+    color:#fff;
+
+    border-color:
+        rgba(100,183,246,.25);
+
+    transform:translateX(4px);
+}
+
+.character-item.active{
+
+    color:#fff;
+
+    background:
+        rgba(40,91,135,.22);
+
+    border-color:
+        rgba(100,183,246,.65);
+
+    box-shadow:
+        inset 3px 0 0 #7ecbff;
+}
+
+.character-number{
+
+    min-width:27px;
+
+    font-size:8px;
+
+    letter-spacing:.12em;
+
+    color:
+        rgba(120,190,235,.45);
+}
+
+.character-name{
+
+    font-size:11px;
+
+    letter-spacing:.08em;
+
+}
+
+
+/* =========================================================
+   PROFILE DISPLAY
+   ========================================================= */
+
+.profile-display{
+
+    width:min(680px,55vw);
+
+    min-height:420px;
+
+    position:relative;
+
+    border:
+        1px solid rgba(100,183,246,.40);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(10,25,40,.62),
+            rgba(3,8,14,.72)
+        );
+
+    clip-path:
+        polygon(
+            28px 0,
+            calc(100% - 28px) 0,
+            100% 28px,
+            100% calc(100% - 28px),
+            calc(100% - 28px) 100%,
+            28px 100%,
+            0 calc(100% - 28px),
+            0 28px
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.profile-display:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(100,190,255,.035) 50%,
+            transparent 70%
+        );
+
+    animation:
+        profileSweep 7s linear infinite;
+}
+
+@keyframes profileSweep{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+}
+
+
+/* Placeholder portrait */
+
+.portrait-placeholder{
+
+    width:230px;
+    height:320px;
+
+    border:
+        1px solid rgba(100,183,246,.35);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(65,125,175,.14),
+            rgba(3,8,14,.7)
+        );
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+
+    flex-shrink:0;
+}
+
+.portrait-placeholder:before{
+
+    content:"PORTRAIT";
+
+    position:absolute;
+
+    font-size:9px;
+
+    letter-spacing:.28em;
+
+    color:
+        rgba(130,190,230,.35);
+}
+
+
+/* Profile information */
+
+.profile-info{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    padding:40px;
+
+    text-align:left;
+}
+
+.profile-number{
+
+    font-size:9px;
+
+    letter-spacing:.28em;
+
+    color:
+        rgba(120,190,235,.48);
+
+    margin-bottom:10px;
+}
+
+.profile-name{
+
+    font-size:clamp(25px,3vw,42px);
+
+    font-weight:500;
+
+    letter-spacing:.03em;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    text-shadow:
+        0 0 22px rgba(100,180,240,.16);
+}
+
+.profile-line{
+
+    width:100%;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(100,183,246,.55),
+            transparent
+        );
+
+    margin-bottom:25px;
+}
+
+.profile-meta{
+
+    display:grid;
+
+    grid-template-columns:
+        110px 1fr;
+
+    gap:10px 18px;
+
+    font-size:9px;
+
+    letter-spacing:.12em;
+}
+
+.profile-meta-label{
+
+    color:
+        rgba(120,180,225,.48);
+
+}
+
+.profile-meta-value{
+
+    color:
+        rgba(235,245,255,.75);
+
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT
+   ========================================================= */
+
+.character-navigation{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:28px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.nav-character{
+
+    border:0;
+
+    background:transparent;
+
+    color:
+        rgba(145,205,245,.70);
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:9px;
+
+    letter-spacing:.20em;
+
+    cursor:pointer;
+
+    padding:7px 12px;
+
+    transition:
+        color .2s,
+        text-shadow .2s;
+}
+
+.nav-character:hover{
+
+    color:#fff;
+
+    text-shadow:
+        0 0 10px rgba(100,190,255,.7);
+}
+
+.nav-separator{
+
+    width:1px;
+
+    height:18px;
+
+    background:
+        rgba(100,183,246,.30);
+}
+
+
+/* =========================================================
+   CHARACTER COUNTER
+   ========================================================= */
+
+.character-counter{
+
+    position:absolute;
+
+    bottom:32px;
+
+    right:60px;
+
+    font-size:8px;
+
+    letter-spacing:.20em;
+
+    color:
+        rgba(120,180,225,.45);
+}
+
+
+/* =========================================================
+   MUSIC
    ========================================================= */
 
 .music-control{
+
     position:fixed;
 
     right:34px;
     bottom:30px;
 
-    z-index:20;
+    z-index:30;
 
     display:flex;
 
@@ -624,6 +1231,7 @@ body{
 }
 
 .music-button{
+
     width:28px;
     height:24px;
 
@@ -645,6 +1253,7 @@ body{
 }
 
 .music-button:hover{
+
     color:#fff;
 
     text-shadow:
@@ -652,6 +1261,7 @@ body{
 }
 
 .volume-slider{
+
     width:70px;
 
     appearance:none;
@@ -668,6 +1278,7 @@ body{
 }
 
 .volume-slider::-webkit-slider-thumb{
+
     appearance:none;
     -webkit-appearance:none;
 
@@ -683,6 +1294,7 @@ body{
 }
 
 .volume-slider::-moz-range-thumb{
+
     width:8px;
     height:8px;
 
@@ -697,88 +1309,267 @@ body{
 }
 
 .music-label{
+
     font-size:7px;
 
     letter-spacing:.18em;
 
-    color:rgba(140,190,225,.55);
+    color:
+        rgba(140,190,225,.55);
 
     user-select:none;
 }
-
-/* =========================================================
-   AUDIO
-   ========================================================= */
 
 audio{
     display:none;
 }
 
+
 /* =========================================================
    MOBILE
    ========================================================= */
 
-@media(max-width:600px){
+@media(max-width:850px){
 
-    .grid{
-        background-size:48px 48px;
+    .character-content{
+
+        gap:25px;
+
+        padding:
+            30px;
     }
 
+    .character-selector{
+
+        width:240px;
+    }
+
+    .profile-display{
+
+        width:calc(100vw - 300px);
+
+        min-height:360px;
+    }
+
+    .portrait-placeholder{
+
+        width:170px;
+        height:260px;
+    }
+
+    .profile-info{
+
+        padding:25px;
+    }
+
+    .profile-name{
+
+        font-size:24px;
+    }
+}
+
+@media(max-width:600px){
+
     .page{
+
         min-height:560px;
+
         padding:0 20px;
     }
 
     .corner{
+
         display:none;
     }
 
     .logo{
+
         font-size:58px;
+
         margin-bottom:30px;
     }
 
     .follow{
+
         font-size:9px;
+
         letter-spacing:.14em;
+
         max-width:90vw;
+
         line-height:1.8;
     }
 
     .socials{
+
         padding:6px 5px;
+
         margin-bottom:50px;
     }
 
     .socials a{
+
         font-size:9px;
+
         padding:0 11px;
+
         letter-spacing:.12em;
     }
 
     .profile{
+
         min-width:min(330px,88vw);
+
         padding:17px 25px;
     }
 
     .profile-text{
+
         font-size:10px;
+
         letter-spacing:.18em;
     }
 
     .status{
+
         bottom:22px;
     }
 
     .music-control{
+
         right:16px;
+
         bottom:16px;
     }
 
     .music-label{
+
         display:none;
     }
+
+
+    /* Mobile character screen */
+
+    .character-header{
+
+        height:80px;
+
+        padding:
+            0 20px;
+    }
+
+    .character-title-main{
+
+        font-size:17px;
+    }
+
+    .character-title-sub{
+
+        font-size:6px;
+    }
+
+    .close-profile{
+
+        padding:
+            8px 12px;
+
+        font-size:7px;
+    }
+
+    .character-content{
+
+        top:80px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        justify-content:flex-start;
+
+        gap:15px;
+
+        padding:
+            20px;
+    }
+
+    .character-selector{
+
+        width:100%;
+
+        max-height:125px;
+
+        display:flex;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        padding:0;
+    }
+
+    .character-item{
+
+        min-width:170px;
+
+        height:42px;
+
+        margin-right:4px;
+
+        margin-bottom:0;
+    }
+
+    .profile-display{
+
+        width:100%;
+
+        min-height:350px;
+
+        height:calc(100vh - 250px);
+    }
+
+    .portrait-placeholder{
+
+        width:110px;
+
+        height:190px;
+    }
+
+    .profile-info{
+
+        padding:20px;
+    }
+
+    .profile-name{
+
+        font-size:21px;
+
+        margin-bottom:15px;
+    }
+
+    .profile-meta{
+
+        grid-template-columns:75px 1fr;
+
+        font-size:7px;
+
+        gap:7px 10px;
+    }
+
+    .character-navigation{
+
+        bottom:18px;
+    }
+
+    .character-counter{
+
+        right:20px;
+
+        bottom:20px;
+
+        font-size:6px;
+    }
 }
+
 
 /* =========================================================
    REDUCED MOTION
@@ -789,15 +1580,21 @@ audio{
     *,
     *::before,
     *::after{
+
         animation-duration:.01ms !important;
+
         animation-iteration-count:1 !important;
+
         transition-duration:.01ms !important;
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =======================================================
      BACKGROUND
@@ -813,13 +1610,16 @@ audio{
 
     <div class="scanline"></div>
 
-    <div class="particles" id="particles"></div>
+    <div
+        class="particles"
+        id="particles">
+    </div>
 
 </div>
 
 
 <!-- =======================================================
-     LOCAL BACKGROUND MUSIC
+     LOCAL MUSIC
      ======================================================= -->
 
 <audio
@@ -837,7 +1637,7 @@ audio{
 
 
 <!-- =======================================================
-     MAIN PAGE
+     LANDING PAGE
      ======================================================= -->
 
 <main class="page">
@@ -872,7 +1672,10 @@ audio{
     </p>
 
 
-    <nav class="socials" aria-label="Social media">
+    <nav
+        class="socials"
+        aria-label="Social media"
+    >
 
         <a
             href="https://x.com/sorawindy"
@@ -901,10 +1704,11 @@ audio{
     </nav>
 
 
-    <a
-        href="#"
+    <button
         class="profile"
-        aria-label="Character Profile"
+        id="openProfile"
+        type="button"
+        aria-label="Open Character Profile"
     >
 
         <span class="profile-text">
@@ -915,7 +1719,7 @@ audio{
             ▼
         </span>
 
-    </a>
+    </button>
 
 
     <span class="status">
@@ -923,6 +1727,182 @@ audio{
     </span>
 
 </main>
+
+
+<!-- =======================================================
+     CHARACTER PROFILE SCREEN
+     ======================================================= -->
+
+<section
+    class="character-screen"
+    id="characterScreen"
+    aria-hidden="true"
+>
+
+
+    <!-- HEADER -->
+
+    <header class="character-header">
+
+        <div class="character-title">
+
+            <span class="character-title-main">
+                CHARACTER PROFILE
+            </span>
+
+            <span class="character-title-sub">
+                PERSONNEL DATABASE // 26 ENTRIES
+            </span>
+
+        </div>
+
+
+        <button
+            class="close-profile"
+            id="closeProfile"
+            type="button"
+        >
+            CLOSE ×
+        </button>
+
+    </header>
+
+
+    <!-- CHARACTER CONTENT -->
+
+    <div class="character-content">
+
+
+        <!-- CHARACTER LIST -->
+
+        <div
+            class="character-selector"
+            id="characterSelector"
+        >
+
+            <!-- Generated by JavaScript -->
+
+        </div>
+
+
+        <!-- PROFILE DISPLAY -->
+
+        <div class="profile-display">
+
+
+            <!-- Placeholder portrait -->
+
+            <div
+                class="portrait-placeholder"
+                id="portraitPlaceholder"
+            ></div>
+
+
+            <!-- Information -->
+
+            <div class="profile-info">
+
+                <div
+                    class="profile-number"
+                    id="profileNumber"
+                >
+                    CHARACTER 01
+                </div>
+
+
+                <h2
+                    class="profile-name"
+                    id="profileName"
+                >
+                    Rion Adachi
+                </h2>
+
+
+                <div class="profile-line"></div>
+
+
+                <div class="profile-meta">
+
+                    <span class="profile-meta-label">
+                        STATUS
+                    </span>
+
+                    <span class="profile-meta-value">
+                        REGISTERED
+                    </span>
+
+
+                    <span class="profile-meta-label">
+                        PROFILE
+                    </span>
+
+                    <span class="profile-meta-value">
+                        DATA PENDING
+                    </span>
+
+
+                    <span class="profile-meta-label">
+                        CLASS
+                    </span>
+
+                    <span class="profile-meta-value">
+                        UNASSIGNED
+                    </span>
+
+
+                    <span class="profile-meta-label">
+                        RECORD
+                    </span>
+
+                    <span class="profile-meta-value">
+                        AVAILABLE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PREVIOUS / NEXT -->
+
+    <div class="character-navigation">
+
+        <button
+            class="nav-character"
+            id="previousCharacter"
+            type="button"
+        >
+            ◀ PREVIOUS
+        </button>
+
+        <span class="nav-separator"></span>
+
+        <button
+            class="nav-character"
+            id="nextCharacter"
+            type="button"
+        >
+            NEXT ▶
+        </button>
+
+    </div>
+
+
+    <!-- COUNTER -->
+
+    <div
+        class="character-counter"
+        id="characterCounter"
+    >
+        01 / 26
+    </div>
+
+
+</section>
 
 
 <!-- =======================================================
@@ -935,6 +1915,7 @@ audio{
         MUSIC
     </span>
 
+
     <button
         class="music-button"
         id="muteButton"
@@ -944,6 +1925,7 @@ audio{
     >
         🔊
     </button>
+
 
     <input
         class="volume-slider"
@@ -1067,7 +2049,7 @@ animateParallax();
 
 
 /* =========================================================
-   LOCAL MUSIC
+   MUSIC
    ========================================================= */
 
 const music =
@@ -1085,45 +2067,25 @@ const volumeSlider =
         "volumeSlider"
     );
 
-
 let isMuted = false;
-
-
-/* Initial volume */
 
 music.volume =
     Number(volumeSlider.value) / 100;
 
 
-/* =========================================================
-   START MUSIC
-   ========================================================= */
-
 function startMusic(){
 
     music.play().catch(function(){
 
-        /*
-         Browser autoplay policy may block
-         automatic playback.
-
-         The music will start after the
-         user's first interaction.
-        */
+        /* Browser autoplay restriction */
 
     });
 
 }
 
 
-/* Try to start when page loads */
-
 startMusic();
 
-
-/* =========================================================
-   FIRST USER INTERACTION
-   ========================================================= */
 
 function firstInteraction(){
 
@@ -1150,6 +2112,7 @@ function firstInteraction(){
     );
 }
 
+
 document.addEventListener(
     "click",
     firstInteraction
@@ -1171,9 +2134,7 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   MUTE / UNMUTE
-   ========================================================= */
+/* Mute */
 
 muteButton.addEventListener(
     "click",
@@ -1216,9 +2177,7 @@ muteButton.addEventListener(
 );
 
 
-/* =========================================================
-   VOLUME
-   ========================================================= */
+/* Volume */
 
 volumeSlider.addEventListener(
     "input",
@@ -1247,6 +2206,7 @@ volumeSlider.addEventListener(
                 "🔊";
 
             isMuted = false;
+
         }
 
     }
@@ -1254,19 +2214,334 @@ volumeSlider.addEventListener(
 
 
 /* =========================================================
-   PREVENT PROFILE # FROM JUMPING
+   CHARACTER DATABASE
    ========================================================= */
 
-document
-    .querySelector(".profile")
-    .addEventListener(
-        "click",
-        function(event){
+const characters = [
 
-            event.preventDefault();
+    "Rion Adachi",
+    "Ayami Karasuma",
+    "Elsa von Rietveld",
+    "Raeda Baxley",
+    "Alina Engel",
+    "Nova Meledyne",
+    "Kiyoko Karasu",
+    "Yuzu Irumi",
+    "Ro-Eun Yeong",
+    "Kouka Arisato",
+    "Claudine Celesta",
+    "Fia Andini",
+    "Finley Camelia",
+    "Yume Izumi",
+    "Milica Belic",
+    "Jasmine Lavenza",
+    "Mayumi Inoue",
+    "Ethyln Bernard",
+    "Diane Cerezyna Tsoi",
+    "Vera Rochester",
+    "Kira Marinka Orlova",
+    "Naomi Tausend",
+    "Eimi Shimizu",
+    "Lin Hua Ying",
+    "Randall Gray",
+    "Mai Habara"
+
+];
+
+
+let currentCharacter = 0;
+
+
+/* =========================================================
+   CHARACTER ELEMENTS
+   ========================================================= */
+
+const characterSelector =
+    document.getElementById(
+        "characterSelector"
+    );
+
+const profileName =
+    document.getElementById(
+        "profileName"
+    );
+
+const profileNumber =
+    document.getElementById(
+        "profileNumber"
+    );
+
+const characterCounter =
+    document.getElementById(
+        "characterCounter"
+    );
+
+const portraitPlaceholder =
+    document.getElementById(
+        "portraitPlaceholder"
+    );
+
+
+/* =========================================================
+   BUILD CHARACTER LIST
+   ========================================================= */
+
+characters.forEach(
+    function(name,index){
+
+        const item =
+            document.createElement(
+                "button"
+            );
+
+        item.className =
+            "character-item";
+
+        item.type =
+            "button";
+
+        item.innerHTML = `
+            <span class="character-number">
+                ${(index + 1).toString().padStart(2,"0")}
+            </span>
+
+            <span class="character-name">
+                ${name}
+            </span>
+        `;
+
+        item.addEventListener(
+            "click",
+            function(){
+
+                selectCharacter(index);
+
+            }
+        );
+
+        characterSelector.appendChild(
+            item
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SELECT CHARACTER
+   ========================================================= */
+
+function selectCharacter(index){
+
+    currentCharacter =
+        index;
+
+    const name =
+        characters[currentCharacter];
+
+    profileName.textContent =
+        name;
+
+    profileNumber.textContent =
+        "CHARACTER " +
+        String(currentCharacter + 1)
+            .padStart(2,"0");
+
+    characterCounter.textContent =
+        String(currentCharacter + 1)
+            .padStart(2,"0")
+        +
+        " / "
+        +
+        String(characters.length)
+            .padStart(2,"0");
+
+
+    const items =
+        document.querySelectorAll(
+            ".character-item"
+        );
+
+
+    items.forEach(
+        function(item,i){
+
+            item.classList.toggle(
+                "active",
+                i === currentCharacter
+            );
 
         }
     );
+
+
+    /*
+       Portrait placeholder is intentionally
+       empty for now.
+
+       Later we can connect each character
+       to an image file.
+    */
+
+    portraitPlaceholder.setAttribute(
+        "data-character",
+        name
+    );
+
+}
+
+
+/* =========================================================
+   PREVIOUS CHARACTER
+   ========================================================= */
+
+document
+    .getElementById(
+        "previousCharacter"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            currentCharacter--;
+
+            if(currentCharacter < 0){
+
+                currentCharacter =
+                    characters.length - 1;
+
+            }
+
+            selectCharacter(
+                currentCharacter
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   NEXT CHARACTER
+   ========================================================= */
+
+document
+    .getElementById(
+        "nextCharacter"
+    )
+    .addEventListener(
+        "click",
+        function(){
+
+            currentCharacter++;
+
+            if(
+                currentCharacter >=
+                characters.length
+            ){
+
+                currentCharacter = 0;
+
+            }
+
+            selectCharacter(
+                currentCharacter
+            );
+
+        }
+    );
+
+
+/* Initial character */
+
+selectCharacter(0);
+
+
+/* =========================================================
+   OPEN CHARACTER PROFILE
+   ========================================================= */
+
+const openProfile =
+    document.getElementById(
+        "openProfile"
+    );
+
+const closeProfile =
+    document.getElementById(
+        "closeProfile"
+    );
+
+const characterScreen =
+    document.getElementById(
+        "characterScreen"
+    );
+
+
+openProfile.addEventListener(
+    "click",
+    function(){
+
+        document.body.classList.add(
+            "profile-open"
+        );
+
+        characterScreen.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE CHARACTER PROFILE
+   ========================================================= */
+
+closeProfile.addEventListener(
+    "click",
+    function(){
+
+        document.body.classList.remove(
+            "profile-open"
+        );
+
+        characterScreen.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape" &&
+            document.body.classList.contains(
+                "profile-open"
+            )
+        ){
+
+            document.body.classList.remove(
+                "profile-open"
+            );
+
+            characterScreen.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+        }
+
+    }
+);
 
 </script>
 
