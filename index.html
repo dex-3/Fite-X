@@ -42,7 +42,7 @@ body{
 
 .background{
     position:fixed;
-    inset:-80px;
+    inset:-100px;
     overflow:hidden;
     pointer-events:none;
     z-index:0;
@@ -86,8 +86,8 @@ body{
     width:65vw;
     height:65vw;
 
-    max-width:850px;
-    max-height:850px;
+    max-width:1000px;
+    max-height:1000px;
 
     left:50%;
     top:45%;
@@ -107,8 +107,7 @@ body{
 
     filter:blur(5px);
 
-    animation:
-        glowMove 14s ease-in-out infinite alternate;
+    animation:glowMove 14s ease-in-out infinite alternate;
 }
 
 @keyframes glowMove{
@@ -145,8 +144,7 @@ body{
             transparent 46.3%
         );
 
-    animation:
-        diagonalMove 22s linear infinite;
+    animation:diagonalMove 22s linear infinite;
 }
 
 @keyframes diagonalMove{
@@ -181,8 +179,7 @@ body{
             transparent
         );
 
-    animation:
-        scan 10s linear infinite;
+    animation:scan 10s linear infinite;
 }
 
 @keyframes scan{
@@ -275,7 +272,6 @@ body{
 .page{
     width:100%;
     height:100vh;
-    min-height:620px;
 
     display:flex;
     flex-direction:column;
@@ -317,8 +313,8 @@ body.profile-open .page{
 
     position:absolute;
 
-    width:46px;
-    height:46px;
+    width:60px;
+    height:60px;
 
     border-color:
         rgba(90,166,235,.55);
@@ -328,8 +324,8 @@ body.profile-open .page{
 
 .page:before{
 
-    top:30px;
-    left:30px;
+    top:40px;
+    left:40px;
 
     border-top:1px solid;
     border-left:1px solid;
@@ -337,8 +333,8 @@ body.profile-open .page{
 
 .page:after{
 
-    right:30px;
-    bottom:30px;
+    right:40px;
+    bottom:40px;
 
     border-right:1px solid;
     border-bottom:1px solid;
@@ -348,7 +344,7 @@ body.profile-open .page{
 
     position:absolute;
 
-    font-size:8px;
+    font-size:11px;
 
     letter-spacing:.28em;
 
@@ -360,26 +356,26 @@ body.profile-open .page{
 
 .top-left{
 
-    top:54px;
-    left:60px;
+    top:68px;
+    left:80px;
 }
 
 .top-right{
 
-    top:54px;
-    right:60px;
+    top:68px;
+    right:80px;
 }
 
 .bottom-left{
 
-    bottom:54px;
-    left:60px;
+    bottom:68px;
+    left:80px;
 }
 
 .bottom-right{
 
-    bottom:54px;
-    right:60px;
+    bottom:68px;
+    right:80px;
 }
 
 
@@ -390,7 +386,7 @@ body.profile-open .page{
 .logo{
 
     font-size:
-        clamp(54px,8vw,100px);
+        clamp(70px,10vw,150px);
 
     line-height:1;
 
@@ -399,9 +395,10 @@ body.profile-open .page{
     letter-spacing:-.07em;
 
     text-shadow:
-        0 0 28px rgba(110,180,255,.25);
+        0 0 38px
+        rgba(110,180,255,.25);
 
-    margin-bottom:38px;
+    margin-bottom:48px;
 
     animation:
         logoGlow 5s ease-in-out
@@ -411,19 +408,15 @@ body.profile-open .page{
 @keyframes logoGlow{
 
     0%{
-
         text-shadow:
-            0 0 20px
+            0 0 25px
             rgba(110,180,255,.18);
-
     }
 
     100%{
-
         text-shadow:
-            0 0 34px
-            rgba(110,180,255,.38);
-
+            0 0 45px
+            rgba(110,180,255,.40);
     }
 
 }
@@ -435,8 +428,8 @@ body.profile-open .page{
 
 .divider{
 
-    width:360px;
-    max-width:65vw;
+    width:540px;
+    max-width:70vw;
 
     height:1px;
 
@@ -450,7 +443,7 @@ body.profile-open .page{
 
     position:relative;
 
-    margin-bottom:34px;
+    margin-bottom:42px;
 }
 
 .divider:after{
@@ -465,23 +458,23 @@ body.profile-open .page{
     transform:
         translate(-50%,-54%);
 
-    padding:0 12px;
+    padding:0 16px;
 
     background:#05080d;
 
     color:#6cb9f5;
 
-    font-size:10px;
+    font-size:14px;
 }
 
 
 /* =========================================================
-   FOLLOW TEXT
+   FOLLOW
    ========================================================= */
 
 .follow{
 
-    font-size:12px;
+    font-size:16px;
 
     letter-spacing:.22em;
 
@@ -489,7 +482,7 @@ body.profile-open .page{
 
     text-transform:uppercase;
 
-    margin-bottom:28px;
+    margin-bottom:36px;
 }
 
 
@@ -504,15 +497,17 @@ body.profile-open .page{
     align-items:center;
     justify-content:center;
 
-    margin-bottom:64px;
+    margin-bottom:80px;
 
     border-left:
-        1px solid rgba(86,157,218,.45);
+        1px solid
+        rgba(86,157,218,.45);
 
     border-right:
-        1px solid rgba(86,157,218,.45);
+        1px solid
+        rgba(86,157,218,.45);
 
-    padding:7px 24px;
+    padding:9px 30px;
 }
 
 .socials a{
@@ -521,13 +516,13 @@ body.profile-open .page{
 
     text-decoration:none;
 
-    font-size:12px;
+    font-size:16px;
 
     font-weight:500;
 
     letter-spacing:.2em;
 
-    padding:0 28px;
+    padding:0 38px;
 
     transition:
         color .25s,
@@ -547,23 +542,23 @@ body.profile-open .page{
     color:#8fd0ff;
 
     text-shadow:
-        0 0 14px
+        0 0 18px
         rgba(96,183,255,.7);
 
     transform:
-        translateY(-1px);
+        translateY(-2px);
 }
 
 
 /* =========================================================
-   PROFILE BUTTON
+   CHARACTER PROFILE BUTTON
    ========================================================= */
 
 .profile{
 
-    min-width:340px;
+    min-width:510px;
 
-    padding:18px 44px;
+    padding:27px 66px;
 
     border:
         1px solid
@@ -580,14 +575,14 @@ body.profile-open .page{
 
     clip-path:
         polygon(
-            18px 0,
-            calc(100% - 18px) 0,
-            100% 18px,
-            100% calc(100% - 18px),
-            calc(100% - 18px) 100%,
-            18px 100%,
-            0 calc(100% - 18px),
-            0 18px
+            25px 0,
+            calc(100% - 25px) 0,
+            100% 25px,
+            100% calc(100% - 25px),
+            calc(100% - 25px) 100%,
+            25px 100%,
+            0 calc(100% - 25px),
+            0 25px
         );
 
     background:
@@ -605,16 +600,16 @@ body.profile-open .page{
         rgba(40,91,135,.18);
 
     box-shadow:
-        0 0 28px
+        0 0 38px
         rgba(67,157,225,.16);
 
     transform:
-        translateY(-2px);
+        translateY(-3px);
 }
 
 .profile-text{
 
-    font-size:12px;
+    font-size:16px;
 
     font-weight:600;
 
@@ -625,11 +620,11 @@ body.profile-open .page{
 
     display:block;
 
-    margin-top:14px;
+    margin-top:18px;
 
     color:#8bcfff;
 
-    font-size:13px;
+    font-size:16px;
 
     transition:
         transform .3s,
@@ -639,10 +634,10 @@ body.profile-open .page{
 .profile:hover .triangle{
 
     transform:
-        translateY(5px);
+        translateY(7px);
 
     text-shadow:
-        0 0 12px
+        0 0 16px
         rgba(110,195,255,.9);
 }
 
@@ -655,13 +650,13 @@ body.profile-open .page{
 
     position:absolute;
 
-    bottom:38px;
+    bottom:48px;
     left:50%;
 
     transform:
         translateX(-50%);
 
-    font-size:7px;
+    font-size:9px;
 
     letter-spacing:.28em;
 
@@ -680,11 +675,7 @@ body.profile-open .page{
 
     position:fixed;
 
-    left:0;
-    top:0;
-
-    width:100%;
-    height:100vh;
+    inset:0;
 
     z-index:10;
 
@@ -734,7 +725,7 @@ body.profile-open
     left:0;
 
     width:100%;
-    height:90px;
+    height:110px;
 
     display:flex;
 
@@ -742,7 +733,7 @@ body.profile-open
 
     justify-content:space-between;
 
-    padding:0 60px;
+    padding:0 75px;
 
     border-bottom:
         1px solid
@@ -771,7 +762,7 @@ body.profile-open
 
 .character-title-main{
 
-    font-size:24px;
+    font-size:30px;
 
     font-weight:600;
 
@@ -780,9 +771,9 @@ body.profile-open
 
 .character-title-sub{
 
-    margin-top:6px;
+    margin-top:8px;
 
-    font-size:8px;
+    font-size:10px;
 
     letter-spacing:.28em;
 
@@ -792,7 +783,7 @@ body.profile-open
 
 
 /* =========================================================
-   CLOSE
+   CLOSE BUTTON
    ========================================================= */
 
 .close-profile{
@@ -807,12 +798,12 @@ body.profile-open
     color:#dceeff;
 
     padding:
-        10px 18px;
+        13px 22px;
 
     font-family:
         "Oxanium",sans-serif;
 
-    font-size:9px;
+    font-size:11px;
 
     letter-spacing:.20em;
 
@@ -832,13 +823,13 @@ body.profile-open
         rgba(40,91,135,.25);
 
     box-shadow:
-        0 0 18px
+        0 0 22px
         rgba(67,157,225,.18);
 }
 
 
 /* =========================================================
-   CHARACTER SELECT AREA
+   CHARACTER SELECT
    ========================================================= */
 
 .character-select{
@@ -848,11 +839,11 @@ body.profile-open
     left:0;
     right:0;
 
-    top:90px;
+    top:110px;
     bottom:0;
 
     padding:
-        15px 30px 20px;
+        18px 30px 30px;
 
     display:flex;
 
@@ -865,7 +856,7 @@ body.profile-open
 
 
 /* =========================================================
-   SELECT TITLE
+   SELECT HEADING
    ========================================================= */
 
 .select-heading{
@@ -874,12 +865,12 @@ body.profile-open
 
     flex-shrink:0;
 
-    margin-bottom:10px;
+    margin-bottom:14px;
 }
 
 .select-heading-main{
 
-    font-size:13px;
+    font-size:16px;
 
     font-weight:500;
 
@@ -892,9 +883,9 @@ body.profile-open
 
     display:block;
 
-    margin-top:5px;
+    margin-top:7px;
 
-    font-size:7px;
+    font-size:9px;
 
     letter-spacing:.20em;
 
@@ -909,7 +900,7 @@ body.profile-open
 
 .character-grid{
 
-    width:min(850px,94vw);
+    width:min(1350px,96vw);
 
     display:flex;
 
@@ -917,12 +908,12 @@ body.profile-open
 
     align-items:center;
 
-    gap:8px;
+    gap:14px;
 
     overflow-y:auto;
 
     padding:
-        5px 10px 10px;
+        8px 10px 15px;
 
     scrollbar-width:thin;
 
@@ -942,7 +933,7 @@ body.profile-open
 
     justify-content:center;
 
-    gap:9px;
+    gap:14px;
 
     flex-shrink:0;
 }
@@ -954,8 +945,11 @@ body.profile-open
 
 .character-item{
 
-    width:105px;
-    height:165px;
+    width:
+        clamp(105px,8vw,158px);
+
+    height:
+        clamp(165px,12.5vw,248px);
 
     flex-shrink:0;
 
@@ -963,17 +957,15 @@ body.profile-open
 
     display:flex;
 
-    flex-direction:column;
-
     align-items:center;
 
-    justify-content:flex-end;
+    justify-content:center;
 
-    padding:5px;
+    padding:0;
 
     border:
         1px solid
-        rgba(90,160,215,.25);
+        rgba(90,160,215,.30);
 
     background:
         linear-gradient(
@@ -993,14 +985,14 @@ body.profile-open
 
     clip-path:
         polygon(
-            8px 0,
-            calc(100% - 8px) 0,
-            100% 8px,
-            100% calc(100% - 8px),
-            calc(100% - 8px) 100%,
-            8px 100%,
-            0 calc(100% - 8px),
-            0 8px
+            10px 0,
+            calc(100% - 10px) 0,
+            100% 10px,
+            100% calc(100% - 10px),
+            calc(100% - 10px) 100%,
+            10px 100%,
+            0 calc(100% - 10px),
+            0 10px
         );
 
     transition:
@@ -1013,7 +1005,7 @@ body.profile-open
 .character-item:hover{
 
     transform:
-        translateY(-4px)
+        translateY(-5px)
         scale(1.025);
 
     border-color:
@@ -1027,7 +1019,7 @@ body.profile-open
         );
 
     box-shadow:
-        0 0 18px
+        0 0 24px
         rgba(65,155,220,.18);
 }
 
@@ -1044,10 +1036,10 @@ body.profile-open
         );
 
     box-shadow:
-        0 0 22px
+        0 0 28px
         rgba(65,170,240,.25),
 
-        inset 0 0 18px
+        inset 0 0 22px
         rgba(90,180,240,.08);
 }
 
@@ -1057,7 +1049,7 @@ body.profile-open
 
     position:absolute;
 
-    inset:3px;
+    inset:4px;
 
     border:
         1px solid
@@ -1075,15 +1067,9 @@ body.profile-open
 
     position:absolute;
 
-    left:8px;
-    right:8px;
+    inset:0;
 
-    top:8px;
-    bottom:32px;
-
-    border:
-        1px solid
-        rgba(90,160,215,.16);
+    border:0;
 
     background:
         radial-gradient(
@@ -1106,7 +1092,7 @@ body.profile-open
 
     content:"PORTRAIT";
 
-    font-size:6px;
+    font-size:8px;
 
     letter-spacing:.18em;
 
@@ -1116,264 +1102,15 @@ body.profile-open
 
 
 /* =========================================================
-   NUMBER
-   ========================================================= */
-
-.character-number{
-
-    position:absolute;
-
-    top:7px;
-    left:9px;
-
-    z-index:3;
-
-    font-size:7px;
-
-    letter-spacing:.12em;
-
-    color:
-        rgba(130,195,235,.55);
-}
-
-
-/* =========================================================
-   NAME
-   ========================================================= */
-
-.character-name{
-
-    position:relative;
-
-    z-index:3;
-
-    width:100%;
-
-    padding:
-        7px 3px 4px;
-
-    background:
-        linear-gradient(
-            transparent,
-            rgba(3,8,14,.92) 35%
-        );
-
-    font-size:7px;
-
-    letter-spacing:.06em;
-
-    line-height:1.1;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-}
-
-
-/* =========================================================
-   SELECTED CHARACTER
-   ========================================================= */
-
-.selected-display{
-
-    width:min(700px,70vw);
-
-    height:58px;
-
-    flex-shrink:0;
-
-    margin-top:8px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    position:relative;
-
-    border-top:
-        1px solid
-        rgba(100,183,246,.28);
-
-    border-bottom:
-        1px solid
-        rgba(100,183,246,.28);
-
-    background:
-        rgba(4,12,20,.34);
-}
-
-.selected-display:before,
-.selected-display:after{
-
-    content:"";
-
-    position:absolute;
-
-    width:22px;
-    height:22px;
-
-    border-color:
-        rgba(100,183,246,.60);
-}
-
-.selected-display:before{
-
-    left:0;
-    top:0;
-
-    border-top:1px solid;
-    border-left:1px solid;
-}
-
-.selected-display:after{
-
-    right:0;
-    bottom:0;
-
-    border-right:1px solid;
-    border-bottom:1px solid;
-}
-
-.selected-info{
-
-    text-align:center;
-}
-
-.selected-number{
-
-    display:block;
-
-    font-size:6px;
-
-    letter-spacing:.25em;
-
-    color:
-        rgba(120,190,235,.50);
-
-    margin-bottom:4px;
-}
-
-.selected-name{
-
-    display:block;
-
-    font-size:20px;
-
-    font-weight:500;
-
-    letter-spacing:.10em;
-
-    text-shadow:
-        0 0 18px
-        rgba(100,190,255,.22);
-}
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-.character-navigation{
-
-    position:absolute;
-
-    left:50%;
-
-    bottom:8px;
-
-    transform:
-        translateX(-50%);
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    z-index:10;
-}
-
-.nav-character{
-
-    border:0;
-
-    background:transparent;
-
-    color:
-        rgba(145,205,245,.70);
-
-    font-family:
-        "Oxanium",sans-serif;
-
-    font-size:8px;
-
-    letter-spacing:.20em;
-
-    cursor:pointer;
-
-    padding:
-        5px 10px;
-
-    transition:
-        color .2s,
-        text-shadow .2s;
-}
-
-.nav-character:hover{
-
-    color:#fff;
-
-    text-shadow:
-        0 0 10px
-        rgba(100,190,255,.7);
-}
-
-.nav-separator{
-
-    width:1px;
-
-    height:15px;
-
-    background:
-        rgba(100,183,246,.30);
-}
-
-
-/* =========================================================
-   COUNTER
-   ========================================================= */
-
-.character-counter{
-
-    position:absolute;
-
-    bottom:15px;
-
-    right:45px;
-
-    font-size:7px;
-
-    letter-spacing:.20em;
-
-    color:
-        rgba(120,180,225,.45);
-}
-
-
-/* =========================================================
-   MUSIC
+   MUSIC CONTROL
    ========================================================= */
 
 .music-control{
 
     position:fixed;
 
-    right:34px;
-    bottom:30px;
+    right:40px;
+    bottom:40px;
 
     z-index:30;
 
@@ -1381,10 +1118,10 @@ body.profile-open
 
     align-items:center;
 
-    gap:10px;
+    gap:12px;
 
     padding:
-        7px 10px;
+        9px 13px;
 
     border:
         1px solid
@@ -1401,19 +1138,19 @@ body.profile-open
 
     clip-path:
         polygon(
-            8px 0,
+            10px 0,
             100% 0,
-            100% calc(100% - 8px),
-            calc(100% - 8px) 100%,
+            100% calc(100% - 10px),
+            calc(100% - 10px) 100%,
             0 100%,
-            0 8px
+            0 10px
         );
 }
 
 .music-button{
 
-    width:28px;
-    height:24px;
+    width:34px;
+    height:28px;
 
     border:0;
 
@@ -1424,7 +1161,7 @@ body.profile-open
     font-family:
         "Oxanium",sans-serif;
 
-    font-size:12px;
+    font-size:14px;
 
     cursor:pointer;
 
@@ -1438,18 +1175,18 @@ body.profile-open
     color:#fff;
 
     text-shadow:
-        0 0 10px
+        0 0 12px
         rgba(100,190,255,.8);
 }
 
 .volume-slider{
 
-    width:70px;
+    width:90px;
 
     appearance:none;
     -webkit-appearance:none;
 
-    height:2px;
+    height:3px;
 
     background:
         rgba(120,180,220,.35);
@@ -1464,22 +1201,22 @@ body.profile-open
     appearance:none;
     -webkit-appearance:none;
 
-    width:8px;
-    height:8px;
+    width:10px;
+    height:10px;
 
     border-radius:50%;
 
     background:#8fd0ff;
 
     box-shadow:
-        0 0 8px
+        0 0 9px
         rgba(100,190,255,.8);
 }
 
 .volume-slider::-moz-range-thumb{
 
-    width:8px;
-    height:8px;
+    width:10px;
+    height:10px;
 
     border:none;
 
@@ -1488,13 +1225,13 @@ body.profile-open
     background:#8fd0ff;
 
     box-shadow:
-        0 0 8px
+        0 0 9px
         rgba(100,190,255,.8);
 }
 
 .music-label{
 
-    font-size:7px;
+    font-size:9px;
 
     letter-spacing:.18em;
 
@@ -1520,9 +1257,7 @@ audio{
     }
 
     .page{
-
         min-height:560px;
-
         padding:0 20px;
     }
 
@@ -1530,11 +1265,34 @@ audio{
         display:none;
     }
 
+    .page:before,
+    .page:after{
+        width:32px;
+        height:32px;
+    }
+
+    .page:before{
+        top:20px;
+        left:20px;
+    }
+
+    .page:after{
+        right:20px;
+        bottom:20px;
+    }
+
     .logo{
 
         font-size:58px;
 
         margin-bottom:30px;
+    }
+
+    .divider{
+
+        width:280px;
+
+        margin-bottom:28px;
     }
 
     .follow{
@@ -1583,20 +1341,6 @@ audio{
     .status{
 
         bottom:22px;
-    }
-
-
-    /* MUSIC */
-
-    .music-control{
-
-        right:16px;
-
-        bottom:16px;
-    }
-
-    .music-label{
-        display:none;
     }
 
 
@@ -1655,13 +1399,13 @@ audio{
     }
 
 
-    /* MOBILE GRID */
+    /* MOBILE CHARACTER GRID */
 
     .character-grid{
 
         width:100%;
 
-        gap:5px;
+        gap:6px;
 
         padding:
             3px 3px 8px;
@@ -1685,78 +1429,22 @@ audio{
         max-height:129px;
     }
 
-    .character-portrait{
 
-        left:4px;
-        right:4px;
+    /* MUSIC */
 
-        top:4px;
-        bottom:25px;
+    .music-control{
+
+        right:16px;
+
+        bottom:16px;
     }
 
-    .character-number{
-
-        top:4px;
-        left:5px;
-
-        font-size:5px;
+    .music-label{
+        display:none;
     }
 
-    .character-name{
-
-        font-size:5px;
-
-        padding:
-            5px 2px 3px;
-    }
-
-
-    /* SELECTED */
-
-    .selected-display{
-
-        width:100%;
-
-        height:48px;
-
-        margin-top:5px;
-    }
-
-    .selected-number{
-
-        font-size:5px;
-
-        margin-bottom:2px;
-    }
-
-    .selected-name{
-
-        font-size:15px;
-    }
-
-
-    /* NAVIGATION */
-
-    .character-navigation{
-
-        bottom:4px;
-    }
-
-    .nav-character{
-
-        font-size:6px;
-
-        padding:
-            3px 7px;
-    }
-
-    .character-counter{
-
-        right:12px;
-
-        bottom:7px;
-
-        font-size:5px;
+    .volume-slider{
+        width:65px;
     }
 
 }
@@ -1789,7 +1477,7 @@ audio{
 
 
 <!-- =======================================================
-     BACKGROUND
+     MOVING BACKGROUND
      ======================================================= -->
 
 <div class="background">
@@ -1921,7 +1609,7 @@ audio{
 
 
 <!-- =======================================================
-     CHARACTER SELECT SCREEN
+     CHARACTER SELECT
      ======================================================= -->
 
 <section
@@ -1976,63 +1664,8 @@ audio{
         <div
             class="character-grid"
             id="characterGrid"
-        >
-        </div>
+        ></div>
 
-
-        <div class="selected-display">
-
-            <div class="selected-info">
-
-                <span
-                    class="selected-number"
-                    id="selectedNumber"
-                >
-                    CHARACTER 01
-                </span>
-
-                <span
-                    class="selected-name"
-                    id="selectedName"
-                >
-                    RION ADACHI
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="character-navigation">
-
-        <button
-            class="nav-character"
-            id="previousCharacter"
-            type="button"
-        >
-            ◀ PREVIOUS
-        </button>
-
-        <span class="nav-separator"></span>
-
-        <button
-            class="nav-character"
-            id="nextCharacter"
-            type="button"
-        >
-            NEXT ▶
-        </button>
-
-    </div>
-
-
-    <div
-        class="character-counter"
-        id="characterCounter"
-    >
-        01 / 26
     </div>
 
 
@@ -2130,7 +1763,6 @@ for(
     particleContainer.appendChild(
         particle
     );
-
 }
 
 
@@ -2188,7 +1820,6 @@ function firstInteraction(){
         "pointerdown",
         firstInteraction
     );
-
 }
 
 document.addEventListener(
@@ -2377,15 +2008,10 @@ rowSizes.forEach(
 
             item.innerHTML = `
 
-                <span class="character-number">
-                    ${String(index + 1).padStart(2,"0")}
-                </span>
-
-                <span class="character-portrait"></span>
-
-                <span class="character-name">
-                    ${name}
-                </span>
+                <span
+                    class="character-portrait"
+                    title="${name}"
+                ></span>
 
             `;
 
@@ -2394,7 +2020,21 @@ rowSizes.forEach(
                 "click",
                 function(){
 
-                    selectCharacter(index);
+                    document
+                        .querySelectorAll(
+                            ".character-item"
+                        )
+                        .forEach(
+                            function(card){
+                                card.classList.remove(
+                                    "active"
+                                );
+                            }
+                        );
+
+                    item.classList.add(
+                        "active"
+                    );
 
                 }
             );
@@ -2419,145 +2059,21 @@ rowSizes.forEach(
 
 
 /* =========================================================
-   SELECTED CHARACTER
-   ========================================================= */
-
-let currentCharacter = 0;
-
-
-const selectedName =
-    document.getElementById(
-        "selectedName"
-    );
-
-const selectedNumber =
-    document.getElementById(
-        "selectedNumber"
-    );
-
-const characterCounter =
-    document.getElementById(
-        "characterCounter"
-    );
-
-
-function selectCharacter(index){
-
-    currentCharacter =
-        index;
-
-
-    const name =
-        characters[currentCharacter];
-
-
-    selectedName.textContent =
-        name.toUpperCase();
-
-
-    selectedNumber.textContent =
-        "CHARACTER " +
-        String(currentCharacter + 1)
-            .padStart(2,"0");
-
-
-    characterCounter.textContent =
-        String(currentCharacter + 1)
-            .padStart(2,"0")
-        +
-        " / "
-        +
-        String(characters.length)
-            .padStart(2,"0");
-
-
-    const items =
-        document.querySelectorAll(
-            ".character-item"
-        );
-
-
-    items.forEach(
-        function(item,i){
-
-            item.classList.toggle(
-                "active",
-                i === currentCharacter
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PREVIOUS
-   ========================================================= */
-
-document
-    .getElementById(
-        "previousCharacter"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            currentCharacter--;
-
-            if(
-                currentCharacter < 0
-            ){
-
-                currentCharacter =
-                    characters.length - 1;
-
-            }
-
-            selectCharacter(
-                currentCharacter
-            );
-
-        }
-    );
-
-
-/* =========================================================
-   NEXT
-   ========================================================= */
-
-document
-    .getElementById(
-        "nextCharacter"
-    )
-    .addEventListener(
-        "click",
-        function(){
-
-            currentCharacter++;
-
-            if(
-                currentCharacter >=
-                characters.length
-            ){
-
-                currentCharacter = 0;
-
-            }
-
-            selectCharacter(
-                currentCharacter
-            );
-
-        }
-    );
-
-
-/* =========================================================
    INITIAL CHARACTER
    ========================================================= */
 
-selectCharacter(0);
+const firstCharacter =
+    document.querySelector(
+        ".character-item"
+    );
+
+if(firstCharacter){
+
+    firstCharacter.classList.add(
+        "active"
+    );
+
+}
 
 
 /* =========================================================
