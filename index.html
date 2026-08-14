@@ -273,14 +273,12 @@ body{
         opacity .7s ease;
 }
 
-
-/* Landing page moves slightly downward */
-
 body.profile-open .page{
     transform:translateY(12vh) scale(.97);
     opacity:0;
     pointer-events:none;
 }
+
 
 /* =========================================================
    CORNERS
@@ -520,6 +518,8 @@ body.profile-open .page{
 
     cursor:pointer;
 
+    font-family:"Oxanium",sans-serif;
+
     clip-path:
         polygon(
             18px 0,
@@ -604,10 +604,11 @@ body.profile-open .page{
 
 
 /* =========================================================
-   CHARACTER DATABASE PANEL
+   CHARACTER SCREEN
    ========================================================= */
 
 .character-screen{
+
     position:fixed;
 
     left:0;
@@ -625,6 +626,7 @@ body.profile-open .page{
         );
 
     transform:translateY(-100%);
+
     opacity:0;
 
     transition:
@@ -637,14 +639,17 @@ body.profile-open .page{
 }
 
 body.profile-open .character-screen{
+
     transform:translateY(0);
+
     opacity:1;
 
     pointer-events:auto;
 }
 
+
 /* =========================================================
-   CHARACTER SCREEN HEADER
+   CHARACTER HEADER
    ========================================================= */
 
 .character-header{
@@ -656,7 +661,7 @@ body.profile-open .character-screen{
 
     width:100%;
 
-    height:110px;
+    height:100px;
 
     display:flex;
 
@@ -664,8 +669,7 @@ body.profile-open .character-screen{
 
     justify-content:space-between;
 
-    padding:
-        0 60px;
+    padding:0 60px;
 
     border-bottom:
         1px solid rgba(86,157,218,.30);
@@ -676,6 +680,8 @@ body.profile-open .character-screen{
     backdrop-filter:blur(8px);
 
     -webkit-backdrop-filter:blur(8px);
+
+    z-index:5;
 }
 
 .character-title{
@@ -694,7 +700,6 @@ body.profile-open .character-screen{
     font-weight:600;
 
     letter-spacing:.12em;
-
 }
 
 .character-title-sub{
@@ -707,12 +712,11 @@ body.profile-open .character-screen{
 
     color:
         rgba(120,180,225,.55);
-
 }
 
 
 /* =========================================================
-   CLOSE BUTTON
+   CLOSE
    ========================================================= */
 
 .close-profile{
@@ -755,360 +759,407 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   CHARACTER CONTENT
+   CHARACTER SELECT AREA
    ========================================================= */
 
-.character-content{
+.character-select{
 
     position:absolute;
 
     left:0;
     right:0;
 
-    top:110px;
+    top:100px;
     bottom:0;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:60px;
-
-    padding:40px 70px;
-}
-
-
-/* =========================================================
-   CHARACTER SELECTOR
-   ========================================================= */
-
-.character-selector{
-
-    width:300px;
-
-    max-height:65vh;
-
-    overflow-y:auto;
-
-    padding-right:8px;
-
-    scrollbar-width:thin;
-
-    scrollbar-color:
-        rgba(100,183,246,.45)
-        transparent;
-}
-
-.character-selector::-webkit-scrollbar{
-    width:3px;
-}
-
-.character-selector::-webkit-scrollbar-track{
-    background:transparent;
-}
-
-.character-selector::-webkit-scrollbar-thumb{
-    background:
-        rgba(100,183,246,.45);
-}
-
-
-/* Character list */
-
-.character-item{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
     padding:
-        13px 15px;
-
-    margin-bottom:4px;
-
-    border:
-        1px solid transparent;
-
-    background:
-        rgba(5,12,20,.22);
-
-    color:
-        rgba(220,238,255,.65);
-
-    font-family:"Oxanium",sans-serif;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    transition:
-        background .2s,
-        color .2s,
-        border-color .2s,
-        transform .2s;
-}
-
-.character-item:hover{
-
-    background:
-        rgba(40,91,135,.16);
-
-    color:#fff;
-
-    border-color:
-        rgba(100,183,246,.25);
-
-    transform:translateX(4px);
-}
-
-.character-item.active{
-
-    color:#fff;
-
-    background:
-        rgba(40,91,135,.22);
-
-    border-color:
-        rgba(100,183,246,.65);
-
-    box-shadow:
-        inset 3px 0 0 #7ecbff;
-}
-
-.character-number{
-
-    min-width:27px;
-
-    font-size:8px;
-
-    letter-spacing:.12em;
-
-    color:
-        rgba(120,190,235,.45);
-}
-
-.character-name{
-
-    font-size:11px;
-
-    letter-spacing:.08em;
-
-}
-
-
-/* =========================================================
-   PROFILE DISPLAY
-   ========================================================= */
-
-.profile-display{
-
-    width:min(680px,55vw);
-
-    min-height:420px;
-
-    position:relative;
-
-    border:
-        1px solid rgba(100,183,246,.40);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(10,25,40,.62),
-            rgba(3,8,14,.72)
-        );
-
-    clip-path:
-        polygon(
-            28px 0,
-            calc(100% - 28px) 0,
-            100% 28px,
-            100% calc(100% - 28px),
-            calc(100% - 28px) 100%,
-            28px 100%,
-            0 calc(100% - 28px),
-            0 28px
-        );
+        24px 50px 30px;
 
     display:flex;
 
-    align-items:center;
+    flex-direction:column;
 
-    justify-content:center;
+    align-items:center;
 
     overflow:hidden;
 }
 
-.profile-display:before{
+
+/* =========================================================
+   SELECT HEADER
+   ========================================================= */
+
+.select-heading{
+
+    text-align:center;
+
+    flex-shrink:0;
+
+    margin-bottom:14px;
+}
+
+.select-heading-main{
+
+    font-size:13px;
+
+    font-weight:500;
+
+    letter-spacing:.28em;
+
+    color:#dceeff;
+}
+
+.select-heading-sub{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:7px;
+
+    letter-spacing:.20em;
+
+    color:
+        rgba(120,180,225,.42);
+}
+
+
+/* =========================================================
+   CHARACTER GRID
+   ========================================================= */
+
+.character-grid{
+
+    width:min(1050px,90vw);
+
+    flex:1;
+
+    min-height:0;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    grid-auto-rows:1fr;
+
+    gap:7px;
+
+    align-content:center;
+
+}
+
+
+/* =========================================================
+   CHARACTER SLOT
+   ========================================================= */
+
+.character-item{
+
+    min-width:0;
+    min-height:0;
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    padding:5px;
+
+    border:
+        1px solid rgba(90,160,215,.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,38,57,.48),
+            rgba(4,10,16,.68)
+        );
+
+    color:#dceeff;
+
+    font-family:"Oxanium",sans-serif;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    clip-path:
+        polygon(
+            8px 0,
+            calc(100% - 8px) 0,
+            100% 8px,
+            100% calc(100% - 8px),
+            calc(100% - 8px) 100%,
+            8px 100%,
+            0 calc(100% - 8px),
+            0 8px
+        );
+
+    transition:
+        transform .2s,
+        border-color .2s,
+        background .2s,
+        box-shadow .2s;
+}
+
+.character-item:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.025);
+
+    border-color:
+        rgba(125,205,255,.70);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(32,72,103,.55),
+            rgba(5,14,22,.75)
+        );
+
+    box-shadow:
+        0 0 18px rgba(65,155,220,.18);
+}
+
+
+/* Selected */
+
+.character-item.active{
+
+    border-color:
+        rgba(135,215,255,.95);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,88,125,.58),
+            rgba(5,14,22,.82)
+        );
+
+    box-shadow:
+        0 0 22px rgba(65,170,240,.25),
+        inset 0 0 18px rgba(90,180,240,.08);
+}
+
+.character-item.active:after{
 
     content:"";
 
     position:absolute;
 
-    inset:0;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 30%,
-            rgba(100,190,255,.035) 50%,
-            transparent 70%
-        );
-
-    animation:
-        profileSweep 7s linear infinite;
-}
-
-@keyframes profileSweep{
-
-    from{
-        transform:translateX(-100%);
-    }
-
-    to{
-        transform:translateX(100%);
-    }
-}
-
-
-/* Placeholder portrait */
-
-.portrait-placeholder{
-
-    width:230px;
-    height:320px;
+    inset:3px;
 
     border:
-        1px solid rgba(100,183,246,.35);
+        1px solid rgba(140,220,255,.28);
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   PORTRAIT PLACEHOLDER
+   ========================================================= */
+
+.character-portrait{
+
+    position:absolute;
+
+    left:8px;
+    right:8px;
+
+    top:8px;
+    bottom:32px;
+
+    border:
+        1px solid rgba(90,160,215,.16);
 
     background:
         radial-gradient(
             circle at center,
-            rgba(65,125,175,.14),
-            rgba(3,8,14,.7)
+            rgba(70,135,180,.12),
+            rgba(3,8,14,.20) 60%,
+            transparent 75%
         );
 
     display:flex;
 
     align-items:center;
     justify-content:center;
-
-    position:relative;
-
-    flex-shrink:0;
 }
 
-.portrait-placeholder:before{
+.character-portrait:before{
 
     content:"PORTRAIT";
 
-    position:absolute;
+    font-size:6px;
 
-    font-size:9px;
-
-    letter-spacing:.28em;
+    letter-spacing:.18em;
 
     color:
-        rgba(130,190,230,.35);
+        rgba(140,195,230,.22);
 }
 
 
-/* Profile information */
+/* Character number */
 
-.profile-info{
+.character-number{
 
-    position:relative;
+    position:absolute;
+
+    top:7px;
+    left:9px;
 
     z-index:2;
 
-    width:100%;
+    font-size:7px;
 
-    padding:40px;
-
-    text-align:left;
-}
-
-.profile-number{
-
-    font-size:9px;
-
-    letter-spacing:.28em;
+    letter-spacing:.12em;
 
     color:
-        rgba(120,190,235,.48);
-
-    margin-bottom:10px;
+        rgba(130,195,235,.55);
 }
 
-.profile-name{
 
-    font-size:clamp(25px,3vw,42px);
+/* Character name */
 
-    font-weight:500;
+.character-name{
 
-    letter-spacing:.03em;
+    position:relative;
 
-    line-height:1.1;
-
-    margin-bottom:25px;
-
-    text-shadow:
-        0 0 22px rgba(100,180,240,.16);
-}
-
-.profile-line{
+    z-index:3;
 
     width:100%;
 
-    height:1px;
+    padding:
+        7px 3px 4px;
 
     background:
         linear-gradient(
-            90deg,
-            rgba(100,183,246,.55),
-            transparent
+            transparent,
+            rgba(3,8,14,.92) 35%
         );
 
-    margin-bottom:25px;
-}
+    font-size:7px;
 
-.profile-meta{
+    letter-spacing:.06em;
 
-    display:grid;
+    line-height:1.1;
 
-    grid-template-columns:
-        110px 1fr;
+    white-space:nowrap;
 
-    gap:10px 18px;
+    overflow:hidden;
 
-    font-size:9px;
-
-    letter-spacing:.12em;
-}
-
-.profile-meta-label{
-
-    color:
-        rgba(120,180,225,.48);
-
-}
-
-.profile-meta-value{
-
-    color:
-        rgba(235,245,255,.75);
-
+    text-overflow:ellipsis;
 }
 
 
 /* =========================================================
-   PREVIOUS / NEXT
+   SELECTED CHARACTER DISPLAY
+   ========================================================= */
+
+.selected-display{
+
+    width:min(700px,70vw);
+
+    height:66px;
+
+    flex-shrink:0;
+
+    margin-top:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    border-top:
+        1px solid rgba(100,183,246,.28);
+
+    border-bottom:
+        1px solid rgba(100,183,246,.28);
+
+    background:
+        rgba(4,12,20,.34);
+}
+
+.selected-display:before,
+.selected-display:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:22px;
+    height:22px;
+
+    border-color:
+        rgba(100,183,246,.60);
+}
+
+.selected-display:before{
+
+    left:0;
+    top:0;
+
+    border-top:1px solid;
+    border-left:1px solid;
+}
+
+.selected-display:after{
+
+    right:0;
+    bottom:0;
+
+    border-right:1px solid;
+    border-bottom:1px solid;
+}
+
+.selected-info{
+
+    text-align:center;
+}
+
+.selected-number{
+
+    display:block;
+
+    font-size:6px;
+
+    letter-spacing:.25em;
+
+    color:
+        rgba(120,190,235,.50);
+
+    margin-bottom:4px;
+}
+
+.selected-name{
+
+    display:block;
+
+    font-size:20px;
+
+    font-weight:500;
+
+    letter-spacing:.10em;
+
+    text-shadow:
+        0 0 18px rgba(100,190,255,.22);
+}
+
+
+/* =========================================================
+   NAVIGATION
    ========================================================= */
 
 .character-navigation{
@@ -1117,7 +1168,7 @@ body.profile-open .character-screen{
 
     left:50%;
 
-    bottom:28px;
+    bottom:13px;
 
     transform:translateX(-50%);
 
@@ -1126,6 +1177,8 @@ body.profile-open .character-screen{
     align-items:center;
 
     gap:15px;
+
+    z-index:10;
 }
 
 .nav-character{
@@ -1139,13 +1192,13 @@ body.profile-open .character-screen{
 
     font-family:"Oxanium",sans-serif;
 
-    font-size:9px;
+    font-size:8px;
 
     letter-spacing:.20em;
 
     cursor:pointer;
 
-    padding:7px 12px;
+    padding:5px 10px;
 
     transition:
         color .2s,
@@ -1164,7 +1217,7 @@ body.profile-open .character-screen{
 
     width:1px;
 
-    height:18px;
+    height:15px;
 
     background:
         rgba(100,183,246,.30);
@@ -1172,18 +1225,18 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   CHARACTER COUNTER
+   COUNTER
    ========================================================= */
 
 .character-counter{
 
     position:absolute;
 
-    bottom:32px;
+    bottom:18px;
 
-    right:60px;
+    right:50px;
 
-    font-size:8px;
+    font-size:7px;
 
     letter-spacing:.20em;
 
@@ -1333,42 +1386,21 @@ audio{
    MOBILE
    ========================================================= */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
-    .character-content{
+    .character-grid{
 
-        gap:25px;
+        grid-template-columns:
+            repeat(5,1fr);
 
-        padding:
-            30px;
+        width:92vw;
+
+        gap:5px;
     }
 
-    .character-selector{
+    .character-name{
 
-        width:240px;
-    }
-
-    .profile-display{
-
-        width:calc(100vw - 300px);
-
-        min-height:360px;
-    }
-
-    .portrait-placeholder{
-
-        width:170px;
-        height:260px;
-    }
-
-    .profile-info{
-
-        padding:25px;
-    }
-
-    .profile-name{
-
-        font-size:24px;
+        font-size:6px;
     }
 }
 
@@ -1452,125 +1484,140 @@ audio{
     }
 
 
-    /* Mobile character screen */
+    /* Character screen */
 
     .character-header{
 
-        height:80px;
+        height:76px;
 
         padding:
-            0 20px;
+            0 18px;
     }
 
     .character-title-main{
 
-        font-size:17px;
+        font-size:15px;
     }
 
     .character-title-sub{
 
-        font-size:6px;
+        font-size:5px;
     }
 
     .close-profile{
 
         padding:
-            8px 12px;
+            8px 11px;
 
         font-size:7px;
     }
 
-    .character-content{
+    .character-select{
 
-        top:80px;
-
-        display:flex;
-
-        flex-direction:column;
-
-        justify-content:flex-start;
-
-        gap:15px;
+        top:76px;
 
         padding:
-            20px;
+            16px 12px 20px;
     }
 
-    .character-selector{
+    .select-heading{
+
+        margin-bottom:10px;
+    }
+
+    .select-heading-main{
+
+        font-size:10px;
+    }
+
+    .select-heading-sub{
+
+        font-size:5px;
+    }
+
+    .character-grid{
 
         width:100%;
 
-        max-height:125px;
+        grid-template-columns:
+            repeat(4,1fr);
 
-        display:flex;
+        grid-template-rows:
+            repeat(7,1fr);
 
-        overflow-x:auto;
-
-        overflow-y:hidden;
-
-        padding:0;
+        gap:4px;
     }
 
     .character-item{
 
-        min-width:170px;
-
-        height:42px;
-
-        margin-right:4px;
-
-        margin-bottom:0;
+        padding:3px;
     }
 
-    .profile-display{
+    .character-portrait{
+
+        left:4px;
+        right:4px;
+
+        top:4px;
+        bottom:25px;
+    }
+
+    .character-number{
+
+        top:4px;
+        left:5px;
+
+        font-size:5px;
+    }
+
+    .character-name{
+
+        font-size:5px;
+
+        padding:
+            5px 2px 3px;
+    }
+
+    .selected-display{
 
         width:100%;
 
-        min-height:350px;
+        height:52px;
 
-        height:calc(100vh - 250px);
+        margin-top:8px;
     }
 
-    .portrait-placeholder{
+    .selected-number{
 
-        width:110px;
+        font-size:5px;
 
-        height:190px;
+        margin-bottom:2px;
     }
 
-    .profile-info{
+    .selected-name{
 
-        padding:20px;
-    }
-
-    .profile-name{
-
-        font-size:21px;
-
-        margin-bottom:15px;
-    }
-
-    .profile-meta{
-
-        grid-template-columns:75px 1fr;
-
-        font-size:7px;
-
-        gap:7px 10px;
+        font-size:15px;
     }
 
     .character-navigation{
 
-        bottom:18px;
+        bottom:5px;
+    }
+
+    .nav-character{
+
+        font-size:6px;
+
+        padding:3px 7px;
     }
 
     .character-counter{
 
-        right:20px;
+        right:15px;
 
-        bottom:20px;
+        bottom:8px;
 
-        font-size:6px;
+        font-size:5px;
     }
 }
 
@@ -1734,7 +1781,7 @@ audio{
 
 
 <!-- =======================================================
-     CHARACTER PROFILE SCREEN
+     CHARACTER SELECT SCREEN
      ======================================================= -->
 
 <section
@@ -1755,7 +1802,7 @@ audio{
             </span>
 
             <span class="character-title-sub">
-                PERSONNEL DATABASE // 26 ENTRIES
+                CHARACTER DATABASE // 26 ENTRIES
             </span>
 
         </div>
@@ -1772,16 +1819,29 @@ audio{
     </header>
 
 
-    <!-- CHARACTER CONTENT -->
+    <!-- CHARACTER SELECT -->
 
-    <div class="character-content">
+    <div class="character-select">
 
 
-        <!-- CHARACTER LIST -->
+        <div class="select-heading">
+
+            <span class="select-heading-main">
+                CHARACTER SELECT
+            </span>
+
+            <span class="select-heading-sub">
+                SELECT A CHARACTER
+            </span>
+
+        </div>
+
+
+        <!-- CHARACTER GRID -->
 
         <div
-            class="character-selector"
-            id="characterSelector"
+            class="character-grid"
+            id="characterGrid"
         >
 
             <!-- Generated by JavaScript -->
@@ -1789,84 +1849,30 @@ audio{
         </div>
 
 
-        <!-- PROFILE DISPLAY -->
+        <!-- SELECTED CHARACTER -->
 
-        <div class="profile-display">
+        <div class="selected-display">
 
+            <div class="selected-info">
 
-            <!-- Placeholder portrait -->
-
-            <div
-                class="portrait-placeholder"
-                id="portraitPlaceholder"
-            ></div>
-
-
-            <!-- Information -->
-
-            <div class="profile-info">
-
-                <div
-                    class="profile-number"
-                    id="profileNumber"
+                <span
+                    class="selected-number"
+                    id="selectedNumber"
                 >
                     CHARACTER 01
-                </div>
+                </span>
 
-
-                <h2
-                    class="profile-name"
-                    id="profileName"
+                <span
+                    class="selected-name"
+                    id="selectedName"
                 >
-                    Rion Adachi
-                </h2>
-
-
-                <div class="profile-line"></div>
-
-
-                <div class="profile-meta">
-
-                    <span class="profile-meta-label">
-                        STATUS
-                    </span>
-
-                    <span class="profile-meta-value">
-                        REGISTERED
-                    </span>
-
-
-                    <span class="profile-meta-label">
-                        PROFILE
-                    </span>
-
-                    <span class="profile-meta-value">
-                        DATA PENDING
-                    </span>
-
-
-                    <span class="profile-meta-label">
-                        CLASS
-                    </span>
-
-                    <span class="profile-meta-value">
-                        UNASSIGNED
-                    </span>
-
-
-                    <span class="profile-meta-label">
-                        RECORD
-                    </span>
-
-                    <span class="profile-meta-value">
-                        AVAILABLE
-                    </span>
-
-                </div>
+                    RION ADACHI
+                </span>
 
             </div>
 
         </div>
+
 
     </div>
 
@@ -2034,16 +2040,6 @@ function animateParallax(){
     mouseY +=
         (targetY - mouseY) * 0.035;
 
-    document.documentElement.style.setProperty(
-        "--mouse-x",
-        mouseX
-    );
-
-    document.documentElement.style.setProperty(
-        "--mouse-y",
-        mouseY
-    );
-
     requestAnimationFrame(
         animateParallax
     );
@@ -2086,7 +2082,6 @@ function startMusic(){
     });
 
 }
-
 
 startMusic();
 
@@ -2218,7 +2213,7 @@ volumeSlider.addEventListener(
 
 
 /* =========================================================
-   CHARACTER DATABASE
+   26 CHARACTER ROSTER
    ========================================================= */
 
 const characters = [
@@ -2257,22 +2252,22 @@ let currentCharacter = 0;
 
 
 /* =========================================================
-   CHARACTER ELEMENTS
+   CHARACTER SELECT ELEMENTS
    ========================================================= */
 
-const characterSelector =
+const characterGrid =
     document.getElementById(
-        "characterSelector"
+        "characterGrid"
     );
 
-const profileName =
+const selectedName =
     document.getElementById(
-        "profileName"
+        "selectedName"
     );
 
-const profileNumber =
+const selectedNumber =
     document.getElementById(
-        "profileNumber"
+        "selectedNumber"
     );
 
 const characterCounter =
@@ -2280,14 +2275,9 @@ const characterCounter =
         "characterCounter"
     );
 
-const portraitPlaceholder =
-    document.getElementById(
-        "portraitPlaceholder"
-    );
-
 
 /* =========================================================
-   BUILD CHARACTER LIST
+   CREATE CHARACTER SLOTS
    ========================================================= */
 
 characters.forEach(
@@ -2304,15 +2294,26 @@ characters.forEach(
         item.type =
             "button";
 
+        item.setAttribute(
+            "aria-label",
+            "Select " + name
+        );
+
+
         item.innerHTML = `
+
             <span class="character-number">
-                ${(index + 1).toString().padStart(2,"0")}
+                ${String(index + 1).padStart(2,"0")}
             </span>
+
+            <span class="character-portrait"></span>
 
             <span class="character-name">
                 ${name}
             </span>
+
         `;
+
 
         item.addEventListener(
             "click",
@@ -2323,7 +2324,8 @@ characters.forEach(
             }
         );
 
-        characterSelector.appendChild(
+
+        characterGrid.appendChild(
             item
         );
 
@@ -2340,16 +2342,20 @@ function selectCharacter(index){
     currentCharacter =
         index;
 
+
     const name =
         characters[currentCharacter];
 
-    profileName.textContent =
-        name;
 
-    profileNumber.textContent =
+    selectedName.textContent =
+        name.toUpperCase();
+
+
+    selectedNumber.textContent =
         "CHARACTER " +
         String(currentCharacter + 1)
             .padStart(2,"0");
+
 
     characterCounter.textContent =
         String(currentCharacter + 1)
@@ -2378,25 +2384,11 @@ function selectCharacter(index){
         }
     );
 
-
-    /*
-       Portrait placeholder is intentionally
-       empty for now.
-
-       Later we can connect each character
-       to an image file.
-    */
-
-    portraitPlaceholder.setAttribute(
-        "data-character",
-        name
-    );
-
 }
 
 
 /* =========================================================
-   PREVIOUS CHARACTER
+   PREVIOUS
    ========================================================= */
 
 document
@@ -2425,7 +2417,7 @@ document
 
 
 /* =========================================================
-   NEXT CHARACTER
+   NEXT
    ========================================================= */
 
 document
@@ -2455,13 +2447,15 @@ document
     );
 
 
-/* Initial character */
+/* =========================================================
+   INITIAL CHARACTER
+   ========================================================= */
 
 selectCharacter(0);
 
 
 /* =========================================================
-   OPEN CHARACTER PROFILE
+   OPEN CHARACTER SCREEN
    ========================================================= */
 
 const openProfile =
@@ -2498,7 +2492,7 @@ openProfile.addEventListener(
 
 
 /* =========================================================
-   CLOSE CHARACTER PROFILE
+   CLOSE CHARACTER SCREEN
    ========================================================= */
 
 closeProfile.addEventListener(
