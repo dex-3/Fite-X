@@ -3,108 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FITE-X — Character Select</title>
+<title>dex-3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#06070a;--panel:#0e1117;--text:#f4f6f8;--muted:#89919d;--accent:#8cff45;--line:#29303b}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
-body{overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.1;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:42px 42px}
-.screen{position:fixed;inset:0;transition:transform .75s cubic-bezier(.77,0,.18,1),opacity .75s ease}
-.roster{overflow:auto;padding:38px 4vw 35px}.brand{font-size:23px;font-weight:900;letter-spacing:.18em}.brand span{color:var(--accent)}
-.title{text-align:center;margin:55px 0 8px;font-size:clamp(38px,5.5vw,76px);font-weight:900;letter-spacing:-.06em;line-height:.9}.subtitle{text-align:center;color:var(--muted);font-size:9px;letter-spacing:.35em}
-.grid{width:min(1320px,96vw);margin:48px auto;display:flex;flex-direction:column;gap:8px;align-items:center}
-.card{width:190px;height:245px;position:relative;cursor:pointer;overflow:hidden;clip-path:polygon(12% 0,100% 0,88% 100%,0 100%);background:var(--line);padding:2px;transition:transform .25s,filter .25s;flex:0 0 auto}
-.card-inner{width:100%;height:100%;clip-path:polygon(12% 0,100% 0,88% 100%,0 100%);position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 55% 25%,var(--glow),transparent 42%),linear-gradient(145deg,var(--tone),#080a0e 75%);overflow:hidden}
-.card-inner:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.94),transparent 58%)}
-.card:hover{transform:translateY(-7px) scale(1.025);background:var(--accent);filter:drop-shadow(0 8px 22px rgba(140,255,69,.3))}
-.initial{font-size:95px;font-weight:900;color:rgba(255,255,255,.09)}.num{position:absolute;top:12px;right:18px;z-index:2;color:#dce2e8;font-size:8px;letter-spacing:.18em}.label{position:absolute;z-index:2;bottom:15px;left:17px;right:15px}.name{font-size:15px;font-weight:900;letter-spacing:.01em}.style{font-size:8px;color:var(--accent);letter-spacing:.18em;margin-top:5px}
-.detail{transform:translateX(100%);opacity:0;display:grid;grid-template-columns:48% 52%;background:#050608;overflow:auto}
-.detail.show{transform:translateX(0);opacity:1}.roster.hide{transform:translateX(-100%);opacity:0}
-.art{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,var(--glow),transparent 38%),linear-gradient(145deg,var(--tone),#050608 72%);border-right:1px solid var(--line)}
-.art:after{content:"";position:absolute;inset:7%;border:1px solid rgba(255,255,255,.07);clip-path:polygon(12% 0,100% 0,88% 100%,0 100%)}.big{font-size:min(35vw,430px);font-weight:900;color:rgba(255,255,255,.07)}
-.back{position:absolute;top:25px;left:25px;z-index:5;background:#0b0e13;color:#fff;border:1px solid var(--line);padding:12px 17px;cursor:pointer;font-size:9px;letter-spacing:.16em}.back:hover{border-color:var(--accent);color:var(--accent)}
-.info{padding:clamp(45px,7vw,95px) clamp(30px,6vw,90px);display:flex;flex-direction:column;justify-content:center}.code{color:var(--accent);font-size:10px;letter-spacing:.3em;font-weight:900}.detail-name{font-size:clamp(45px,6vw,90px);line-height:.86;font-weight:900;letter-spacing:-.06em;margin:14px 0}.detail-style{font-size:11px;color:var(--muted);letter-spacing:.22em}
-.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin:32px 0}.meta div{background:var(--panel);padding:15px 11px}.meta b{display:block;color:var(--muted);font-size:8px;letter-spacing:.15em;margin-bottom:7px}.meta span{font-size:11px;font-weight:800}
-.bio-title{color:var(--accent);font-size:9px;letter-spacing:.25em;font-weight:900}.bio{color:#adb5c0;line-height:1.75;font-size:14px;max-width:650px;margin:10px 0 25px}.stat{display:grid;grid-template-columns:85px 1fr 32px;gap:12px;align-items:center;margin:11px 0;font-size:9px;letter-spacing:.14em}.bar{height:5px;background:#222832}.fill{height:100%;background:var(--accent);box-shadow:0 0 12px rgba(140,255,69,.45)}
-
-@media(max-width:1050px){.card{width:160px;height:215px}.fighter-row{transform:scale(.96);transform-origin:center}.grid{margin-top:35px}}
-@media(max-width:780px){.card{width:125px;height:175px}.fighter-row{transform:scale(.94);margin:-4px 0}.initial{font-size:70px}.name{font-size:11px}}
-@media(max-width:560px){.card{width:92px;height:135px}.fighter-row{transform:scale(.98);margin:-6px 0}.initial{font-size:48px}.name{font-size:9px}.style{font-size:6px}.num{font-size:6px;top:9px;right:12px}.label{left:12px;bottom:10px}}
-@media(max-width:950px){.grid{grid-template-columns:repeat(4,1fr)}.card{height:220px}.detail{grid-template-columns:1fr}.art{min-height:45vh;height:45vh}}
-@media(max-width:620px){.grid{grid-template-columns:repeat(2,1fr);gap:6px}.card{height:230px}.title{margin-top:42px}.meta{grid-template-columns:repeat(2,1fr)}.detail-name{font-size:45px}.art{min-height:36vh;height:36vh}.info{padding:35px 7vw}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
+body{
+ background:radial-gradient(circle at 50% 42%,rgba(42,76,115,.16),transparent 30%),
+ linear-gradient(rgba(45,86,125,.055) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(45,86,125,.055) 1px,transparent 1px),#03060a;
+ background-size:auto,72px 72px,72px 72px;color:#f4f8ff;
+ font-family:"Oxanium",sans-serif;overflow:hidden
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;
+ background:linear-gradient(135deg,transparent 0 46%,rgba(80,150,220,.045) 46.1% 46.2%,transparent 46.3%)}
+.page{width:100%;height:100vh;min-height:620px;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;text-align:center;position:relative}
+.page:before,.page:after{content:"";position:absolute;width:46px;height:46px;
+ border-color:rgba(90,166,235,.55);pointer-events:none}
+.page:before{top:30px;left:30px;border-top:1px solid;border-left:1px solid}
+.page:after{right:30px;bottom:30px;border-right:1px solid;border-bottom:1px solid}
+.corner{position:absolute;font-size:8px;letter-spacing:.28em;color:rgba(105,173,232,.55);text-transform:uppercase}
+.top-left{top:54px;left:60px}.top-right{top:54px;right:60px}
+.bottom-left{bottom:54px;left:60px}.bottom-right{bottom:54px;right:60px}
+.logo{font-size:clamp(54px,8vw,100px);line-height:1;font-weight:600;letter-spacing:-.07em;
+ text-shadow:0 0 28px rgba(110,180,255,.25);margin-bottom:38px}
+.divider{width:360px;max-width:65vw;height:1px;background:linear-gradient(90deg,transparent,rgba(102,177,242,.65),transparent);
+ position:relative;margin-bottom:34px}
+.divider:after{content:"///";position:absolute;left:50%;top:50%;transform:translate(-50%,-54%);
+ padding:0 12px;background:#05080d;color:#6cb9f5;font-size:10px}
+.follow{font-size:12px;letter-spacing:.22em;color:#b8c8d9;text-transform:uppercase;margin-bottom:28px}
+.socials{display:flex;align-items:center;justify-content:center;margin-bottom:64px;
+ border-left:1px solid rgba(86,157,218,.45);border-right:1px solid rgba(86,157,218,.45);padding:7px 24px}
+.socials a{color:#eef6ff;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.2em;padding:0 28px;
+ transition:color .25s,text-shadow .25s,opacity .25s}
+.socials a+a{border-left:1px solid rgba(86,157,218,.35)}
+.socials a:hover{color:#8fd0ff;text-shadow:0 0 14px rgba(96,183,255,.7)}
+.profile{min-width:340px;padding:18px 44px;border:1px solid rgba(100,183,246,.75);color:#f4f8ff;text-decoration:none;
+ position:relative;clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px),0 18px);
+ background:rgba(5,12,20,.42);transition:background .25s,box-shadow .25s,transform .25s}
+.profile:hover{background:rgba(40,91,135,.18);box-shadow:0 0 28px rgba(67,157,225,.16);transform:translateY(-2px)}
+.profile-text{font-size:12px;font-weight:600;letter-spacing:.24em}
+.triangle{display:block;margin-top:14px;color:#8bcfff;font-size:13px;transition:transform .3s,text-shadow .3s}
+.profile:hover .triangle{transform:translateY(5px);text-shadow:0 0 12px rgba(110,195,255,.9)}
+.status{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);font-size:7px;letter-spacing:.28em;color:rgba(120,177,218,.42);text-transform:uppercase}
+@media(max-width:600px){
+ body{background-size:auto,48px 48px,48px 48px}.page{min-height:560px;padding:0 20px}.corner{display:none}
+ .logo{font-size:58px;margin-bottom:30px}.follow{font-size:9px;letter-spacing:.14em;max-width:90vw;line-height:1.8}
+ .socials{padding:6px 5px;margin-bottom:50px}.socials a{font-size:9px;padding:0 11px;letter-spacing:.12em}
+ .profile{min-width:min(330px,88vw);padding:17px 25px}.profile-text{font-size:10px;letter-spacing:.18em}.status{bottom:22px}
+}
 </style>
 </head>
 <body>
-<section class="screen roster" id="roster">
-<div class="brand">FITE<span>-X</span></div>
-<div class="title">PICK YOUR CHARACTER</div>
+<main class="page">
+<span class="corner top-left">DEX-3 // PORTAL</span>
+<span class="corner top-right">SYSTEM ONLINE</span>
+<span class="corner bottom-left">ACCESS POINT</span>
+<span class="corner bottom-right">V1.0.0</span>
 
-<div class="grid" id="grid"></div>
-</section>
+<h1 class="logo">dex-3</h1>
+<div class="divider"></div>
+<p class="follow">Be sure to follow me on this platform!</p>
 
-<section class="screen detail" id="detail">
-<button class="back" onclick="back()">← CHARACTER SELECT</button>
-<div class="art" id="art"><div class="big" id="big">RA</div></div>
-<div class="info">
-<div class="code" id="code">FIGHTER 001</div><div class="detail-name" id="dn">RION ADACHI</div><div class="detail-style" id="ds">KICKBOXING</div>
-<div class="meta"><div><b>AGE</b><span id="age"></span></div><div><b>COUNTRY</b><span id="country"></span></div><div><b>HEIGHT</b><span id="height"></span></div><div><b>CLASS</b><span id="class"></span></div></div>
-<div class="bio-title">BIOGRAPHY</div><div class="bio" id="bio"></div><div id="stats"></div>
-</div>
-</section>
+<nav class="socials" aria-label="Social media">
+<a href="https://x.com/sorawindy" target="_blank" rel="noopener noreferrer">Twitter</a>
+<a href="https://www.pixiv.net/en/users/50033895" target="_blank" rel="noopener noreferrer">Pixiv</a>
+<a href="https://www.deviantart.com/dex-3" target="_blank" rel="noopener noreferrer">DeviantArt</a>
+</nav>
 
-<script>
-const fighters=[
-["Rion Adachi","KICKBOXING",24,"JAPAN","168 CM","STRIKER","A sharp and disciplined striker known for explosive combinations and relentless forward pressure.",82,94,88,76,"#36131d","#ff365e"],
-["Ayami Karasuma","SHOOT WRESTLING",24,"JAPAN","162 CM","GRAPPLER","A technical fighter who blends takedowns with close-range striking and positional pressure.",86,85,94,88,"#132f36","#3df0ff"],
-["Elsa von Rietveld","KICKBOXING",25,"NETHERLANDS","172 CM","ALL-ROUNDER","A composed fighter with precise movement, balanced striking, and excellent tactical awareness.",84,88,91,86,"#29201a","#e0a052"],
-["Raeda Baxley","MMA",25,"UNITED STATES","170 CM","HYBRID","A confident competitor who combines efficient boxing with strong clinch work and adaptable tactics.",86,91,90,84,"#261c38","#b56cff"],
-["Alina Engel","SAMBO",25,"AUSTRIA","170 CM","GRAPPLER","A powerful grappler who specializes in throws, control, and sudden reversals.",93,78,91,90,"#261c38","#a86cff"],
-["Nova Meledyne","MMA",23,"UNKNOWN","169 CM","ALL-ROUNDER","An enigmatic all-rounder whose adaptable style changes according to the opponent.",88,94,93,88,"#18222d","#65bfff"],
-["Kiyoko Karasu","KARATE",24,"JAPAN","165 CM","TECHNICAL","A precise karate specialist who relies on timing, distance, and explosive counters.",82,92,95,89,"#302018","#ff6a55"],
-["Yuzu Irumi","KICKBOXING",21,"JAPAN","160 CM","SPEED","A fast and unpredictable striker who attacks from changing angles.",76,98,86,79,"#30202f","#e879c8"],
-["Ro-Eun Yeong","TAEKWONDO",23,"SOUTH KOREA","168 CM","MOBILITY","A highly mobile kicker who uses rhythm changes and angular movement to create openings.",78,98,91,82,"#172e32","#51e8e0"],
-["Kouka Arisato","MMA",24,"JAPAN","167 CM","HYBRID","A versatile fighter with polished fundamentals and quick transitions between ranges.",84,91,92,87,"#2a202f","#bb76ff"],
-["Claudine Celesta","HYBRID COMBAT",23,"FRANCE","171 CM","ALL-ROUNDER","Bright, confident, and deceptively technical, mixing fast boxing with throws and close-range control.",79,89,92,84,"#18351b","#72ff52"],
-["Fia Andini","BOXING",22,"INDONESIA","164 CM","STRIKER","A compact boxer with sharp combinations, strong footwork, and relentless determination.",81,93,87,80,"#352016","#ff8a45"],
-["Finley Camelia","MUAY THAI",24,"AUSTRALIA","175 CM","STRIKER","A tall, composed striker who uses range, timing, and powerful combinations.",90,83,94,86,"#182d35","#48d9ff"],
-["Yume Izumi","JUDO",22,"JAPAN","163 CM","GRAPPLER","A patient technician who specializes in balance breaking, throws, and positional control.",79,84,97,92,"#332316","#ffad58"],
-["Milica Belic","BOXING",25,"SERBIA","170 CM","PRESSURE","A durable pressure fighter with heavy combinations and exceptional conditioning.",91,84,88,85,"#301719","#ff4e63"],
-["Jasmine Lavenza","MMA",26,"UNITED STATES","169 CM","HYBRID","A versatile competitor combining crisp striking with reliable grappling transitions.",86,89,93,88,"#272033","#d275ff"],
-["Mayumi Inoue","KARATE",23,"JAPAN","161 CM","TECHNICAL","A disciplined technician focused on clean combinations, timing, and efficient movement.",77,90,96,92,"#352318","#ff9b54"],
-["Ethyln Bernard","BOXING",27,"UNITED KINGDOM","174 CM","PRESSURE","A seasoned boxer with polished fundamentals, composure, and powerful counters.",90,81,92,89,"#20262e","#9db6d1"],
-["Diane Cerezyna Tsoi","SAMBO",26,"CHINA / RUSSIA","173 CM","GRAPPLER","A powerful grappling specialist with a methodical approach to throws and control.",95,79,91,93,"#25243a","#8b83ff"],
-["Vera Rochester","MMA",26,"UNITED KINGDOM","171 CM","ALL-ROUNDER","A calm and adaptable fighter known for strategic decision-making and balanced technique.",87,86,94,91,"#242018","#d9b65c"],
-["Kira Marinka Orlova","WRESTLING",24,"RUSSIA","170 CM","GRAPPLER","A relentless wrestler who specializes in pressure, takedowns, and positional control.",97,88,90,94,"#20233b","#738cff"],
-["Naomi Tausend","KICKBOXING",25,"GERMANY","172 CM","STRIKER","A precise striker who combines measured footwork with powerful finishing combinations.",89,84,92,88,"#172d2b","#51e0b2"],
-["Eimi Shimizu","KARATE",22,"JAPAN","160 CM","SPEED","A quick technician who relies on sharp entries, evasive movement, and timing.",74,99,91,82,"#2b1c31","#ff62ae"],
-["Lin Hua Ying","WUSHU",23,"CHINA","166 CM","HYBRID","A fluid fighter combining acrobatic movement, kicks, and precise hand techniques.",80,97,94,84,"#182d38","#53c9ff"],
-["Randall Gray","BOXING",28,"UNITED STATES","178 CM","POWER","A heavy-handed fighter whose measured pressure and durability make every exchange dangerous.",96,78,88,91,"#2c211b","#f0a15b"],
-["Mai Habara","WRESTLING",22,"JAPAN","164 CM","GRAPPLER","A relentless grappler with fast entries, strong control, and exceptional recovery.",87,92,90,85,"#2c2015","#f1a13f"]
-];
-const initials=n=>n.replace(/[^A-Za-z]/g,"").slice(0,2).toUpperCase();
-const grid=document.getElementById("grid");
-const rowSizes=[6,5,6,5,4];
-let cursor=0;
-rowSizes.forEach((size)=>{
-  const row=document.createElement("div");
-  row.className="fighter-row";
-  row.style.display="flex";
-  row.style.justifyContent="center";
-  row.style.gap="0px";
-  row.style.width="100%";
-  for(let j=0;j<size;j++){
-    const i=cursor++;
-    const f=fighters[i];
-    let c=document.createElement("div");
-    c.className="card";
-    c.innerHTML=`<div class="card-inner" style="--tone:${f[11]};--glow:${f[12]}"><div class="num">${String(i+1).padStart(2,"0")}</div><div class="initial">${initials(f[0])}</div><div class="label"><div class="name">${f[0]}</div><div class="style">${f[1]}</div></div></div>`;
-    c.onclick=()=>select(i);
-    row.appendChild(c);
-  }
-  grid.appendChild(row);
-});
-function select(i){let f=fighters[i];document.getElementById("roster").classList.add("hide");document.getElementById("detail").classList.add("show");document.getElementById("code").textContent=`FIGHTER ${String(i+1).padStart(3,"0")}`;document.getElementById("dn").textContent=f[0];document.getElementById("ds").textContent=f[1];document.getElementById("age").textContent=f[2];document.getElementById("country").textContent=f[3];document.getElementById("height").textContent=f[4];document.getElementById("class").textContent=f[5];document.getElementById("bio").textContent=f[6];document.getElementById("big").textContent=initials(f[0]);document.getElementById("art").style.setProperty("--tone",f[11]);document.getElementById("art").style.setProperty("--glow",f[12]);let labels=["POWER","SPEED","TECHNIQUE","DEFENSE"];document.getElementById("stats").innerHTML=labels.map((x,j)=>`<div class="stat"><span>${x}</span><div class="bar"><div class="fill" style="width:${f[7+j]}%"></div></div><b>${f[7+j]}</b></div>`).join("")}
-function back(){document.getElementById("detail").classList.remove("show");document.getElementById("roster").classList.remove("hide")}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")back()});
-</script>
+<a href="#" class="profile" aria-label="Character Profile">
+<span class="profile-text">CHARACTER PROFILE</span>
+<span class="triangle">▼</span>
+</a>
+<span class="status">PERSONAL CREATIVE PORTAL</span>
+</main>
 </body>
 </html>
