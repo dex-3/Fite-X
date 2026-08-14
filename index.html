@@ -2188,28 +2188,6 @@ volumeSlider.addEventListener(
 
 
 /* =========================================================
-   UNIVERSAL UI CLICK SOUND
-   ========================================================= */
-
-const clickSound = new Audio("audio/button-click.mp3");
-clickSound.preload = "auto";
-
-document.addEventListener("click", function(event){
-
-    const clickable = event.target.closest(
-        "button, a, [role=\"button\"], .character-item, .character-card"
-    );
-
-    if(!clickable){
-        return;
-    }
-
-    clickSound.currentTime = 0;
-    clickSound.play().catch(function(){});
-});
-
-
-/* =========================================================
    CHARACTERS
    ========================================================= */
 
@@ -2255,7 +2233,7 @@ const characterBios = {
         age: "23",
         nationality: "Japan",
         type: "Balanced",
-        bio: "Hope you dont mind I am about to beat you!""
+        bio: "Hope you dont mind I am about to beat you!"
     }
 };
 
@@ -2557,6 +2535,35 @@ document.addEventListener(
         }
 
     }
+);
+
+/* =========================================================
+   UNIVERSAL UI CLICK SOUND
+   ========================================================= */
+
+const clickSound = new Audio("audio/button-click.mp3");
+clickSound.preload = "auto";
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const target = event.target;
+
+        if(!(target instanceof Element)) return;
+
+        const clickable = target.closest(
+            "button, a, [role='button']"
+        );
+
+        if(!clickable) return;
+
+        clickSound.currentTime = 0;
+
+        clickSound.play().catch(function(){});
+
+    },
+    true
 );
 
 </script>
