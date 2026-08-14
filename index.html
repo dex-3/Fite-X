@@ -3,82 +3,1272 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>dex-3</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;height:100%}
-body{
- background:radial-gradient(circle at 50% 42%,rgba(42,76,115,.16),transparent 30%),
- linear-gradient(rgba(45,86,125,.055) 1px,transparent 1px),
- linear-gradient(90deg,rgba(45,86,125,.055) 1px,transparent 1px),#03060a;
- background-size:auto,72px 72px,72px 72px;color:#f4f8ff;
- font-family:"Oxanium",sans-serif;overflow:hidden
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
-body:before{content:"";position:fixed;inset:0;pointer-events:none;
- background:linear-gradient(135deg,transparent 0 46%,rgba(80,150,220,.045) 46.1% 46.2%,transparent 46.3%)}
-.page{width:100%;height:100vh;min-height:620px;display:flex;flex-direction:column;
- align-items:center;justify-content:center;text-align:center;position:relative}
-.page:before,.page:after{content:"";position:absolute;width:46px;height:46px;
- border-color:rgba(90,166,235,.55);pointer-events:none}
-.page:before{top:30px;left:30px;border-top:1px solid;border-left:1px solid}
-.page:after{right:30px;bottom:30px;border-right:1px solid;border-bottom:1px solid}
-.corner{position:absolute;font-size:8px;letter-spacing:.28em;color:rgba(105,173,232,.55);text-transform:uppercase}
-.top-left{top:54px;left:60px}.top-right{top:54px;right:60px}
-.bottom-left{bottom:54px;left:60px}.bottom-right{bottom:54px;right:60px}
-.logo{font-size:clamp(54px,8vw,100px);line-height:1;font-weight:600;letter-spacing:-.07em;
- text-shadow:0 0 28px rgba(110,180,255,.25);margin-bottom:38px}
-.divider{width:360px;max-width:65vw;height:1px;background:linear-gradient(90deg,transparent,rgba(102,177,242,.65),transparent);
- position:relative;margin-bottom:34px}
-.divider:after{content:"///";position:absolute;left:50%;top:50%;transform:translate(-50%,-54%);
- padding:0 12px;background:#05080d;color:#6cb9f5;font-size:10px}
-.follow{font-size:12px;letter-spacing:.22em;color:#b8c8d9;text-transform:uppercase;margin-bottom:28px}
-.socials{display:flex;align-items:center;justify-content:center;margin-bottom:64px;
- border-left:1px solid rgba(86,157,218,.45);border-right:1px solid rgba(86,157,218,.45);padding:7px 24px}
-.socials a{color:#eef6ff;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.2em;padding:0 28px;
- transition:color .25s,text-shadow .25s,opacity .25s}
-.socials a+a{border-left:1px solid rgba(86,157,218,.35)}
-.socials a:hover{color:#8fd0ff;text-shadow:0 0 14px rgba(96,183,255,.7)}
-.profile{min-width:340px;padding:18px 44px;border:1px solid rgba(100,183,246,.75);color:#f4f8ff;text-decoration:none;
- position:relative;clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% calc(100% - 18px),calc(100% - 18px) 100%,18px 100%,0 calc(100% - 18px),0 18px);
- background:rgba(5,12,20,.42);transition:background .25s,box-shadow .25s,transform .25s}
-.profile:hover{background:rgba(40,91,135,.18);box-shadow:0 0 28px rgba(67,157,225,.16);transform:translateY(-2px)}
-.profile-text{font-size:12px;font-weight:600;letter-spacing:.24em}
-.triangle{display:block;margin-top:14px;color:#8bcfff;font-size:13px;transition:transform .3s,text-shadow .3s}
-.profile:hover .triangle{transform:translateY(5px);text-shadow:0 0 12px rgba(110,195,255,.9)}
-.status{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);font-size:7px;letter-spacing:.28em;color:rgba(120,177,218,.42);text-transform:uppercase}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:#03060a;
+    color:#f4f8ff;
+    font-family:"Oxanium",sans-serif;
+    overflow:hidden;
+    position:relative;
+}
+
+/* =========================================================
+   ANIMATED BACKGROUND
+   ========================================================= */
+
+.background{
+    position:fixed;
+    inset:-80px;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.grid{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(45,86,125,.055) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(45,86,125,.055) 1px,
+            transparent 1px
+        );
+
+    background-size:72px 72px;
+
+    animation:gridMove 18s linear infinite;
+}
+
+@keyframes gridMove{
+    0%{
+        background-position:0 0,0 0;
+    }
+
+    100%{
+        background-position:72px 72px,72px 72px;
+    }
+}
+
+/* Atmospheric glow */
+
+.glow{
+    position:absolute;
+
+    width:65vw;
+    height:65vw;
+
+    max-width:850px;
+    max-height:850px;
+
+    left:50%;
+    top:45%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(42,76,115,.18) 0%,
+            rgba(42,76,115,.10) 22%,
+            rgba(42,76,115,.035) 42%,
+            transparent 70%
+        );
+
+    filter:blur(5px);
+
+    animation:glowMove 14s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove{
+    0%{
+        transform:translate(-54%,-48%) scale(.95);
+    }
+
+    50%{
+        transform:translate(-46%,-53%) scale(1.05);
+    }
+
+    100%{
+        transform:translate(-51%,-45%) scale(.98);
+    }
+}
+
+/* Diagonal light */
+
+.diagonal-light{
+    position:absolute;
+    inset:-100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0 46%,
+            rgba(80,150,220,.045) 46.1% 46.2%,
+            transparent 46.3%
+        );
+
+    animation:diagonalMove 22s linear infinite;
+}
+
+@keyframes diagonalMove{
+    0%{
+        transform:translate(-2%,-2%);
+    }
+
+    50%{
+        transform:translate(2%,2%);
+    }
+
+    100%{
+        transform:translate(-2%,-2%);
+    }
+}
+
+/* Scanline */
+
+.scanline{
+    position:absolute;
+
+    width:100%;
+    height:1px;
+
+    top:-10%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(100,180,240,.10),
+            transparent
+        );
+
+    animation:scan 10s linear infinite;
+}
+
+@keyframes scan{
+    0%{
+        top:-10%;
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    100%{
+        top:110%;
+        opacity:0;
+    }
+}
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+}
+
+.particle{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:rgba(130,200,255,.5);
+
+    box-shadow:
+        0 0 8px rgba(100,190,255,.35);
+
+    animation:
+        particleFloat var(--duration) ease-in-out infinite alternate,
+        particleBlink var(--blink) ease-in-out infinite;
+}
+
+@keyframes particleFloat{
+    0%{
+        transform:translate(0,0);
+    }
+
+    100%{
+        transform:
+            translate(
+                var(--move-x),
+                var(--move-y)
+            );
+    }
+}
+
+@keyframes particleBlink{
+    0%,100%{
+        opacity:.15;
+    }
+
+    50%{
+        opacity:.8;
+    }
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.page{
+    width:100%;
+    height:100vh;
+    min-height:620px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+    z-index:2;
+
+    transform:
+        translate3d(
+            calc(var(--mouse-x, 0) * 1px),
+            calc(var(--mouse-y, 0) * 1px),
+            0
+        );
+
+    transition:transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+/* =========================================================
+   CORNERS
+   ========================================================= */
+
+.page:before,
+.page:after{
+    content:"";
+
+    position:absolute;
+
+    width:46px;
+    height:46px;
+
+    border-color:rgba(90,166,235,.55);
+
+    pointer-events:none;
+}
+
+.page:before{
+    top:30px;
+    left:30px;
+
+    border-top:1px solid;
+    border-left:1px solid;
+}
+
+.page:after{
+    right:30px;
+    bottom:30px;
+
+    border-right:1px solid;
+    border-bottom:1px solid;
+}
+
+.corner{
+    position:absolute;
+
+    font-size:8px;
+
+    letter-spacing:.28em;
+
+    color:rgba(105,173,232,.55);
+
+    text-transform:uppercase;
+}
+
+.top-left{
+    top:54px;
+    left:60px;
+}
+
+.top-right{
+    top:54px;
+    right:60px;
+}
+
+.bottom-left{
+    bottom:54px;
+    left:60px;
+}
+
+.bottom-right{
+    bottom:54px;
+    right:60px;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo{
+    font-size:clamp(54px,8vw,100px);
+
+    line-height:1;
+
+    font-weight:600;
+
+    letter-spacing:-.07em;
+
+    text-shadow:
+        0 0 28px rgba(110,180,255,.25);
+
+    margin-bottom:38px;
+
+    animation:
+        logoGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow{
+    0%{
+        text-shadow:
+            0 0 20px rgba(110,180,255,.18);
+    }
+
+    100%{
+        text-shadow:
+            0 0 34px rgba(110,180,255,.38);
+    }
+}
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.divider{
+    width:360px;
+    max-width:65vw;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(102,177,242,.65),
+            transparent
+        );
+
+    position:relative;
+
+    margin-bottom:34px;
+}
+
+.divider:after{
+    content:"///";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-54%);
+
+    padding:0 12px;
+
+    background:#05080d;
+
+    color:#6cb9f5;
+
+    font-size:10px;
+}
+
+/* =========================================================
+   FOLLOW
+   ========================================================= */
+
+.follow{
+    font-size:12px;
+
+    letter-spacing:.22em;
+
+    color:#b8c8d9;
+
+    text-transform:uppercase;
+
+    margin-bottom:28px;
+}
+
+/* =========================================================
+   SOCIALS
+   ========================================================= */
+
+.socials{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:64px;
+
+    border-left:
+        1px solid rgba(86,157,218,.45);
+
+    border-right:
+        1px solid rgba(86,157,218,.45);
+
+    padding:7px 24px;
+}
+
+.socials a{
+    color:#eef6ff;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    letter-spacing:.2em;
+
+    padding:0 28px;
+
+    transition:
+        color .25s,
+        text-shadow .25s,
+        transform .25s;
+}
+
+.socials a+a{
+    border-left:
+        1px solid rgba(86,157,218,.35);
+}
+
+.socials a:hover{
+    color:#8fd0ff;
+
+    text-shadow:
+        0 0 14px rgba(96,183,255,.7);
+
+    transform:translateY(-1px);
+}
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile{
+    min-width:340px;
+
+    padding:18px 44px;
+
+    border:
+        1px solid rgba(100,183,246,.75);
+
+    color:#f4f8ff;
+
+    text-decoration:none;
+
+    position:relative;
+
+    clip-path:
+        polygon(
+            18px 0,
+            calc(100% - 18px) 0,
+            100% 18px,
+            100% calc(100% - 18px),
+            calc(100% - 18px) 100%,
+            18px 100%,
+            0 calc(100% - 18px),
+            0 18px
+        );
+
+    background:
+        rgba(5,12,20,.42);
+
+    transition:
+        background .25s,
+        box-shadow .25s,
+        transform .25s;
+}
+
+.profile:hover{
+    background:
+        rgba(40,91,135,.18);
+
+    box-shadow:
+        0 0 28px rgba(67,157,225,.16);
+
+    transform:translateY(-2px);
+}
+
+.profile-text{
+    font-size:12px;
+
+    font-weight:600;
+
+    letter-spacing:.24em;
+}
+
+.triangle{
+    display:block;
+
+    margin-top:14px;
+
+    color:#8bcfff;
+
+    font-size:13px;
+
+    transition:
+        transform .3s,
+        text-shadow .3s;
+}
+
+.profile:hover .triangle{
+    transform:translateY(5px);
+
+    text-shadow:
+        0 0 12px rgba(110,195,255,.9);
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status{
+    position:absolute;
+
+    bottom:38px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:7px;
+
+    letter-spacing:.28em;
+
+    color:rgba(120,177,218,.42);
+
+    text-transform:uppercase;
+}
+
+/* =========================================================
+   MUSIC CONTROL
+   ========================================================= */
+
+.music-control{
+    position:fixed;
+
+    right:34px;
+    bottom:30px;
+
+    z-index:20;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:7px 10px;
+
+    border:
+        1px solid rgba(90,166,235,.35);
+
+    background:
+        rgba(3,8,14,.72);
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+    clip-path:
+        polygon(
+            8px 0,
+            100% 0,
+            100% calc(100% - 8px),
+            calc(100% - 8px) 100%,
+            0 100%,
+            0 8px
+        );
+}
+
+.music-button{
+    width:28px;
+    height:24px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#8fd0ff;
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:12px;
+
+    cursor:pointer;
+
+    transition:
+        color .2s,
+        text-shadow .2s;
+}
+
+.music-button:hover{
+    color:#fff;
+
+    text-shadow:
+        0 0 10px rgba(100,190,255,.8);
+}
+
+.volume-slider{
+    width:70px;
+
+    appearance:none;
+    -webkit-appearance:none;
+
+    height:2px;
+
+    background:
+        rgba(120,180,220,.35);
+
+    outline:none;
+
+    cursor:pointer;
+}
+
+.volume-slider::-webkit-slider-thumb{
+    appearance:none;
+    -webkit-appearance:none;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#8fd0ff;
+
+    box-shadow:
+        0 0 8px rgba(100,190,255,.8);
+}
+
+.volume-slider::-moz-range-thumb{
+    width:8px;
+    height:8px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#8fd0ff;
+
+    box-shadow:
+        0 0 8px rgba(100,190,255,.8);
+}
+
+.music-label{
+    font-size:7px;
+
+    letter-spacing:.18em;
+
+    color:rgba(140,190,225,.55);
+
+    user-select:none;
+}
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+
+audio{
+    display:none;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media(max-width:600px){
- body{background-size:auto,48px 48px,48px 48px}.page{min-height:560px;padding:0 20px}.corner{display:none}
- .logo{font-size:58px;margin-bottom:30px}.follow{font-size:9px;letter-spacing:.14em;max-width:90vw;line-height:1.8}
- .socials{padding:6px 5px;margin-bottom:50px}.socials a{font-size:9px;padding:0 11px;letter-spacing:.12em}
- .profile{min-width:min(330px,88vw);padding:17px 25px}.profile-text{font-size:10px;letter-spacing:.18em}.status{bottom:22px}
+
+    .grid{
+        background-size:48px 48px;
+    }
+
+    .page{
+        min-height:560px;
+        padding:0 20px;
+    }
+
+    .corner{
+        display:none;
+    }
+
+    .logo{
+        font-size:58px;
+        margin-bottom:30px;
+    }
+
+    .follow{
+        font-size:9px;
+        letter-spacing:.14em;
+        max-width:90vw;
+        line-height:1.8;
+    }
+
+    .socials{
+        padding:6px 5px;
+        margin-bottom:50px;
+    }
+
+    .socials a{
+        font-size:9px;
+        padding:0 11px;
+        letter-spacing:.12em;
+    }
+
+    .profile{
+        min-width:min(330px,88vw);
+        padding:17px 25px;
+    }
+
+    .profile-text{
+        font-size:10px;
+        letter-spacing:.18em;
+    }
+
+    .status{
+        bottom:22px;
+    }
+
+    .music-control{
+        right:16px;
+        bottom:16px;
+    }
+
+    .music-label{
+        display:none;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
 }
 </style>
 </head>
+
 <body>
+
+<!-- =======================================================
+     BACKGROUND
+     ======================================================= -->
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="glow"></div>
+
+    <div class="diagonal-light"></div>
+
+    <div class="scanline"></div>
+
+    <div class="particles" id="particles"></div>
+
+</div>
+
+
+<!-- =======================================================
+     LOCAL BACKGROUND MUSIC
+     ======================================================= -->
+
+<audio
+    id="backgroundMusic"
+    loop
+    preload="auto"
+>
+    <source
+        src="audio/background.mp3"
+        type="audio/mpeg"
+    >
+
+    Your browser does not support the audio element.
+</audio>
+
+
+<!-- =======================================================
+     MAIN PAGE
+     ======================================================= -->
+
 <main class="page">
-<span class="corner top-left">DEX-3 // PORTAL</span>
-<span class="corner top-right">SYSTEM ONLINE</span>
-<span class="corner bottom-left">ACCESS POINT</span>
-<span class="corner bottom-right">V1.0.0</span>
 
-<h1 class="logo">dex-3</h1>
-<div class="divider"></div>
-<p class="follow">Be sure to follow me on this platform!</p>
+    <span class="corner top-left">
+        DEX-3 // PORTAL
+    </span>
 
-<nav class="socials" aria-label="Social media">
-<a href="https://x.com/sorawindy" target="_blank" rel="noopener noreferrer">Twitter</a>
-<a href="https://www.pixiv.net/en/users/50033895" target="_blank" rel="noopener noreferrer">Pixiv</a>
-<a href="https://www.deviantart.com/dex-3" target="_blank" rel="noopener noreferrer">DeviantArt</a>
-</nav>
+    <span class="corner top-right">
+        SYSTEM ONLINE
+    </span>
 
-<a href="#" class="profile" aria-label="Character Profile">
-<span class="profile-text">CHARACTER PROFILE</span>
-<span class="triangle">▼</span>
-</a>
-<span class="status">PERSONAL CREATIVE PORTAL</span>
+    <span class="corner bottom-left">
+        ACCESS POINT
+    </span>
+
+    <span class="corner bottom-right">
+        V1.0.0
+    </span>
+
+
+    <h1 class="logo">
+        dex-3
+    </h1>
+
+
+    <div class="divider"></div>
+
+
+    <p class="follow">
+        Be sure to follow me on this platform!
+    </p>
+
+
+    <nav class="socials" aria-label="Social media">
+
+        <a
+            href="https://x.com/sorawindy"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Twitter
+        </a>
+
+        <a
+            href="https://www.pixiv.net/en/users/50033895"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Pixiv
+        </a>
+
+        <a
+            href="https://www.deviantart.com/dex-3"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            DeviantArt
+        </a>
+
+    </nav>
+
+
+    <a
+        href="#"
+        class="profile"
+        aria-label="Character Profile"
+    >
+
+        <span class="profile-text">
+            CHARACTER PROFILE
+        </span>
+
+        <span class="triangle">
+            ▼
+        </span>
+
+    </a>
+
+
+    <span class="status">
+        PERSONAL CREATIVE PORTAL
+    </span>
+
 </main>
+
+
+<!-- =======================================================
+     MUSIC CONTROLS
+     ======================================================= -->
+
+<div class="music-control">
+
+    <span class="music-label">
+        MUSIC
+    </span>
+
+    <button
+        class="music-button"
+        id="muteButton"
+        type="button"
+        aria-label="Mute music"
+        title="Mute / Unmute"
+    >
+        🔊
+    </button>
+
+    <input
+        class="volume-slider"
+        id="volumeSlider"
+        type="range"
+        min="0"
+        max="100"
+        value="35"
+        aria-label="Music volume"
+        title="Volume"
+    >
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   PARTICLES
+   ========================================================= */
+
+const particleContainer =
+    document.getElementById("particles");
+
+const particleCount =
+    window.innerWidth <= 600 ? 20 : 35;
+
+for(let i = 0; i < particleCount; i++){
+
+    const particle =
+        document.createElement("span");
+
+    particle.className =
+        "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.top =
+        Math.random() * 100 + "%";
+
+    particle.style.setProperty(
+        "--move-x",
+        (Math.random() * 80 - 40) + "px"
+    );
+
+    particle.style.setProperty(
+        "--move-y",
+        (Math.random() * 80 - 40) + "px"
+    );
+
+    particle.style.setProperty(
+        "--duration",
+        (5 + Math.random() * 8) + "s"
+    );
+
+    particle.style.setProperty(
+        "--blink",
+        (2 + Math.random() * 5) + "s"
+    );
+
+    particle.style.animationDelay =
+        (-Math.random() * 8) + "s";
+
+    particleContainer.appendChild(
+        particle
+    );
+}
+
+
+/* =========================================================
+   MOUSE PARALLAX
+   ========================================================= */
+
+let mouseX = 0;
+let mouseY = 0;
+
+let targetX = 0;
+let targetY = 0;
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        targetX =
+            (event.clientX / window.innerWidth - 0.5)
+            * 12;
+
+        targetY =
+            (event.clientY / window.innerHeight - 0.5)
+            * 8;
+
+    }
+);
+
+
+function animateParallax(){
+
+    mouseX +=
+        (targetX - mouseX) * 0.035;
+
+    mouseY +=
+        (targetY - mouseY) * 0.035;
+
+    document.documentElement.style.setProperty(
+        "--mouse-x",
+        mouseX
+    );
+
+    document.documentElement.style.setProperty(
+        "--mouse-y",
+        mouseY
+    );
+
+    requestAnimationFrame(
+        animateParallax
+    );
+}
+
+animateParallax();
+
+
+/* =========================================================
+   LOCAL MUSIC
+   ========================================================= */
+
+const music =
+    document.getElementById(
+        "backgroundMusic"
+    );
+
+const muteButton =
+    document.getElementById(
+        "muteButton"
+    );
+
+const volumeSlider =
+    document.getElementById(
+        "volumeSlider"
+    );
+
+
+let isMuted = false;
+
+
+/* Initial volume */
+
+music.volume =
+    Number(volumeSlider.value) / 100;
+
+
+/* =========================================================
+   START MUSIC
+   ========================================================= */
+
+function startMusic(){
+
+    music.play().catch(function(){
+
+        /*
+         Browser autoplay policy may block
+         automatic playback.
+
+         The music will start after the
+         user's first interaction.
+        */
+
+    });
+
+}
+
+
+/* Try to start when page loads */
+
+startMusic();
+
+
+/* =========================================================
+   FIRST USER INTERACTION
+   ========================================================= */
+
+function firstInteraction(){
+
+    startMusic();
+
+    document.removeEventListener(
+        "click",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "keydown",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "pointerdown",
+        firstInteraction
+    );
+
+    document.removeEventListener(
+        "touchstart",
+        firstInteraction
+    );
+}
+
+document.addEventListener(
+    "click",
+    firstInteraction
+);
+
+document.addEventListener(
+    "keydown",
+    firstInteraction
+);
+
+document.addEventListener(
+    "pointerdown",
+    firstInteraction
+);
+
+document.addEventListener(
+    "touchstart",
+    firstInteraction
+);
+
+
+/* =========================================================
+   MUTE / UNMUTE
+   ========================================================= */
+
+muteButton.addEventListener(
+    "click",
+    function(event){
+
+        event.stopPropagation();
+
+        if(isMuted){
+
+            music.muted = false;
+
+            muteButton.textContent =
+                "🔊";
+
+            muteButton.setAttribute(
+                "aria-label",
+                "Mute music"
+            );
+
+            isMuted = false;
+
+            startMusic();
+
+        }else{
+
+            music.muted = true;
+
+            muteButton.textContent =
+                "🔇";
+
+            muteButton.setAttribute(
+                "aria-label",
+                "Unmute music"
+            );
+
+            isMuted = true;
+        }
+
+    }
+);
+
+
+/* =========================================================
+   VOLUME
+   ========================================================= */
+
+volumeSlider.addEventListener(
+    "input",
+    function(){
+
+        const volume =
+            Number(this.value) / 100;
+
+        music.volume =
+            volume;
+
+        if(volume === 0){
+
+            music.muted = true;
+
+            muteButton.textContent =
+                "🔇";
+
+            isMuted = true;
+
+        }else{
+
+            music.muted = false;
+
+            muteButton.textContent =
+                "🔊";
+
+            isMuted = false;
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PREVENT PROFILE # FROM JUMPING
+   ========================================================= */
+
+document
+    .querySelector(".profile")
+    .addEventListener(
+        "click",
+        function(event){
+
+            event.preventDefault();
+
+        }
+    );
+
+</script>
+
 </body>
 </html>
