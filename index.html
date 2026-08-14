@@ -11,11 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   BASIC
-   ========================================================= */
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -37,7 +32,7 @@ body{
 
 
 /* =========================================================
-   ANIMATED BACKGROUND
+   BACKGROUND
    ========================================================= */
 
 .background{
@@ -109,7 +104,6 @@ body{
 }
 
 @keyframes glowMove{
-
     0%{
         transform:translate(-54%,-48%) scale(.95);
     }
@@ -139,7 +133,6 @@ body{
 }
 
 @keyframes diagonalMove{
-
     0%{
         transform:translate(-2%,-2%);
     }
@@ -173,7 +166,6 @@ body{
 }
 
 @keyframes scan{
-
     0%{
         top:-10%;
         opacity:0;
@@ -222,7 +214,6 @@ body{
 }
 
 @keyframes particleFloat{
-
     from{
         transform:translate(0,0);
     }
@@ -237,7 +228,6 @@ body{
 }
 
 @keyframes particleBlink{
-
     0%,100%{
         opacity:.15;
     }
@@ -370,7 +360,6 @@ body.profile-open .page{
 }
 
 @keyframes logoGlow{
-
     0%{
         text-shadow:
             0 0 20px rgba(110,180,255,.18);
@@ -512,8 +501,6 @@ body.profile-open .page{
 
     color:#f4f8ff;
 
-    text-decoration:none;
-
     position:relative;
 
     cursor:pointer;
@@ -608,7 +595,6 @@ body.profile-open .page{
    ========================================================= */
 
 .character-screen{
-
     position:fixed;
 
     left:0;
@@ -639,7 +625,6 @@ body.profile-open .page{
 }
 
 body.profile-open .character-screen{
-
     transform:translateY(0);
 
     opacity:1;
@@ -653,7 +638,6 @@ body.profile-open .character-screen{
    ========================================================= */
 
 .character-header{
-
     position:absolute;
 
     top:0;
@@ -661,7 +645,7 @@ body.profile-open .character-screen{
 
     width:100%;
 
-    height:100px;
+    height:90px;
 
     display:flex;
 
@@ -685,7 +669,6 @@ body.profile-open .character-screen{
 }
 
 .character-title{
-
     display:flex;
 
     flex-direction:column;
@@ -694,7 +677,6 @@ body.profile-open .character-screen{
 }
 
 .character-title-main{
-
     font-size:24px;
 
     font-weight:600;
@@ -703,7 +685,6 @@ body.profile-open .character-screen{
 }
 
 .character-title-sub{
-
     margin-top:6px;
 
     font-size:8px;
@@ -716,11 +697,10 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   CLOSE
+   CLOSE BUTTON
    ========================================================= */
 
 .close-profile{
-
     border:
         1px solid rgba(100,183,246,.55);
 
@@ -747,7 +727,6 @@ body.profile-open .character-screen{
 }
 
 .close-profile:hover{
-
     color:#fff;
 
     background:
@@ -759,21 +738,20 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   CHARACTER SELECT AREA
+   CHARACTER SELECT
    ========================================================= */
 
 .character-select{
-
     position:absolute;
 
     left:0;
     right:0;
 
-    top:100px;
+    top:90px;
     bottom:0;
 
     padding:
-        24px 50px 30px;
+        18px 45px 30px;
 
     display:flex;
 
@@ -786,20 +764,18 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   SELECT HEADER
+   SELECT HEADING
    ========================================================= */
 
 .select-heading{
-
     text-align:center;
 
     flex-shrink:0;
 
-    margin-bottom:14px;
+    margin-bottom:12px;
 }
 
 .select-heading-main{
-
     font-size:13px;
 
     font-weight:500;
@@ -810,7 +786,6 @@ body.profile-open .character-screen{
 }
 
 .select-heading-sub{
-
     display:block;
 
     margin-top:5px;
@@ -829,7 +804,6 @@ body.profile-open .character-screen{
    ========================================================= */
 
 .character-grid{
-
     width:min(1050px,90vw);
 
     flex:1;
@@ -841,21 +815,20 @@ body.profile-open .character-screen{
     grid-template-columns:
         repeat(7,1fr);
 
-    grid-auto-rows:1fr;
+    grid-template-rows:
+        repeat(4,1fr);
 
     gap:7px;
 
     align-content:center;
-
 }
 
 
 /* =========================================================
-   CHARACTER SLOT
+   CHARACTER CARD
    ========================================================= */
 
 .character-item{
-
     min-width:0;
     min-height:0;
 
@@ -909,7 +882,6 @@ body.profile-open .character-screen{
 }
 
 .character-item:hover{
-
     transform:
         translateY(-4px)
         scale(1.025);
@@ -928,11 +900,7 @@ body.profile-open .character-screen{
         0 0 18px rgba(65,155,220,.18);
 }
 
-
-/* Selected */
-
 .character-item.active{
-
     border-color:
         rgba(135,215,255,.95);
 
@@ -949,7 +917,6 @@ body.profile-open .character-screen{
 }
 
 .character-item.active:after{
-
     content:"";
 
     position:absolute;
@@ -964,11 +931,10 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   PORTRAIT PLACEHOLDER
+   PORTRAIT AREA
    ========================================================= */
 
 .character-portrait{
-
     position:absolute;
 
     left:8px;
@@ -992,10 +958,11 @@ body.profile-open .character-screen{
 
     align-items:center;
     justify-content:center;
+
+    overflow:hidden;
 }
 
 .character-portrait:before{
-
     content:"PORTRAIT";
 
     font-size:6px;
@@ -1007,16 +974,17 @@ body.profile-open .character-screen{
 }
 
 
-/* Character number */
+/* =========================================================
+   CHARACTER NUMBER
+   ========================================================= */
 
 .character-number{
-
     position:absolute;
 
     top:7px;
     left:9px;
 
-    z-index:2;
+    z-index:3;
 
     font-size:7px;
 
@@ -1027,10 +995,11 @@ body.profile-open .character-screen{
 }
 
 
-/* Character name */
+/* =========================================================
+   CHARACTER NAME
+   ========================================================= */
 
 .character-name{
-
     position:relative;
 
     z-index:3;
@@ -1061,18 +1030,17 @@ body.profile-open .character-screen{
 
 
 /* =========================================================
-   SELECTED CHARACTER DISPLAY
+   SELECTED CHARACTER
    ========================================================= */
 
 .selected-display{
-
     width:min(700px,70vw);
 
-    height:66px;
+    height:62px;
 
     flex-shrink:0;
 
-    margin-top:13px;
+    margin-top:10px;
 
     display:flex;
 
@@ -1094,7 +1062,6 @@ body.profile-open .character-screen{
 
 .selected-display:before,
 .selected-display:after{
-
     content:"";
 
     position:absolute;
@@ -1107,7 +1074,6 @@ body.profile-open .character-screen{
 }
 
 .selected-display:before{
-
     left:0;
     top:0;
 
@@ -1116,7 +1082,6 @@ body.profile-open .character-screen{
 }
 
 .selected-display:after{
-
     right:0;
     bottom:0;
 
@@ -1125,12 +1090,10 @@ body.profile-open .character-screen{
 }
 
 .selected-info{
-
     text-align:center;
 }
 
 .selected-number{
-
     display:block;
 
     font-size:6px;
@@ -1144,7 +1107,6 @@ body.profile-open .character-screen{
 }
 
 .selected-name{
-
     display:block;
 
     font-size:20px;
@@ -1163,12 +1125,11 @@ body.profile-open .character-screen{
    ========================================================= */
 
 .character-navigation{
-
     position:absolute;
 
     left:50%;
 
-    bottom:13px;
+    bottom:11px;
 
     transform:translateX(-50%);
 
@@ -1182,7 +1143,6 @@ body.profile-open .character-screen{
 }
 
 .nav-character{
-
     border:0;
 
     background:transparent;
@@ -1206,7 +1166,6 @@ body.profile-open .character-screen{
 }
 
 .nav-character:hover{
-
     color:#fff;
 
     text-shadow:
@@ -1214,7 +1173,6 @@ body.profile-open .character-screen{
 }
 
 .nav-separator{
-
     width:1px;
 
     height:15px;
@@ -1229,7 +1187,6 @@ body.profile-open .character-screen{
    ========================================================= */
 
 .character-counter{
-
     position:absolute;
 
     bottom:18px;
@@ -1250,7 +1207,6 @@ body.profile-open .character-screen{
    ========================================================= */
 
 .music-control{
-
     position:fixed;
 
     right:34px;
@@ -1288,7 +1244,6 @@ body.profile-open .character-screen{
 }
 
 .music-button{
-
     width:28px;
     height:24px;
 
@@ -1310,7 +1265,6 @@ body.profile-open .character-screen{
 }
 
 .music-button:hover{
-
     color:#fff;
 
     text-shadow:
@@ -1318,7 +1272,6 @@ body.profile-open .character-screen{
 }
 
 .volume-slider{
-
     width:70px;
 
     appearance:none;
@@ -1335,7 +1288,6 @@ body.profile-open .character-screen{
 }
 
 .volume-slider::-webkit-slider-thumb{
-
     appearance:none;
     -webkit-appearance:none;
 
@@ -1351,7 +1303,6 @@ body.profile-open .character-screen{
 }
 
 .volume-slider::-moz-range-thumb{
-
     width:8px;
     height:8px;
 
@@ -1366,7 +1317,6 @@ body.profile-open .character-screen{
 }
 
 .music-label{
-
     font-size:7px;
 
     letter-spacing:.18em;
@@ -1383,15 +1333,17 @@ audio{
 
 
 /* =========================================================
-   MOBILE
+   TABLET
    ========================================================= */
 
 @media(max-width:900px){
 
     .character-grid{
-
         grid-template-columns:
             repeat(5,1fr);
+
+        grid-template-rows:
+            repeat(6,1fr);
 
         width:92vw;
 
@@ -1399,34 +1351,34 @@ audio{
     }
 
     .character-name{
-
         font-size:6px;
     }
 }
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media(max-width:600px){
 
     .page{
-
         min-height:560px;
 
         padding:0 20px;
     }
 
     .corner{
-
         display:none;
     }
 
     .logo{
-
         font-size:58px;
 
         margin-bottom:30px;
     }
 
     .follow{
-
         font-size:9px;
 
         letter-spacing:.14em;
@@ -1437,14 +1389,12 @@ audio{
     }
 
     .socials{
-
         padding:6px 5px;
 
         margin-bottom:50px;
     }
 
     .socials a{
-
         font-size:9px;
 
         padding:0 11px;
@@ -1453,33 +1403,28 @@ audio{
     }
 
     .profile{
-
         min-width:min(330px,88vw);
 
         padding:17px 25px;
     }
 
     .profile-text{
-
         font-size:10px;
 
         letter-spacing:.18em;
     }
 
     .status{
-
         bottom:22px;
     }
 
     .music-control{
-
         right:16px;
 
         bottom:16px;
     }
 
     .music-label{
-
         display:none;
     }
 
@@ -1487,7 +1432,6 @@ audio{
     /* Character screen */
 
     .character-header{
-
         height:76px;
 
         padding:
@@ -1495,17 +1439,14 @@ audio{
     }
 
     .character-title-main{
-
         font-size:15px;
     }
 
     .character-title-sub{
-
         font-size:5px;
     }
 
     .close-profile{
-
         padding:
             8px 11px;
 
@@ -1513,30 +1454,25 @@ audio{
     }
 
     .character-select{
-
         top:76px;
 
         padding:
-            16px 12px 20px;
+            12px 10px 20px;
     }
 
     .select-heading{
-
-        margin-bottom:10px;
+        margin-bottom:8px;
     }
 
     .select-heading-main{
-
         font-size:10px;
     }
 
     .select-heading-sub{
-
         font-size:5px;
     }
 
     .character-grid{
-
         width:100%;
 
         grid-template-columns:
@@ -1549,12 +1485,10 @@ audio{
     }
 
     .character-item{
-
         padding:3px;
     }
 
     .character-portrait{
-
         left:4px;
         right:4px;
 
@@ -1563,7 +1497,6 @@ audio{
     }
 
     .character-number{
-
         top:4px;
         left:5px;
 
@@ -1571,7 +1504,6 @@ audio{
     }
 
     .character-name{
-
         font-size:5px;
 
         padding:
@@ -1579,40 +1511,34 @@ audio{
     }
 
     .selected-display{
-
         width:100%;
 
-        height:52px;
+        height:50px;
 
-        margin-top:8px;
+        margin-top:7px;
     }
 
     .selected-number{
-
         font-size:5px;
 
         margin-bottom:2px;
     }
 
     .selected-name{
-
         font-size:15px;
     }
 
     .character-navigation{
-
         bottom:5px;
     }
 
     .nav-character{
-
         font-size:6px;
 
         padding:3px 7px;
     }
 
     .character-counter{
-
         right:15px;
 
         bottom:8px;
@@ -1631,7 +1557,6 @@ audio{
     *,
     *::before,
     *::after{
-
         animation-duration:.01ms !important;
 
         animation-iteration-count:1 !important;
@@ -1642,7 +1567,6 @@ audio{
 
 </style>
 </head>
-
 
 <body>
 
@@ -1682,8 +1606,6 @@ audio{
         src="audio/background.mp3"
         type="audio/mpeg"
     >
-
-    Your browser does not support the audio element.
 </audio>
 
 
@@ -1759,7 +1681,6 @@ audio{
         class="profile"
         id="openProfile"
         type="button"
-        aria-label="Open Character Profile"
     >
 
         <span class="profile-text">
@@ -1791,8 +1712,6 @@ audio{
 >
 
 
-    <!-- HEADER -->
-
     <header class="character-header">
 
         <div class="character-title">
@@ -1819,8 +1738,6 @@ audio{
     </header>
 
 
-    <!-- CHARACTER SELECT -->
-
     <div class="character-select">
 
 
@@ -1837,19 +1754,12 @@ audio{
         </div>
 
 
-        <!-- CHARACTER GRID -->
-
         <div
             class="character-grid"
             id="characterGrid"
         >
-
-            <!-- Generated by JavaScript -->
-
         </div>
 
-
-        <!-- SELECTED CHARACTER -->
 
         <div class="selected-display">
 
@@ -1873,11 +1783,8 @@ audio{
 
         </div>
 
-
     </div>
 
-
-    <!-- PREVIOUS / NEXT -->
 
     <div class="character-navigation">
 
@@ -1902,8 +1809,6 @@ audio{
     </div>
 
 
-    <!-- COUNTER -->
-
     <div
         class="character-counter"
         id="characterCounter"
@@ -1925,7 +1830,6 @@ audio{
         MUSIC
     </span>
 
-
     <button
         class="music-button"
         id="muteButton"
@@ -1935,7 +1839,6 @@ audio{
     >
         🔊
     </button>
-
 
     <input
         class="volume-slider"
@@ -2007,48 +1910,6 @@ for(let i = 0; i < particleCount; i++){
 
 
 /* =========================================================
-   MOUSE PARALLAX
-   ========================================================= */
-
-let mouseX = 0;
-let mouseY = 0;
-
-let targetX = 0;
-let targetY = 0;
-
-document.addEventListener(
-    "mousemove",
-    function(event){
-
-        targetX =
-            (event.clientX / window.innerWidth - 0.5)
-            * 12;
-
-        targetY =
-            (event.clientY / window.innerHeight - 0.5)
-            * 8;
-
-    }
-);
-
-
-function animateParallax(){
-
-    mouseX +=
-        (targetX - mouseX) * 0.035;
-
-    mouseY +=
-        (targetY - mouseY) * 0.035;
-
-    requestAnimationFrame(
-        animateParallax
-    );
-}
-
-animateParallax();
-
-
-/* =========================================================
    MUSIC
    ========================================================= */
 
@@ -2075,11 +1936,7 @@ music.volume =
 
 function startMusic(){
 
-    music.play().catch(function(){
-
-        /* Browser autoplay restriction */
-
-    });
+    music.play().catch(function(){});
 
 }
 
@@ -2133,8 +1990,6 @@ document.addEventListener(
 );
 
 
-/* Mute */
-
 muteButton.addEventListener(
     "click",
     function(event){
@@ -2148,11 +2003,6 @@ muteButton.addEventListener(
             muteButton.textContent =
                 "🔊";
 
-            muteButton.setAttribute(
-                "aria-label",
-                "Mute music"
-            );
-
             isMuted = false;
 
             startMusic();
@@ -2164,19 +2014,13 @@ muteButton.addEventListener(
             muteButton.textContent =
                 "🔇";
 
-            muteButton.setAttribute(
-                "aria-label",
-                "Unmute music"
-            );
-
             isMuted = true;
+
         }
 
     }
 );
 
-
-/* Volume */
 
 volumeSlider.addEventListener(
     "input",
@@ -2213,7 +2057,7 @@ volumeSlider.addEventListener(
 
 
 /* =========================================================
-   26 CHARACTER ROSTER
+   26 CHARACTERS
    ========================================================= */
 
 const characters = [
@@ -2251,10 +2095,6 @@ const characters = [
 let currentCharacter = 0;
 
 
-/* =========================================================
-   CHARACTER SELECT ELEMENTS
-   ========================================================= */
-
 const characterGrid =
     document.getElementById(
         "characterGrid"
@@ -2277,16 +2117,14 @@ const characterCounter =
 
 
 /* =========================================================
-   CREATE CHARACTER SLOTS
+   CREATE CHARACTER CARDS
    ========================================================= */
 
 characters.forEach(
     function(name,index){
 
         const item =
-            document.createElement(
-                "button"
-            );
+            document.createElement("button");
 
         item.className =
             "character-item";
@@ -2298,7 +2136,6 @@ characters.forEach(
             "aria-label",
             "Select " + name
         );
-
 
         item.innerHTML = `
 
@@ -2314,7 +2151,6 @@ characters.forEach(
 
         `;
 
-
         item.addEventListener(
             "click",
             function(){
@@ -2323,7 +2159,6 @@ characters.forEach(
 
             }
         );
-
 
         characterGrid.appendChild(
             item
@@ -2342,20 +2177,16 @@ function selectCharacter(index){
     currentCharacter =
         index;
 
-
     const name =
         characters[currentCharacter];
 
-
     selectedName.textContent =
         name.toUpperCase();
-
 
     selectedNumber.textContent =
         "CHARACTER " +
         String(currentCharacter + 1)
             .padStart(2,"0");
-
 
     characterCounter.textContent =
         String(currentCharacter + 1)
@@ -2366,12 +2197,10 @@ function selectCharacter(index){
         String(characters.length)
             .padStart(2,"0");
 
-
     const items =
         document.querySelectorAll(
             ".character-item"
         );
-
 
     items.forEach(
         function(item,i){
@@ -2455,7 +2284,7 @@ selectCharacter(0);
 
 
 /* =========================================================
-   OPEN CHARACTER SCREEN
+   OPEN PROFILE
    ========================================================= */
 
 const openProfile =
@@ -2492,7 +2321,7 @@ openProfile.addEventListener(
 
 
 /* =========================================================
-   CLOSE CHARACTER SCREEN
+   CLOSE PROFILE
    ========================================================= */
 
 closeProfile.addEventListener(
@@ -2513,7 +2342,7 @@ closeProfile.addEventListener(
 
 
 /* =========================================================
-   ESCAPE KEY
+   ESC KEY
    ========================================================= */
 
 document.addEventListener(
