@@ -2219,12 +2219,6 @@ musicButton.addEventListener(
         musicArrow.textContent =
             open ? "⌄" : ">";
 
-		if(open && !isPlaying){
-
-            playMusic();
-
-		}
-
     }
 );
 
@@ -3162,24 +3156,64 @@ document.addEventListener(
 
 
 /* =========================================================
-   FIRST USER INTERACTION
+   AUTOMATIC MUSIC START
 ========================================================= */
+
+function startBackgroundMusic(){
+
+    music.play()
+        .then(function(){
+
+            isPlaying = true;
+
+            playButton.textContent =
+                "❚❚";
+
+        })
+        .catch(function(error){
+
+            /*
+             * Browser blocked autoplay.
+             * We will try again on the first
+             * user interaction.
+             */
+
+            console.log(
+                "Autoplay blocked:",
+                error
+            );
+
+        });
+
+}
+
+
+/* TRY IMMEDIATELY */
+
+startBackgroundMusic();
+
+
+/* =========================================================
+   FALLBACK: FIRST USER INTERACTION
+========================================================= */
+
+function firstInteraction(){
+
+    if(
+        music.paused &&
+        !isMuted
+    ){
+
+        startBackgroundMusic();
+
+    }
+
+}
+
 
 document.addEventListener(
     "pointerdown",
-    function(){
-
-        /*
-         * Browsers may block
-         * autoplay.
-         *
-         * Music will therefore
-         * start after the user
-         * opens the music controls
-         * and presses play.
-         */
-
-    },
+    firstInteraction,
     {once:true}
 );
 
