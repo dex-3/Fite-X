@@ -1933,7 +1933,7 @@ audio{
             <p class="bio-text" id="bioText">Biography not added yet.</p>
             <div class="bio-stats">
                 <div class="bio-stat">
-                    <span class="bio-stat-label">NAME</span>
+                    <span class="bio-stat-label">STANCES</span>
                     <span class="bio-stat-value" id="bioStatName">—</span>
                 </div>
                 <div class="bio-stat">
@@ -2464,7 +2464,7 @@ const closeBio = document.getElementById("closeBio");
 const bioImage = document.getElementById("bioImage");
 const bioName = document.getElementById("bioName");
 const bioText = document.getElementById("bioText");
-const bioStatName = document.getElementById("bioStatName");
+const bioStatStances = document.getElementById("bioStatStances");
 const bioStatAge = document.getElementById("bioStatAge");
 const bioStatNationality = document.getElementById("bioStatNationality");
 const bioStatType = document.getElementById("bioStatType");
@@ -2483,7 +2483,7 @@ function openBio(name){
 
     bioName.textContent = name;
     bioText.textContent = data.bio;
-    bioStatName.textContent = name;
+    bioStatName.textContent = data.stances;
     bioStatAge.textContent = data.age || "—";
     bioStatNationality.textContent = data.nationality || "—";
     bioStatType.textContent = data.type || "—";
