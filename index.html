@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +75,6 @@ body{
 }
 
 @keyframes gridMove{
-
     from{
         background-position:0 0,0 0;
     }
@@ -82,7 +82,6 @@ body{
     to{
         background-position:72px 72px,72px 72px;
     }
-
 }
 
 
@@ -112,12 +111,10 @@ body{
 
     filter:blur(8px);
 
-    animation:
-        glowMove 14s ease-in-out infinite alternate;
+    animation:glowMove 14s ease-in-out infinite alternate;
 }
 
 @keyframes glowMove{
-
     0%{
         transform:
             translate(-54%,-48%)
@@ -129,7 +126,6 @@ body{
             translate(-46%,-52%)
             scale(1.05);
     }
-
 }
 
 
@@ -145,12 +141,10 @@ body{
             transparent 46.3%
         );
 
-    animation:
-        diagonalMove 22s linear infinite;
+    animation:diagonalMove 22s linear infinite;
 }
 
 @keyframes diagonalMove{
-
     0%{
         transform:translate(-2%,-2%);
     }
@@ -162,7 +156,6 @@ body{
     100%{
         transform:translate(-2%,-2%);
     }
-
 }
 
 
@@ -182,12 +175,10 @@ body{
             transparent
         );
 
-    animation:
-        scan 10s linear infinite;
+    animation:scan 10s linear infinite;
 }
 
 @keyframes scan{
-
     0%{
         top:-10%;
         opacity:0;
@@ -205,7 +196,6 @@ body{
         top:110%;
         opacity:0;
     }
-
 }
 
 
@@ -226,8 +216,7 @@ body{
 
     border-radius:50%;
 
-    background:
-        rgba(130,200,255,.5);
+    background:rgba(130,200,255,.5);
 
     box-shadow:
         0 0 8px rgba(100,190,255,.35);
@@ -241,7 +230,6 @@ body{
 }
 
 @keyframes particleFloat{
-
     from{
         transform:translate(0,0);
     }
@@ -253,11 +241,9 @@ body{
                 var(--move-y)
             );
     }
-
 }
 
 @keyframes particleBlink{
-
     0%,100%{
         opacity:.15;
     }
@@ -265,7 +251,6 @@ body{
     50%{
         opacity:.8;
     }
-
 }
 
 
@@ -275,11 +260,7 @@ body{
 
 .frame{
     position:fixed;
-    inset:28px;
-
-    border:
-        1px solid
-        rgba(90,166,235,.18);
+    inset:40px;
 
     pointer-events:none;
 
@@ -292,24 +273,24 @@ body{
 
     position:absolute;
 
-    width:55px;
-    height:55px;
+    width:70px;
+    height:70px;
 
     border-color:
-        rgba(90,166,235,.5);
+        rgba(90,166,235,.48);
 }
 
 .frame:before{
-    left:-1px;
-    top:-1px;
+    left:0;
+    top:0;
 
     border-left:1px solid;
     border-top:1px solid;
 }
 
 .frame:after{
-    right:-1px;
-    bottom:-1px;
+    right:0;
+    bottom:0;
 
     border-right:1px solid;
     border-bottom:1px solid;
@@ -337,8 +318,8 @@ body{
 .welcome{
     position:absolute;
 
-    top:65px;
-    right:75px;
+    top:78px;
+    right:95px;
 
     font-size:13px;
 
@@ -353,14 +334,14 @@ body{
 
 
 /* =========================================================
-   DEX-3
+   DEX-3 BRAND
 ========================================================= */
 
 .brand{
     position:absolute;
 
-    right:75px;
-    bottom:62px;
+    left:65px;
+    bottom:28px;
 
     font-size:30px;
 
@@ -383,44 +364,53 @@ body{
 .navigation{
     position:absolute;
 
-    left:65px;
+    left:90px;
     top:50%;
 
     transform:translateY(-50%);
 
-    width:230px;
+    width:310px;
 
-    padding:24px 24px;
+    padding:35px 30px;
 
-    border:
-        1px solid
-        rgba(90,166,235,.42);
+    /*
+     * No rectangular outer border.
+     * The navigation now floats directly
+     * over the background.
+     */
 
     background:
-        rgba(3,9,15,.70);
-
-    backdrop-filter:
-        blur(12px);
-
-    -webkit-backdrop-filter:
-        blur(12px);
-
-    clip-path:
-        polygon(
-            15px 0,
-            calc(100% - 15px) 0,
-            100% 15px,
-            100% calc(100% - 15px),
-            calc(100% - 15px) 100%,
-            15px 100%,
-            0 calc(100% - 15px),
-            0 15px
+        linear-gradient(
+            90deg,
+            rgba(3,9,15,.25),
+            rgba(3,9,15,.05)
         );
 
-    box-shadow:
-        0 0 35px
-        rgba(30,90,140,.08);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+}
 
+
+/* subtle left accent */
+
+.navigation:before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:5px;
+    bottom:5px;
+
+    width:1px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(90,166,235,.55),
+            transparent
+        );
 }
 
 
@@ -429,7 +419,6 @@ body{
 ========================================================= */
 
 .nav-button{
-
     width:100%;
 
     display:flex;
@@ -454,7 +443,7 @@ body{
 
     text-align:left;
 
-    padding:12px 4px;
+    padding:14px 5px;
 
     cursor:pointer;
 
@@ -465,7 +454,6 @@ body{
 }
 
 .nav-button:hover{
-
     color:#8fd0ff;
 
     transform:translateX(5px);
@@ -476,7 +464,6 @@ body{
 }
 
 .nav-button.active{
-
     color:#8fd0ff;
 
     text-shadow:
@@ -485,7 +472,6 @@ body{
 }
 
 .nav-arrow{
-
     font-size:12px;
 
     opacity:.65;
@@ -495,7 +481,6 @@ body{
 }
 
 .nav-button.active .nav-arrow{
-
     transform:
         translateX(4px);
 }
@@ -506,11 +491,10 @@ body{
 ========================================================= */
 
 .nav-divider{
-
     width:100%;
     height:1px;
 
-    margin:14px 0;
+    margin:18px 0;
 
     background:
         linear-gradient(
@@ -523,11 +507,10 @@ body{
 
 
 /* =========================================================
-   MUSIC BOX
+   MUSIC
 ========================================================= */
 
 .music-section{
-
     max-height:0;
 
     overflow:hidden;
@@ -540,7 +523,6 @@ body{
 }
 
 .music-section.open{
-
     max-height:100px;
 
     opacity:1;
@@ -548,17 +530,16 @@ body{
 
 
 .music-box{
-
     margin-top:8px;
 
     padding:13px;
 
-    border:
+    border-left:
         1px solid
-        rgba(90,166,235,.25);
+        rgba(90,166,235,.35);
 
     background:
-        rgba(7,17,27,.55);
+        rgba(7,17,27,.45);
 
     clip-path:
         polygon(
@@ -572,29 +553,7 @@ body{
 }
 
 
-.music-name{
-
-    display:block;
-
-    margin-bottom:11px;
-
-    font-size:9px;
-
-    letter-spacing:.15em;
-
-    color:
-        rgba(170,205,230,.65);
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-}
-
-
 .music-controls{
-
     display:flex;
 
     align-items:center;
@@ -604,7 +563,6 @@ body{
 
 
 .play-button{
-
     width:25px;
     height:25px;
 
@@ -623,7 +581,6 @@ body{
 
 
 .volume-slider{
-
     flex:1;
 
     min-width:0;
@@ -642,7 +599,6 @@ body{
 }
 
 .volume-slider::-webkit-slider-thumb{
-
     appearance:none;
     -webkit-appearance:none;
 
@@ -659,7 +615,6 @@ body{
 }
 
 .volume-slider::-moz-range-thumb{
-
     width:9px;
     height:9px;
 
@@ -672,7 +627,6 @@ body{
 
 
 .mute-button{
-
     width:24px;
     height:24px;
 
@@ -689,31 +643,28 @@ body{
 
 
 /* =========================================================
-   SOCIAL ICONS
+   SOCIALS
 ========================================================= */
 
 .socials{
-
     display:flex;
 
     align-items:center;
 
-    justify-content:center;
+    justify-content:flex-start;
 
     gap:0;
 
-    margin-top:20px;
+    margin-top:24px;
 
-    padding-top:18px;
+    padding-top:20px;
 
     border-top:
         1px solid
         rgba(90,166,235,.25);
 }
 
-
 .social{
-
     width:42px;
     height:28px;
 
@@ -739,14 +690,12 @@ body{
 }
 
 .social + .social{
-
     border-left:
         1px solid
         rgba(90,166,235,.25);
 }
 
 .social:hover{
-
     color:#8fd0ff;
 
     transform:translateY(-2px);
@@ -762,32 +711,25 @@ body{
 ========================================================= */
 
 .right-panel{
-
     position:absolute;
 
-    top:202px;
-	
-    right:65px;
+    top:145px;
+    right:90px;
 
     width:
-        min(1080px,calc(100vw - 370px));
+        min(1140px,calc(100vw - 500px));
 
     height:505px;
-	
-	bottom:auto;
 
-    border:
+    border-left:
         1px solid
         rgba(90,166,235,.30);
 
     background:
-        rgba(3,9,15,.52);
+        rgba(3,9,15,.40);
 
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 
     opacity:0;
 
@@ -816,7 +758,6 @@ body{
 }
 
 .right-panel.open{
-
     opacity:1;
 
     transform:
@@ -831,8 +772,7 @@ body{
 ========================================================= */
 
 .panel-header{
-
-    height:64px;
+    height:90px;
 
     display:flex;
 
@@ -840,24 +780,14 @@ body{
 
     justify-content:space-between;
 
-    padding:0 25px;
+    padding:0 28px;
 
     border-bottom:
         1px solid
         rgba(90,166,235,.22);
 }
 
-.panel-title{
-
-    font-size:13px;
-
-    letter-spacing:.20em;
-
-    color:#dceeff;
-}
-
-	.panel-title-area{
-
+.panel-title-area{
     display:flex;
 
     align-items:center;
@@ -865,9 +795,16 @@ body{
     gap:14px;
 }
 
+.panel-title{
+    font-size:13px;
+
+    letter-spacing:.20em;
+
+    color:#dceeff;
+}
+
 
 .folder-button{
-
     width:28px;
     height:28px;
 
@@ -894,9 +831,7 @@ body{
         box-shadow .25s;
 }
 
-
 .folder-button svg{
-
     width:14px;
     height:14px;
 
@@ -907,13 +842,10 @@ body{
     stroke-width:1.5;
 
     stroke-linecap:round;
-
     stroke-linejoin:round;
 }
 
-
 .folder-button:hover{
-
     color:#bfe5ff;
 
     border-color:
@@ -930,8 +862,8 @@ body{
         rgba(80,170,240,.25);
 }
 
-.panel-close{
 
+.panel-close{
     border:0;
 
     background:transparent;
@@ -952,7 +884,6 @@ body{
 }
 
 .panel-close:hover{
-
     color:#fff;
 }
 
@@ -962,13 +893,12 @@ body{
 ========================================================= */
 
 .panel-content{
-
     height:
-        calc(100% - 64px);
+        calc(100% - 90px);
 
     overflow-y:auto;
 
-    padding:18px;
+    padding:30px;
 
     scrollbar-width:thin;
 
@@ -983,13 +913,12 @@ body{
 ========================================================= */
 
 .character-grid{
-
     display:grid;
 
     grid-template-columns:
-        repeat(5,minmax(110px,1fr));
+        repeat(5,minmax(0,1fr));
 
-    gap:12px;
+    gap:13px;
 }
 
 
@@ -998,11 +927,9 @@ body{
 ========================================================= */
 
 .character-item{
-
     position:relative;
 
-    aspect-ratio:
-        .72;
+    aspect-ratio:.67;
 
     border:
         1px solid
@@ -1046,7 +973,6 @@ body{
 }
 
 .character-item:hover{
-
     transform:
         translateY(-4px);
 
@@ -1060,14 +986,12 @@ body{
 
 
 .character-portrait{
-
     position:absolute;
 
     inset:0;
 }
 
 .character-portrait img{
-
     width:100%;
     height:100%;
 
@@ -1088,7 +1012,6 @@ body{
 }
 
 .character-item:hover img{
-
     transform:scale(1.045);
 
     filter:
@@ -1099,7 +1022,6 @@ body{
 
 
 .character-portrait:after{
-
     content:"";
 
     position:absolute;
@@ -1117,7 +1039,6 @@ body{
 
 
 .character-name{
-
     position:absolute;
 
     left:9px;
@@ -1142,11 +1063,10 @@ body{
 
 
 /* =========================================================
-   BIO OVERLAY
+   BIO PANEL
 ========================================================= */
 
 .bio-panel{
-
     position:fixed;
 
     inset:0;
@@ -1164,11 +1084,8 @@ body{
     background:
         rgba(1,5,9,.82);
 
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 
     opacity:0;
 
@@ -1179,7 +1096,6 @@ body{
 }
 
 .bio-panel.open{
-
     opacity:1;
 
     pointer-events:auto;
@@ -1187,7 +1103,6 @@ body{
 
 
 .bio-window{
-
     width:
         min(850px,92vw);
 
@@ -1231,7 +1146,6 @@ body{
 
 
 .bio-image{
-
     min-height:390px;
 
     position:relative;
@@ -1244,7 +1158,6 @@ body{
 }
 
 .bio-image img{
-
     width:100%;
     height:100%;
 
@@ -1259,9 +1172,7 @@ body{
         saturate(.9);
 }
 
-
 .bio-image:after{
-
     content:"";
 
     position:absolute;
@@ -1279,15 +1190,12 @@ body{
 
 
 .bio-content{
-
     padding:42px 44px;
 
     overflow-y:auto;
 }
 
-
 .bio-label{
-
     font-size:9px;
 
     letter-spacing:.28em;
@@ -1298,9 +1206,7 @@ body{
     margin-bottom:10px;
 }
 
-
 .bio-name{
-
     font-size:34px;
 
     line-height:1.1;
@@ -1312,9 +1218,7 @@ body{
     margin-bottom:24px;
 }
 
-
 .bio-divider{
-
     width:100%;
 
     height:1px;
@@ -1329,9 +1233,7 @@ body{
         );
 }
 
-
 .bio-text{
-
     color:#b8c8d9;
 
     font-size:14px;
@@ -1343,9 +1245,7 @@ body{
     min-height:60px;
 }
 
-
 .bio-stats{
-
     display:grid;
 
     grid-template-columns:
@@ -1356,9 +1256,7 @@ body{
     margin-top:28px;
 }
 
-
 .bio-stat{
-
     padding:13px 15px;
 
     border:
@@ -1369,9 +1267,7 @@ body{
         rgba(5,12,20,.45);
 }
 
-
 .bio-stat-label{
-
     display:block;
 
     font-size:8px;
@@ -1384,9 +1280,7 @@ body{
     margin-bottom:5px;
 }
 
-
 .bio-stat-value{
-
     font-size:12px;
 
     color:#dceeff;
@@ -1394,9 +1288,7 @@ body{
     letter-spacing:.08em;
 }
 
-
 .bio-close{
-
     position:absolute;
 
     top:18px;
@@ -1426,45 +1318,6 @@ body{
 
 
 /* =========================================================
-   PRESETS
-========================================================= */
-
-.presets{
-
-    display:inline-block;
-
-    margin-bottom:18px;
-
-    padding:9px 14px;
-
-    border:
-        1px solid
-        rgba(100,183,246,.40);
-
-    color:#cfe9ff;
-
-    text-decoration:none;
-
-    font-size:9px;
-
-    letter-spacing:.15em;
-
-    transition:
-        background .2s,
-        border-color .2s;
-}
-
-.presets:hover{
-
-    background:
-        rgba(50,110,160,.18);
-
-    border-color:
-        rgba(125,205,255,.75);
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -1474,8 +1327,13 @@ body{
         inset:15px;
     }
 
-    .welcome{
+    .frame:before,
+    .frame:after{
+        width:45px;
+        height:45px;
+    }
 
+    .welcome{
         top:38px;
         right:30px;
 
@@ -1483,16 +1341,15 @@ body{
     }
 
     .brand{
-
-		left:65px;
+        left:65px;
         right:auto;
+
         bottom:28px;
 
         font-size:30px;
     }
 
     .navigation{
-
         left:30px;
 
         width:200px;
@@ -1501,7 +1358,6 @@ body{
     }
 
     .right-panel{
-
         top:100px;
 
         right:25px;
@@ -1510,23 +1366,26 @@ body{
             calc(100vw - 270px);
 
         bottom:80px;
+
+        height:auto;
     }
 
     .character-grid{
-
         grid-template-columns:
             repeat(3,1fr);
 
         gap:8px;
     }
-
 }
 
 
 @media(max-width:600px){
 
-    .welcome{
+    body{
+        overflow:hidden;
+    }
 
+    .welcome{
         top:32px;
         right:25px;
 
@@ -1536,7 +1395,6 @@ body{
     }
 
     .navigation{
-
         left:20px;
 
         top:auto;
@@ -1550,29 +1408,27 @@ body{
     }
 
     .nav-button{
-
         font-size:11px;
 
         padding:9px 3px;
     }
 
     .social{
-
         width:35px;
 
         font-size:10px;
     }
 
     .brand{
-
         right:25px;
+        left:auto;
+
         bottom:28px;
 
         font-size:20px;
     }
 
     .right-panel{
-
         top:90px;
         right:20px;
         left:20px;
@@ -1580,33 +1436,30 @@ body{
         width:auto;
 
         bottom:310px;
+
+        height:auto;
     }
 
     .panel-header{
-
         height:64px;
 
         padding:0 16px;
     }
 
     .panel-title{
-
         font-size:10px;
     }
 
     .panel-content{
-
         padding:12px;
     }
 
     .character-grid{
-
         grid-template-columns:
             repeat(3,1fr);
     }
 
     .bio-window{
-
         width:95vw;
 
         max-height:88vh;
@@ -1617,7 +1470,6 @@ body{
     }
 
     .bio-image{
-
         min-height:0;
 
         border-right:0;
@@ -1628,144 +1480,12 @@ body{
     }
 
     .bio-content{
-
         padding:25px;
     }
 
     .bio-name{
-
         font-size:24px;
     }
-
-}
-
-
-	/* =========================================================
-   DESKTOP REFERENCE SIZE
-========================================================= */
-
-@media(min-width:801px){
-
-    /* FRAME */
-
-    .frame{
-        inset:40px;
-    }
-
-
-    /* WELCOME */
-
-    .welcome{
-        top:78px;
-        right:95px;
-    }
-
-
-    /* LEFT NAVIGATION */
-
-    .navigation{
-
-        left:90px;
-
-        top:50%;
-
-        width:310px;
-
-        padding:35px 30px;
-    }
-
-
-    .nav-button{
-
-        padding:14px 5px;
-
-        font-size:14px;
-    }
-
-
-    .nav-divider{
-
-        margin:18px 0;
-    }
-
-
-    .socials{
-
-        margin-top:24px;
-
-        padding-top:20px;
-    }
-
-
-    /* DEX-3 */
-
-    .brand{
-
-		left:65px;
-        right:auto;
-
-        bottom:28px;
-
-        font-size:30px;
-    }
-
-
-    /* RIGHT PANEL */
-
-    .right-panel{
-
-        top:145px;
-
-        right:90px;
-
-        width:
-            min(1140px,calc(100vw - 500px));
-
-        height:505px;
-
-        bottom:auto;
-    }
-
-
-    /* PANEL HEADER */
-
-    .panel-header{
-
-        height:90px;
-
-        padding:0 28px;
-    }
-
-
-    /* PANEL CONTENT */
-
-    .panel-content{
-
-        height:
-            calc(100% - 90px);
-
-        padding:30px;
-    }
-
-
-    /* CHARACTER GRID */
-
-    .character-grid{
-
-        grid-template-columns:
-            repeat(5,minmax(0,1fr));
-
-        gap:13px;
-    }
-
-
-    /* CHARACTER CARD */
-
-    .character-item{
-
-        aspect-ratio:.67;
-    }
-
 }
 
 
@@ -1785,7 +1505,6 @@ body{
 
         transition-duration:.01ms !important;
     }
-
 }
 
 </style>
@@ -1846,8 +1565,6 @@ body{
 <main class="interface">
 
 
-    <!-- WELCOME -->
-
     <div class="welcome">
         WELCOME, TRAVELLER
     </div>
@@ -1859,8 +1576,6 @@ body{
 
     <aside class="navigation">
 
-
-        <!-- CHARACTER -->
 
         <button
             class="nav-button"
@@ -1879,8 +1594,6 @@ body{
         </button>
 
 
-        <!-- ABOUT -->
-
         <button
             class="nav-button"
             id="aboutButton"
@@ -1897,8 +1610,6 @@ body{
 
         </button>
 
-
-        <!-- MUSIC -->
 
         <button
             class="nav-button"
@@ -2007,12 +1718,11 @@ body{
 
         </div>
 
-
     </aside>
 
 
     <!-- ===================================================
-         RIGHT SIDE PANEL
+         RIGHT PANEL
     =================================================== -->
 
     <section
@@ -2021,57 +1731,61 @@ body{
         aria-hidden="true"
     >
 
-       <header class="panel-header">
+        <header class="panel-header">
 
-    <div class="panel-title-area">
+            <div class="panel-title-area">
 
-        <span
-            class="panel-title"
-            id="panelTitle"
-        >
-            CHARACTER
-        </span>
+                <span
+                    class="panel-title"
+                    id="panelTitle"
+                >
+                    CHARACTER
+                </span>
 
-        <a
-            class="folder-button"
-			id="folderButton"
-            href="https://drive.google.com/drive/u/1/folders/1a80VVGi8gMLn3PPjYD0iPaKx3eGbpyL9"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Open Google Drive"
-            aria-label="Open Google Drive"
-        >
+                <a
+                    class="folder-button"
+                    id="folderButton"
+                    href="https://drive.google.com/drive/u/1/folders/1a80VVGi8gMLn3PPjYD0iPaKx3eGbpyL9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open Google Drive"
+                    aria-label="Open Google Drive"
+                >
 
-            <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M10 3H4
+                               C3.45 3 3 3.45 3 4
+                               V20
+                               C3 20.55 3.45 21 4 21
+                               H20
+                               C20.55 21 21 20.55 21 20
+                               V7
+                               H12
+                               L10 3Z"
+                        />
+
+                    </svg>
+
+                </a>
+
+            </div>
+
+
+            <button
+                class="panel-close"
+                id="panelClose"
+                type="button"
             >
-                <path
-                    d="M10 3H4
-                       C3.45 3 3 3.45 3 4
-                       V20
-                       C3 20.55 3.45 21 4 21
-                       H20
-                       C20.55 21 21 20.55 21 20
-                       V7
-                       H12
-                       L10 3Z"
-                />
-            </svg>
+                CLOSE ×
+            </button>
 
-        </a>
+        </header>
 
-    </div>
-
-    <button
-        class="panel-close"
-        id="panelClose"
-        type="button"
-    >
-        CLOSE ×
-    </button>
-
-</header>
 
         <div
             class="panel-content"
@@ -2086,7 +1800,6 @@ body{
     <div class="brand">
         dex-3
     </div>
-
 
 </main>
 
@@ -2152,7 +1865,6 @@ body{
 
             <div class="bio-stats">
 
-
                 <div class="bio-stat">
 
                     <span class="bio-stat-label">
@@ -2215,7 +1927,6 @@ body{
                     </span>
 
                 </div>
-
 
             </div>
 
@@ -2395,14 +2106,10 @@ playButton.addEventListener(
     function(){
 
         if(isPlaying){
-
             pauseMusic();
-
         }
         else{
-
             playMusic();
-
         }
 
     }
@@ -2819,7 +2526,8 @@ function openPanel(type){
         panelTitle.textContent =
             "CHARACTER";
 
-		folderButton.style.display = "flex";
+        folderButton.style.display =
+            "flex";
 
         buildCharacterGrid();
 
@@ -2832,17 +2540,15 @@ function openPanel(type){
             "active"
         );
 
+        /*
+         * ABOUT IS INTENTIONALLY BLANK.
+         */
+
         panelTitle.textContent =
             "";
 
-		folderButton.style.display = 
-			"none";
-
-        /*
-         * INTENTIONALLY BLANK.
-         *
-         * ABOUT PANEL HAS NO CONTENT.
-         */
+        folderButton.style.display =
+            "none";
 
         panelContent.innerHTML =
             "";
@@ -2896,8 +2602,8 @@ function closePanel(){
 
 function buildCharacterGrid(){
 
-    panelContent.innerHTML = "";
-
+    panelContent.innerHTML =
+        "";
 
     const grid =
         document.createElement(
@@ -2922,9 +2628,19 @@ function buildCharacterGrid(){
             card.className =
                 "character-item";
 
-	    if(name === "Kouka Arisato"){
-		    card.classList.add("new-row");
-		}
+
+            /*
+             * Start Randall/Kouka section
+             * on a fresh row.
+             */
+
+            if(name === "Kouka Arisato"){
+
+                card.classList.add(
+                    "new-row"
+                );
+
+            }
 
 
             const imageName =
@@ -2951,7 +2667,9 @@ function buildCharacterGrid(){
 
 
             const image =
-                card.querySelector("img");
+                card.querySelector(
+                    "img"
+                );
 
 
             image.addEventListener(
@@ -2975,13 +2693,17 @@ function buildCharacterGrid(){
             );
 
 
-            grid.appendChild(card);
+            grid.appendChild(
+                card
+            );
 
         }
     );
 
 
-    panelContent.appendChild(grid);
+    panelContent.appendChild(
+        grid
+    );
 
 }
 
@@ -3003,7 +2725,9 @@ characterButton.addEventListener(
         }
         else{
 
-            openPanel("character");
+            openPanel(
+                "character"
+            );
 
         }
 
@@ -3024,7 +2748,9 @@ aboutButton.addEventListener(
         }
         else{
 
-            openPanel("about");
+            openPanel(
+                "about"
+            );
 
         }
 
@@ -3270,12 +2996,8 @@ document.addEventListener(
         }
 
 
-        /*
-         * Don't interfere with
-         * external links.
-         */
-
-        clickSound.currentTime = 0;
+        clickSound.currentTime =
+            0;
 
         clickSound
             .play()
@@ -3303,18 +3025,12 @@ function startBackgroundMusic(){
                 "❚❚";
 
         })
-        .catch(function(error){
+        .catch(function(){
 
             /*
-             * Browser blocked autoplay.
-             * We will try again on the first
-             * user interaction.
+             * Browser autoplay policy may
+             * prevent immediate playback.
              */
-
-            console.log(
-                "Autoplay blocked:",
-                error
-            );
 
         });
 
@@ -3327,7 +3043,7 @@ startBackgroundMusic();
 
 
 /* =========================================================
-   FALLBACK: FIRST USER INTERACTION
+   FIRST USER INTERACTION
 ========================================================= */
 
 function firstInteraction(){
@@ -3354,3 +3070,4 @@ document.addEventListener(
 
 </body>
 </html>
+```
