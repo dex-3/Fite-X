@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,13 +9,17 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 <style>
 
 /* =========================================================
    RESET
-   ========================================================= */
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -30,22 +35,22 @@ body{
 
 body{
     background:#03060a;
-    color:#f4f8ff;
+    color:#edf6ff;
     font-family:"Oxanium",sans-serif;
     overflow:hidden;
 }
 
 
 /* =========================================================
-   MOVING BACKGROUND
-   ========================================================= */
+   BACKGROUND
+========================================================= */
 
 .background{
     position:fixed;
     inset:-100px;
+    z-index:0;
     overflow:hidden;
     pointer-events:none;
-    z-index:0;
 }
 
 .grid{
@@ -80,17 +85,18 @@ body{
 
 }
 
+
 .glow{
     position:absolute;
 
-    width:65vw;
-    height:65vw;
+    width:70vw;
+    height:70vw;
 
     max-width:1000px;
     max-height:1000px;
 
-    left:50%;
-    top:45%;
+    left:55%;
+    top:48%;
 
     transform:translate(-50%,-50%);
 
@@ -99,15 +105,15 @@ body{
     background:
         radial-gradient(
             circle,
-            rgba(42,76,115,.18) 0%,
-            rgba(42,76,115,.10) 22%,
-            rgba(42,76,115,.035) 42%,
+            rgba(42,76,115,.16) 0%,
+            rgba(42,76,115,.08) 30%,
             transparent 70%
         );
 
-    filter:blur(5px);
+    filter:blur(8px);
 
-    animation:glowMove 14s ease-in-out infinite alternate;
+    animation:
+        glowMove 14s ease-in-out infinite alternate;
 }
 
 @keyframes glowMove{
@@ -118,19 +124,14 @@ body{
             scale(.95);
     }
 
-    50%{
+    100%{
         transform:
-            translate(-46%,-53%)
+            translate(-46%,-52%)
             scale(1.05);
     }
 
-    100%{
-        transform:
-            translate(-51%,-45%)
-            scale(.98);
-    }
-
 }
+
 
 .diagonal-light{
     position:absolute;
@@ -144,7 +145,8 @@ body{
             transparent 46.3%
         );
 
-    animation:diagonalMove 22s linear infinite;
+    animation:
+        diagonalMove 22s linear infinite;
 }
 
 @keyframes diagonalMove{
@@ -163,6 +165,7 @@ body{
 
 }
 
+
 .scanline{
     position:absolute;
 
@@ -179,7 +182,8 @@ body{
             transparent
         );
 
-    animation:scan 10s linear infinite;
+    animation:
+        scan 10s linear infinite;
 }
 
 @keyframes scan{
@@ -207,7 +211,7 @@ body{
 
 /* =========================================================
    PARTICLES
-   ========================================================= */
+========================================================= */
 
 .particles{
     position:absolute;
@@ -266,470 +270,167 @@ body{
 
 
 /* =========================================================
-   LANDING PAGE
-   ========================================================= */
+   CORNER FRAME
+========================================================= */
 
-.page{
-    width:100%;
-    height:100vh;
+.frame{
+    position:fixed;
+    inset:28px;
 
-    display:flex;
-    flex-direction:column;
-
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    position:relative;
-
-    z-index:2;
-
-    transition:
-        transform .9s cubic-bezier(.77,0,.18,1),
-        opacity .7s ease;
-}
-
-body.profile-open .page{
-
-    transform:
-        translateY(12vh)
-        scale(.97);
-
-    opacity:0;
+    border:
+        1px solid
+        rgba(90,166,235,.18);
 
     pointer-events:none;
+
+    z-index:1;
 }
 
-
-/* =========================================================
-   CORNER DETAILS
-   ========================================================= */
-
-.page:before,
-.page:after{
-
+.frame:before,
+.frame:after{
     content:"";
 
     position:absolute;
 
-    width:60px;
-    height:60px;
+    width:55px;
+    height:55px;
 
     border-color:
-        rgba(90,166,235,.55);
-
-    pointer-events:none;
+        rgba(90,166,235,.5);
 }
 
-.page:before{
+.frame:before{
+    left:-1px;
+    top:-1px;
 
-    top:40px;
-    left:40px;
-
-    border-top:1px solid;
     border-left:1px solid;
+    border-top:1px solid;
 }
 
-.page:after{
-
-    right:40px;
-    bottom:40px;
+.frame:after{
+    right:-1px;
+    bottom:-1px;
 
     border-right:1px solid;
     border-bottom:1px solid;
 }
 
-.corner{
-
-    position:absolute;
-
-    font-size:11px;
-
-    letter-spacing:.28em;
-
-    color:
-        rgba(105,173,232,.55);
-
-    text-transform:uppercase;
-}
-
-.top-left{
-
-    top:68px;
-    left:80px;
-
-}
-
-.top-right{
-
-    top:68px;
-    right:80px;
-
-}
-
-.bottom-left{
-
-    bottom:68px;
-    left:80px;
-
-}
-
-.bottom-right{
-
-    bottom:68px;
-    right:80px;
-
-}
-
 
 /* =========================================================
-   LOGO
-   ========================================================= */
+   MAIN UI
+========================================================= */
 
-.logo{
-
-    font-size:
-        clamp(70px,10vw,150px);
-
-    line-height:1;
-
-    font-weight:600;
-
-    letter-spacing:-.07em;
-
-    text-shadow:
-        0 0 38px
-        rgba(110,180,255,.25);
-
-    margin-bottom:48px;
-
-    animation:
-        logoGlow 5s ease-in-out
-        infinite alternate;
-}
-
-@keyframes logoGlow{
-
-    0%{
-        text-shadow:
-            0 0 25px
-            rgba(110,180,255,.18);
-    }
-
-    100%{
-        text-shadow:
-            0 0 45px
-            rgba(110,180,255,.40);
-    }
-
-}
-
-
-/* =========================================================
-   DIVIDER
-   ========================================================= */
-
-.divider{
-
-    width:540px;
-    max-width:70vw;
-
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(102,177,242,.65),
-            transparent
-        );
-
+.interface{
     position:relative;
 
-    margin-bottom:42px;
+    width:100%;
+    height:100vh;
+
+    z-index:5;
 }
 
-.divider:after{
 
-    content:"///";
+/* =========================================================
+   WELCOME
+========================================================= */
 
+.welcome{
     position:absolute;
 
-    left:50%;
-    top:50%;
+    top:65px;
+    right:75px;
 
-    transform:
-        translate(-50%,-54%);
+    font-size:13px;
 
-    padding:0 16px;
+    font-weight:400;
 
-    background:#05080d;
+    letter-spacing:.24em;
 
-    color:#6cb9f5;
-
-    font-size:14px;
-}
-
-
-/* =========================================================
-   FOLLOW
-   ========================================================= */
-
-.follow{
-
-    font-size:16px;
-
-    letter-spacing:.22em;
-
-    color:#b8c8d9;
+    color:#c8d9e9;
 
     text-transform:uppercase;
-
-    margin-bottom:36px;
 }
 
 
 /* =========================================================
-   SOCIAL LINKS
-   ========================================================= */
+   DEX-3
+========================================================= */
 
-.socials{
+.brand{
+    position:absolute;
 
-    display:flex;
+    right:75px;
+    bottom:62px;
 
-    align-items:center;
-    justify-content:center;
-
-    margin-bottom:80px;
-
-    border-left:
-        1px solid
-        rgba(86,157,218,.45);
-
-    border-right:
-        1px solid
-        rgba(86,157,218,.45);
-
-    padding:9px 30px;
-}
-
-.socials a{
-
-    color:#eef6ff;
-
-    text-decoration:none;
-
-    font-size:16px;
+    font-size:30px;
 
     font-weight:500;
 
-    letter-spacing:.2em;
+    letter-spacing:-.05em;
 
-    padding:0 38px;
-
-    transition:
-        color .25s,
-        text-shadow .25s,
-        transform .25s;
-}
-
-.socials a+a{
-
-    border-left:
-        1px solid
-        rgba(86,157,218,.35);
-}
-
-.socials a:hover{
-
-    color:#8fd0ff;
+    color:#edf6ff;
 
     text-shadow:
-        0 0 18px
-        rgba(96,183,255,.7);
-
-    transform:
-        translateY(-2px);
+        0 0 25px
+        rgba(100,180,255,.18);
 }
 
 
 /* =========================================================
-   CHARACTER PROFILE BUTTON
-   ========================================================= */
+   LEFT NAVIGATION
+========================================================= */
 
-.profile{
+.navigation{
+    position:absolute;
 
-    min-width:510px;
+    left:65px;
+    top:50%;
 
-    padding:27px 66px;
+    transform:translateY(-50%);
+
+    width:230px;
+
+    padding:28px 24px;
 
     border:
         1px solid
-        rgba(100,183,246,.75);
+        rgba(90,166,235,.42);
 
-    color:#f4f8ff;
+    background:
+        rgba(3,9,15,.70);
 
-    position:relative;
+    backdrop-filter:
+        blur(12px);
 
-    cursor:pointer;
-
-    font-family:
-        "Oxanium",sans-serif;
+    -webkit-backdrop-filter:
+        blur(12px);
 
     clip-path:
         polygon(
-            25px 0,
-            calc(100% - 25px) 0,
-            100% 25px,
-            100% calc(100% - 25px),
-            calc(100% - 25px) 100%,
-            25px 100%,
-            0 calc(100% - 25px),
-            0 25px
+            15px 0,
+            calc(100% - 15px) 0,
+            100% 15px,
+            100% calc(100% - 15px),
+            calc(100% - 15px) 100%,
+            15px 100%,
+            0 calc(100% - 15px),
+            0 15px
         );
-
-    background:
-        rgba(5,12,20,.42);
-
-    transition:
-        background .25s,
-        box-shadow .25s,
-        transform .25s;
-}
-
-.profile:hover{
-
-    background:
-        rgba(40,91,135,.18);
 
     box-shadow:
-        0 0 38px
-        rgba(67,157,225,.16);
+        0 0 35px
+        rgba(30,90,140,.08);
 
-    transform:
-        translateY(-3px);
-}
-
-.profile-text{
-
-    font-size:16px;
-
-    font-weight:600;
-
-    letter-spacing:.24em;
-}
-
-.triangle{
-
-    display:block;
-
-    margin-top:18px;
-
-    color:#8bcfff;
-
-    font-size:16px;
-
-    transition:
-        transform .3s,
-        text-shadow .3s;
-}
-
-.profile:hover .triangle{
-
-    transform:
-        translateY(7px);
-
-    text-shadow:
-        0 0 16px
-        rgba(110,195,255,.9);
 }
 
 
 /* =========================================================
-   STATUS
-   ========================================================= */
+   NAV ITEMS
+========================================================= */
 
-.status{
-
-    position:absolute;
-
-    bottom:48px;
-    left:50%;
-
-    transform:
-        translateX(-50%);
-
-    font-size:9px;
-
-    letter-spacing:.28em;
-
-    color:
-        rgba(120,177,218,.42);
-
-    text-transform:uppercase;
-}
-
-
-/* =========================================================
-   CHARACTER SCREEN
-   ========================================================= */
-
-.character-screen{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:10;
-
-    background:
-        linear-gradient(
-            rgba(3,8,14,.88),
-            rgba(3,8,14,.96)
-        );
-
-    transform:
-        translateY(-100%);
-
-    opacity:0;
-
-    transition:
-        transform .9s
-        cubic-bezier(.77,0,.18,1),
-
-        opacity .65s ease;
-
-    overflow:hidden;
-
-    pointer-events:none;
-}
-
-body.profile-open
-.character-screen{
-
-    transform:
-        translateY(0);
-
-    opacity:1;
-
-    pointer-events:auto;
-}
-
-
-/* =========================================================
-   CHARACTER HEADER
-   ========================================================= */
-
-.character-header{
-
-    position:absolute;
-
-    top:0;
-    left:0;
+.nav-button{
 
     width:100%;
-    height:110px;
 
     display:flex;
 
@@ -737,584 +438,175 @@ body.profile-open
 
     justify-content:space-between;
 
-    padding:0 75px;
+    border:0;
 
-    border-bottom:
-        1px solid
-        rgba(86,157,218,.30);
+    background:transparent;
 
-    background:
-        rgba(3,8,14,.55);
+    color:#dceeff;
 
-    backdrop-filter:
-        blur(8px);
+    font-family:"Oxanium",sans-serif;
 
-    -webkit-backdrop-filter:
-        blur(8px);
+    font-size:14px;
 
-    z-index:5;
-}
-
-.character-title{
-
-    display:flex;
-
-    flex-direction:row;
-
-    align-items:center;
-
-    gap:18px;
-}
-
-.character-title-main{
-
-    font-size:30px;
-
-    font-weight:600;
+    font-weight:500;
 
     letter-spacing:.12em;
+
+    text-align:left;
+
+    padding:12px 4px;
+
+    cursor:pointer;
+
+    transition:
+        color .25s,
+        transform .25s,
+        text-shadow .25s;
 }
 
-.character-title-sub{
+.nav-button:hover{
 
-    position:absolute;
+    color:#8fd0ff;
 
-    left:75px;
+    transform:translateX(5px);
 
-    top:76px;
+    text-shadow:
+        0 0 14px
+        rgba(100,190,255,.6);
+}
 
-    margin-top:8px;
+.nav-button.active{
 
-    font-size:10px;
+    color:#8fd0ff;
 
-    letter-spacing:.28em;
+    text-shadow:
+        0 0 15px
+        rgba(100,190,255,.5);
+}
 
-    color:
-        rgba(120,180,225,.55);
+.nav-arrow{
+
+    font-size:12px;
+
+    opacity:.65;
+
+    transition:
+        transform .25s;
+}
+
+.nav-button.active .nav-arrow{
+
+    transform:
+        translateX(4px);
 }
 
 
 /* =========================================================
-   PRESETS BUTTON
-   ========================================================= */
+   NAV DIVIDER
+========================================================= */
 
-.presets-button{
+.nav-divider{
 
-    display:inline-flex;
+    width:100%;
+    height:1px;
+
+    margin:14px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(90,166,235,.35),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   MUSIC BOX
+========================================================= */
+
+.music-section{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transition:
+        max-height .4s ease,
+        opacity .3s ease;
+}
+
+.music-section.open{
+
+    max-height:100px;
+
+    opacity:1;
+}
+
+
+.music-box{
+
+    margin-top:8px;
+
+    padding:13px;
+
+    border:
+        1px solid
+        rgba(90,166,235,.25);
+
+    background:
+        rgba(7,17,27,.55);
+
+    clip-path:
+        polygon(
+            8px 0,
+            100% 0,
+            100% calc(100% - 8px),
+            calc(100% - 8px) 100%,
+            0 100%,
+            0 8px
+        );
+}
+
+
+.music-name{
+
+    display:block;
+
+    margin-bottom:11px;
+
+    font-size:9px;
+
+    letter-spacing:.15em;
+
+    color:
+        rgba(170,205,230,.65);
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+
+.music-controls{
+
+    display:flex;
 
     align-items:center;
 
     gap:8px;
-
-    padding:11px 17px;
-
-    border:
-        1px solid
-        rgba(100,183,246,.55);
-
-    background:
-        rgba(5,12,20,.5);
-
-    color:#dceeff;
-
-    text-decoration:none;
-
-    font-family:
-        "Oxanium",sans-serif;
-
-    font-size:11px;
-
-    font-weight:500;
-
-    letter-spacing:.20em;
-
-    cursor:pointer;
-
-    transition:
-        background .25s,
-        color .25s,
-        border-color .25s,
-        box-shadow .25s,
-        transform .25s;
-}
-
-.presets-button:hover{
-
-    color:#fff;
-
-    background:
-        rgba(40,91,135,.25);
-
-    border-color:
-        rgba(125,205,255,.80);
-
-    box-shadow:
-        0 0 22px
-        rgba(67,157,225,.18);
-
-    transform:
-        translateY(-2px);
-}
-
-.presets-icon{
-
-    font-size:13px;
-
-    line-height:1;
 }
 
 
-/* =========================================================
-   CLOSE BUTTON
-   ========================================================= */
+.play-button{
 
-.close-profile{
-
-    border:
-        1px solid
-        rgba(100,183,246,.55);
-
-    background:
-        rgba(5,12,20,.5);
-
-    color:#dceeff;
-
-    padding:
-        13px 22px;
-
-    font-family:
-        "Oxanium",sans-serif;
-
-    font-size:11px;
-
-    letter-spacing:.20em;
-
-    cursor:pointer;
-
-    transition:
-        background .25s,
-        color .25s,
-        box-shadow .25s;
-}
-
-.close-profile:hover{
-
-    color:#fff;
-
-    background:
-        rgba(40,91,135,.25);
-
-    box-shadow:
-        0 0 22px
-        rgba(67,157,225,.18);
-}
-
-
-/* =========================================================
-   CHARACTER SELECT
-   ========================================================= */
-
-.character-select{
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    top:110px;
-    bottom:0;
-
-    padding:
-        18px 30px 30px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    overflow:hidden;
-}
-
-
-/* =========================================================
-   SELECT HEADING
-   ========================================================= */
-
-.select-heading{
-
-    text-align:center;
-
-    flex-shrink:0;
-
-    margin-bottom:14px;
-}
-
-.select-heading-main{
-
-    font-size:16px;
-
-    font-weight:500;
-
-    letter-spacing:.28em;
-
-    color:#dceeff;
-}
-
-.select-heading-sub{
-
-    display:block;
-
-    margin-top:7px;
-
-    font-size:9px;
-
-    letter-spacing:.20em;
-
-    color:
-        rgba(120,180,225,.42);
-}
-
-
-/* =========================================================
-   CHARACTER GRID
-   ========================================================= */
-
-.character-grid{
-
-    width:min(1350px,96vw);
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:14px;
-
-    overflow-y:auto;
-
-    padding:
-        8px 10px 15px;
-
-    scrollbar-width:thin;
-
-    scrollbar-color:
-        rgba(100,180,235,.35)
-        transparent;
-}
-
-/* SPACE BEFORE FINAL TWO CHARACTERS */
-
-.character-row:last-child{
-
-    margin-top:35px;
-
-}
-
-/* =========================================================
-   CHARACTER ROW
-   ========================================================= */
-
-.character-row{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:14px;
-
-    flex-shrink:0;
-}
-
-
-/* =========================================================
-   CHARACTER CARD
-   ========================================================= */
-
-.character-item{
-
-    width:
-        clamp(105px,8vw,158px);
-
-    height:
-        clamp(165px,12.5vw,248px);
-
-    flex-shrink:0;
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:0;
-
-    border:
-        1px solid
-        rgba(90,160,215,.30);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,38,57,.48),
-            rgba(4,10,16,.68)
-        );
-
-    color:#dceeff;
-
-    font-family:
-        "Oxanium",sans-serif;
-
-    cursor:pointer;
-
-    overflow:hidden;
-
-    clip-path:
-        polygon(
-            10px 0,
-            calc(100% - 10px) 0,
-            100% 10px,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            10px 100%,
-            0 calc(100% - 10px),
-            0 10px
-        );
-
-    transition:
-        transform .2s,
-        border-color .2s,
-        background .2s,
-        box-shadow .2s;
-}
-
-.character-item:hover{
-
-    transform:
-        translateY(-5px)
-        scale(1.025);
-
-    border-color:
-        rgba(125,205,255,.70);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(32,72,103,.55),
-            rgba(5,14,22,.75)
-        );
-
-    box-shadow:
-        0 0 24px
-        rgba(65,155,220,.18);
-}
-
-.character-item.active{
-
-    border-color:
-        rgba(135,215,255,.95);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(38,88,125,.58),
-            rgba(5,14,22,.82)
-        );
-
-    box-shadow:
-        0 0 28px
-        rgba(65,170,240,.25),
-
-        inset 0 0 22px
-        rgba(90,180,240,.08);
-}
-
-.character-item.active:after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:4px;
-
-    border:
-        1px solid
-        rgba(140,220,255,.28);
-
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   PORTRAIT
-   ========================================================= */
-
-.character-portrait{
-
-    position:absolute;
-
-    inset:0;
-
-    border:0;
-
-    display:block;
-
-    overflow:hidden;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(3,8,14,.08) 0%,
-            rgba(3,8,14,.08) 38%,
-            rgba(3,8,14,.62) 78%,
-            rgba(3,8,14,.94) 100%
-        );
-
-}
-
-.character-portrait img{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    object-position:center top;
-
-    display:block;
-
-    filter:
-        saturate(.88)
-        contrast(1.04)
-        brightness(.88);
-
-    transform:scale(1.015);
-
-    transition:
-        transform .35s ease,
-        filter .35s ease;
-}
-
-.character-portrait:after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(5,12,20,.04) 0%,
-            rgba(5,12,20,.02) 28%,
-            rgba(5,12,20,.30) 55%,
-            rgba(3,8,14,.82) 82%,
-            rgba(3,8,14,.96) 100%
-        ),
-        linear-gradient(
-            135deg,
-            rgba(110,195,255,.10),
-            transparent 38%,
-            rgba(3,8,14,.16)
-        );
-}
-
-.character-portrait:before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    z-index:2;
-
-    pointer-events:none;
-
-    background:
-        repeating-linear-gradient(
-            180deg,
-            transparent 0,
-            transparent 3px,
-            rgba(150,215,255,.025) 4px,
-            transparent 5px
-        );
-
-    mix-blend-mode:screen;
-}
-
-.character-item:hover .character-portrait img{
-
-    transform:scale(1.055);
-
-    filter:
-        saturate(1)
-        contrast(1.06)
-        brightness(.98);
-}
-
-
-/* =========================================================
-   MUSIC CONTROL
-   ========================================================= */
-
-.music-control{
-
-    position:fixed;
-
-    right:40px;
-    bottom:40px;
-
-    z-index:30;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:
-        9px 13px;
-
-    border:
-        1px solid
-        rgba(90,166,235,.35);
-
-    background:
-        rgba(3,8,14,.72);
-
-    backdrop-filter:
-        blur(8px);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-
-    clip-path:
-        polygon(
-            10px 0,
-            100% 0,
-            100% calc(100% - 10px),
-            calc(100% - 10px) 100%,
-            0 100%,
-            0 10px
-        );
-}
-
-.music-button{
-
-    width:34px;
-    height:28px;
+    width:25px;
+    height:25px;
 
     border:0;
 
@@ -1322,35 +614,24 @@ body.profile-open
 
     color:#8fd0ff;
 
-    font-family:
-        "Oxanium",sans-serif;
-
-    font-size:14px;
-
     cursor:pointer;
 
-    transition:
-        color .2s,
-        text-shadow .2s;
+    font-size:13px;
+
+    padding:0;
 }
 
-.music-button:hover{
-
-    color:#fff;
-
-    text-shadow:
-        0 0 12px
-        rgba(100,190,255,.8);
-}
 
 .volume-slider{
 
-    width:90px;
+    flex:1;
+
+    min-width:0;
+
+    height:3px;
 
     appearance:none;
     -webkit-appearance:none;
-
-    height:3px;
 
     background:
         rgba(120,180,220,.35);
@@ -1365,281 +646,917 @@ body.profile-open
     appearance:none;
     -webkit-appearance:none;
 
-    width:10px;
-    height:10px;
+    width:9px;
+    height:9px;
 
     border-radius:50%;
 
     background:#8fd0ff;
 
     box-shadow:
-        0 0 9px
-        rgba(100,190,255,.8);
+        0 0 8px
+        rgba(100,190,255,.7);
 }
 
 .volume-slider::-moz-range-thumb{
 
-    width:10px;
-    height:10px;
+    width:9px;
+    height:9px;
 
-    border:none;
+    border:0;
 
     border-radius:50%;
 
     background:#8fd0ff;
-
-    box-shadow:
-        0 0 9px
-        rgba(100,190,255,.8);
 }
 
-.music-label{
+
+.mute-button{
+
+    width:24px;
+    height:24px;
+
+    border:0;
+
+    background:transparent;
+
+    color:#8fd0ff;
+
+    cursor:pointer;
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
+
+.socials{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:0;
+
+    margin-top:20px;
+
+    padding-top:18px;
+
+    border-top:
+        1px solid
+        rgba(90,166,235,.25);
+}
+
+
+.social{
+
+    width:42px;
+    height:28px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#b9d2e7;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    transition:
+        color .25s,
+        text-shadow .25s,
+        transform .25s;
+}
+
+.social + .social{
+
+    border-left:
+        1px solid
+        rgba(90,166,235,.25);
+}
+
+.social:hover{
+
+    color:#8fd0ff;
+
+    transform:translateY(-2px);
+
+    text-shadow:
+        0 0 13px
+        rgba(100,190,255,.7);
+}
+
+
+/* =========================================================
+   RIGHT PANEL
+========================================================= */
+
+.right-panel{
+
+    position:absolute;
+
+    top:110px;
+    right:65px;
+
+    width:
+        min(850px,calc(100vw - 370px));
+
+    bottom:100px;
+
+    border:
+        1px solid
+        rgba(90,166,235,.30);
+
+    background:
+        rgba(3,9,15,.52);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    opacity:0;
+
+    transform:
+        translateX(45px);
+
+    pointer-events:none;
+
+    transition:
+        opacity .4s ease,
+        transform .45s cubic-bezier(.77,0,.18,1);
+
+    overflow:hidden;
+
+    clip-path:
+        polygon(
+            20px 0,
+            calc(100% - 20px) 0,
+            100% 20px,
+            100% calc(100% - 20px),
+            calc(100% - 20px) 100%,
+            20px 100%,
+            0 calc(100% - 20px),
+            0 20px
+        );
+}
+
+.right-panel.open{
+
+    opacity:1;
+
+    transform:
+        translateX(0);
+
+    pointer-events:auto;
+}
+
+
+/* =========================================================
+   PANEL HEADER
+========================================================= */
+
+.panel-header{
+
+    height:72px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    border-bottom:
+        1px solid
+        rgba(90,166,235,.22);
+}
+
+.panel-title{
+
+    font-size:13px;
+
+    letter-spacing:.20em;
+
+    color:#dceeff;
+}
+
+.panel-close{
+
+    border:0;
+
+    background:transparent;
+
+    color:
+        rgba(180,210,235,.65);
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:.12em;
+
+    cursor:pointer;
+
+    transition:
+        color .2s;
+}
+
+.panel-close:hover{
+
+    color:#fff;
+}
+
+
+/* =========================================================
+   PANEL CONTENT
+========================================================= */
+
+.panel-content{
+
+    height:
+        calc(100% - 72px);
+
+    overflow-y:auto;
+
+    padding:22px;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:
+        rgba(100,180,235,.35)
+        transparent;
+}
+
+
+/* =========================================================
+   CHARACTER GRID
+========================================================= */
+
+.character-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(110px,1fr));
+
+    gap:13px;
+}
+
+
+/* =========================================================
+   CHARACTER CARD
+========================================================= */
+
+.character-item{
+
+    position:relative;
+
+    aspect-ratio:
+        .67;
+
+    border:
+        1px solid
+        rgba(90,160,215,.30);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,38,57,.48),
+            rgba(4,10,16,.75)
+        );
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    padding:0;
+
+    font-family:"Oxanium",sans-serif;
+
+    clip-path:
+        polygon(
+            9px 0,
+            calc(100% - 9px) 0,
+            100% 9px,
+            100% calc(100% - 9px),
+            calc(100% - 9px) 100%,
+            9px 100%,
+            0 calc(100% - 9px),
+            0 9px
+        );
+
+    transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+}
+
+.character-item.new-row{
+    grid-column-start:1;
+}
+
+.character-item:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(125,205,255,.75);
+
+    box-shadow:
+        0 0 22px
+        rgba(65,155,220,.18);
+}
+
+
+.character-portrait{
+
+    position:absolute;
+
+    inset:0;
+}
+
+.character-portrait img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center top;
+
+    display:block;
+
+    filter:
+        saturate(.88)
+        contrast(1.04)
+        brightness(.82);
+
+    transition:
+        transform .3s,
+        filter .3s;
+}
+
+.character-item:hover img{
+
+    transform:scale(1.045);
+
+    filter:
+        saturate(1)
+        contrast(1.06)
+        brightness(.96);
+}
+
+
+.character-portrait:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 35%,
+            rgba(3,8,14,.12) 50%,
+            rgba(3,8,14,.88) 100%
+        );
+}
+
+
+.character-name{
+
+    position:absolute;
+
+    left:9px;
+    right:9px;
+    bottom:9px;
+
+    z-index:2;
+
+    font-size:8px;
+
+    line-height:1.3;
+
+    letter-spacing:.08em;
+
+    text-align:left;
+
+    color:#e6f3ff;
+
+    text-shadow:
+        0 1px 8px #000;
+}
+
+
+/* =========================================================
+   BIO OVERLAY
+========================================================= */
+
+.bio-panel{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+
+    background:
+        rgba(1,5,9,.82);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity .3s ease;
+}
+
+.bio-panel.open{
+
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+
+.bio-window{
+
+    width:
+        min(850px,92vw);
+
+    max-height:82vh;
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:280px 1fr;
+
+    overflow:hidden;
+
+    border:
+        1px solid
+        rgba(100,183,246,.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(13,31,48,.97),
+            rgba(3,8,14,.99)
+        );
+
+    box-shadow:
+        0 0 55px
+        rgba(55,145,220,.18);
+
+    clip-path:
+        polygon(
+            24px 0,
+            calc(100% - 24px) 0,
+            100% 24px,
+            100% calc(100% - 24px),
+            calc(100% - 24px) 100%,
+            24px 100%,
+            0 calc(100% - 24px),
+            0 24px
+        );
+}
+
+
+.bio-image{
+
+    min-height:390px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-right:
+        1px solid
+        rgba(90,166,235,.25);
+}
+
+.bio-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center top;
+
+    display:block;
+
+    filter:
+        brightness(.86)
+        saturate(.9);
+}
+
+
+.bio-image:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(3,8,14,.15) 45%,
+            rgba(3,8,14,.8)
+        );
+}
+
+
+.bio-content{
+
+    padding:42px 44px;
+
+    overflow-y:auto;
+}
+
+
+.bio-label{
 
     font-size:9px;
 
-    letter-spacing:.18em;
+    letter-spacing:.28em;
 
     color:
-        rgba(140,190,225,.55);
+        rgba(120,180,225,.55);
 
-    user-select:none;
+    margin-bottom:10px;
 }
 
-audio{
-    display:none;
+
+.bio-name{
+
+    font-size:34px;
+
+    line-height:1.1;
+
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    margin-bottom:24px;
+}
+
+
+.bio-divider{
+
+    width:100%;
+
+    height:1px;
+
+    margin-bottom:25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(100,183,246,.65),
+            transparent
+        );
+}
+
+
+.bio-text{
+
+    color:#b8c8d9;
+
+    font-size:14px;
+
+    line-height:1.9;
+
+    letter-spacing:.04em;
+
+    min-height:60px;
+}
+
+
+.bio-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:12px;
+
+    margin-top:28px;
+}
+
+
+.bio-stat{
+
+    padding:13px 15px;
+
+    border:
+        1px solid
+        rgba(86,157,218,.22);
+
+    background:
+        rgba(5,12,20,.45);
+}
+
+
+.bio-stat-label{
+
+    display:block;
+
+    font-size:8px;
+
+    letter-spacing:.2em;
+
+    color:
+        rgba(120,180,225,.45);
+
+    margin-bottom:5px;
+}
+
+
+.bio-stat-value{
+
+    font-size:12px;
+
+    color:#dceeff;
+
+    letter-spacing:.08em;
+}
+
+
+.bio-close{
+
+    position:absolute;
+
+    top:18px;
+    right:20px;
+
+    z-index:5;
+
+    border:
+        1px solid
+        rgba(100,183,246,.45);
+
+    background:
+        rgba(3,8,14,.72);
+
+    color:#dceeff;
+
+    padding:9px 13px;
+
+    font-family:"Oxanium",sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:.16em;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   PRESETS
+========================================================= */
+
+.presets{
+
+    display:inline-block;
+
+    margin-bottom:18px;
+
+    padding:9px 14px;
+
+    border:
+        1px solid
+        rgba(100,183,246,.40);
+
+    color:#cfe9ff;
+
+    text-decoration:none;
+
+    font-size:9px;
+
+    letter-spacing:.15em;
+
+    transition:
+        background .2s,
+        border-color .2s;
+}
+
+.presets:hover{
+
+    background:
+        rgba(50,110,160,.18);
+
+    border-color:
+        rgba(125,205,255,.75);
 }
 
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
-@media(max-width:600px){
+@media(max-width:800px){
 
-    body{
-        overflow:hidden;
+    .frame{
+        inset:15px;
     }
 
-    .page{
-        min-height:560px;
-        padding:0 20px;
-    }
+    .welcome{
 
-    .corner{
-        display:none;
-    }
-
-    .page:before,
-    .page:after{
-        width:32px;
-        height:32px;
-    }
-
-    .page:before{
-        top:20px;
-        left:20px;
-    }
-
-    .page:after{
-        right:20px;
-        bottom:20px;
-    }
-
-    .logo{
-
-        font-size:58px;
-
-        margin-bottom:30px;
-    }
-
-    .divider{
-
-        width:280px;
-
-        margin-bottom:28px;
-    }
-
-    .follow{
+        top:38px;
+        right:30px;
 
         font-size:9px;
-
-        letter-spacing:.14em;
-
-        max-width:90vw;
-
-        line-height:1.8;
     }
 
-    .socials{
+    .brand{
 
-        padding:6px 5px;
+        right:30px;
+        bottom:35px;
 
-        margin-bottom:50px;
+        font-size:24px;
     }
 
-    .socials a{
+    .navigation{
 
-        font-size:9px;
+        left:30px;
 
-        padding:0 11px;
+        width:200px;
 
-        letter-spacing:.12em;
+        padding:22px 20px;
     }
 
-    .profile{
+    .right-panel{
 
-        min-width:
-            min(330px,88vw);
+        top:100px;
 
-        padding:
-            17px 25px;
+        right:25px;
+
+        width:
+            calc(100vw - 270px);
+
+        bottom:80px;
     }
-
-    .profile-text{
-
-        font-size:10px;
-
-        letter-spacing:.18em;
-    }
-
-    .status{
-
-        bottom:22px;
-    }
-
-
-    /* CHARACTER HEADER */
-
-    .character-header{
-
-        height:76px;
-
-        padding:
-            0 18px;
-    }
-
-    .character-title{
-
-        gap:8px;
-
-        max-width:
-            calc(100% - 70px);
-    }
-
-    .character-title-main{
-
-        font-size:15px;
-    }
-
-    .character-title-sub{
-
-        position:absolute;
-
-        left:18px;
-
-        top:48px;
-
-        font-size:5px;
-    }
-
-    .presets-button{
-
-        padding:
-            7px 8px;
-
-        font-size:6px;
-
-        letter-spacing:.12em;
-
-        gap:4px;
-    }
-
-    .presets-icon{
-
-        font-size:8px;
-    }
-
-    .close-profile{
-
-        padding:
-            8px 11px;
-
-        font-size:7px;
-    }
-
-
-    /* CHARACTER SELECT */
-
-    .character-select{
-
-        top:76px;
-
-        padding:
-            10px 5px 15px;
-    }
-
-    .select-heading{
-
-        margin-bottom:7px;
-    }
-
-    .select-heading-main{
-
-        font-size:10px;
-    }
-
-    .select-heading-sub{
-
-        font-size:5px;
-    }
-
-
-    /* MOBILE CHARACTER GRID */
 
     .character-grid{
 
-        width:100%;
+        grid-template-columns:
+            repeat(3,1fr);
 
-        gap:6px;
-
-        padding:
-            3px 3px 8px;
+        gap:8px;
     }
 
-    .character-row{
+}
 
-        gap:4px;
+
+@media(max-width:600px){
+
+    .welcome{
+
+        top:32px;
+        right:25px;
+
+        font-size:8px;
+
+        letter-spacing:.15em;
     }
 
-    .character-item{
+    .navigation{
 
-        width:
-            calc((92vw - 20px) / 4);
+        left:20px;
 
-        height:
-            calc((92vw - 20px) / 4 * 1.57);
+        top:auto;
+        bottom:55px;
 
-        max-width:82px;
+        transform:none;
 
-        max-height:129px;
+        width:185px;
+
+        padding:18px;
     }
 
+    .nav-button{
 
-    /* MUSIC */
+        font-size:11px;
 
-    .music-control{
-
-        right:16px;
-
-        bottom:16px;
+        padding:9px 3px;
     }
 
-    .music-label{
-        display:none;
+    .social{
+
+        width:35px;
+
+        font-size:10px;
     }
 
-    .volume-slider{
-        width:65px;
+    .brand{
+
+        right:25px;
+        bottom:28px;
+
+        font-size:20px;
+    }
+
+    .right-panel{
+
+        top:90px;
+        right:20px;
+        left:20px;
+
+        width:auto;
+
+        bottom:310px;
+    }
+
+    .panel-header{
+
+        height:55px;
+
+        padding:0 16px;
+    }
+
+    .panel-title{
+
+        font-size:10px;
+    }
+
+    .panel-content{
+
+        padding:12px;
+    }
+
+    .character-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .bio-window{
+
+        width:95vw;
+
+        max-height:88vh;
+
+        grid-template-columns:1fr;
+
+        grid-template-rows:220px 1fr;
+    }
+
+    .bio-image{
+
+        min-height:0;
+
+        border-right:0;
+
+        border-bottom:
+            1px solid
+            rgba(90,166,235,.25);
+    }
+
+    .bio-content{
+
+        padding:25px;
+    }
+
+    .bio-name{
+
+        font-size:24px;
     }
 
 }
@@ -1647,7 +1564,7 @@ audio{
 
 /* =========================================================
    REDUCED MOTION
-   ========================================================= */
+========================================================= */
 
 @media(prefers-reduced-motion:reduce){
 
@@ -1664,53 +1581,8 @@ audio{
 
 }
 
-
-/* CHARACTER BIO PANEL */
-
-.bio-panel{
-    position:fixed; inset:0; z-index:50;
-    display:flex; align-items:center; justify-content:center;
-    padding:30px; background:rgba(1,5,9,.78);
-    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-    opacity:0; pointer-events:none; transition:opacity .35s ease;
-}
-.bio-panel.open{opacity:1; pointer-events:auto}
-.bio-window{
-    width:min(900px,92vw); max-height:82vh; position:relative;
-    display:grid; grid-template-columns:280px 1fr; overflow:hidden;
-    border:1px solid rgba(100,183,246,.65);
-    background:linear-gradient(135deg,rgba(13,31,48,.97),rgba(3,8,14,.99));
-    box-shadow:0 0 55px rgba(55,145,220,.18),inset 0 0 35px rgba(80,160,220,.045);
-    clip-path:polygon(24px 0,calc(100% - 24px) 0,100% 24px,100% calc(100% - 24px),calc(100% - 24px) 100%,24px 100%,0 calc(100% - 24px),0 24px);
-}
-.bio-image{position:relative;min-height:390px;overflow:hidden;border-right:1px solid rgba(90,166,235,.25)}
-.bio-image img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.86) saturate(.9)}
-.bio-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,8,14,.02),rgba(3,8,14,.18) 45%,rgba(3,8,14,.78));pointer-events:none}
-.bio-content{padding:42px 44px;overflow-y:auto}
-.bio-label{font-size:9px;letter-spacing:.28em;color:rgba(120,180,225,.55);text-transform:uppercase;margin-bottom:10px}
-.bio-name{font-size:36px;line-height:1.1;font-weight:600;letter-spacing:.08em;margin-bottom:24px}
-.bio-divider{width:100%;height:1px;margin-bottom:25px;background:linear-gradient(90deg,rgba(100,183,246,.65),transparent)}
-.bio-text{color:#b8c8d9;font-size:14px;line-height:1.9;letter-spacing:.04em}
-.bio-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.bio-stat{padding:13px 15px;border:1px solid rgba(86,157,218,.22);background:rgba(5,12,20,.45)}
-.bio-stat-label{display:block;font-size:8px;letter-spacing:.2em;color:rgba(120,180,225,.45);margin-bottom:5px}
-.bio-stat-value{font-size:12px;color:#dceeff;letter-spacing:.08em}
-.bio-close{
-    position:absolute;top:18px;right:20px;z-index:5;
-    border:1px solid rgba(100,183,246,.45);background:rgba(3,8,14,.72);
-    color:#dceeff;padding:9px 13px;font-family:"Oxanium",sans-serif;
-    font-size:10px;letter-spacing:.16em;cursor:pointer;
-}
-.bio-close:hover{background:rgba(40,91,135,.3);box-shadow:0 0 18px rgba(67,157,225,.18)}
-@media(max-width:700px){
-    .bio-panel{padding:15px}
-    .bio-window{width:95vw;max-height:88vh;grid-template-columns:1fr;grid-template-rows:220px 1fr}
-    .bio-image{min-height:0;border-right:0;border-bottom:1px solid rgba(90,166,235,.25)}
-    .bio-content{padding:25px}
-    .bio-name{font-size:24px}
-}
-
 </style>
+
 </head>
 
 
@@ -1718,8 +1590,8 @@ audio{
 
 
 <!-- =======================================================
-     MOVING BACKGROUND
-     ======================================================= -->
+     BACKGROUND
+======================================================= -->
 
 <div class="background">
 
@@ -1739,9 +1611,12 @@ audio{
 </div>
 
 
+<div class="frame"></div>
+
+
 <!-- =======================================================
-     LOCAL MUSIC
-     ======================================================= -->
+     MUSIC
+======================================================= -->
 
 <audio
     id="backgroundMusic"
@@ -1758,237 +1633,360 @@ audio{
 
 
 <!-- =======================================================
-     LANDING PAGE
-     ======================================================= -->
+     MAIN INTERFACE
+======================================================= -->
 
-<main class="page">
-
-    <span class="corner top-left">
-        DEX-3 // PORTAL
-    </span>
-
-    <span class="corner top-right">
-        SYSTEM ONLINE
-    </span>
-
-    <span class="corner bottom-left">
-        ACCESS POINT
-    </span>
-
-    <span class="corner bottom-right">
-        V1.0.0
-    </span>
+<main class="interface">
 
 
-    <h1 class="logo">
+    <!-- WELCOME -->
+
+    <div class="welcome">
+        WELCOME, TRAVELLER
+    </div>
+
+
+    <!-- ===================================================
+         LEFT NAVIGATION
+    =================================================== -->
+
+    <aside class="navigation">
+
+
+        <!-- CHARACTER -->
+
+        <button
+            class="nav-button"
+            id="characterButton"
+            type="button"
+        >
+
+            <span>
+                CHARACTER
+            </span>
+
+            <span class="nav-arrow">
+                &gt;
+            </span>
+
+        </button>
+
+
+        <!-- ABOUT -->
+
+        <button
+            class="nav-button"
+            id="aboutButton"
+            type="button"
+        >
+
+            <span>
+                ABOUT
+            </span>
+
+            <span class="nav-arrow">
+                &gt;
+            </span>
+
+        </button>
+
+
+        <!-- MUSIC -->
+
+        <button
+            class="nav-button"
+            id="musicButton"
+            type="button"
+        >
+
+            <span>
+                MUSIC
+            </span>
+
+            <span
+                class="nav-arrow"
+                id="musicArrow"
+            >
+                &gt;
+            </span>
+
+        </button>
+
+
+        <!-- MUSIC BOX -->
+
+        <div
+            class="music-section"
+            id="musicSection"
+        >
+
+            <div class="music-box">
+
+                <span class="music-name">
+                    background.mp3
+                </span>
+
+                <div class="music-controls">
+
+                    <button
+                        class="play-button"
+                        id="playButton"
+                        type="button"
+                        aria-label="Play music"
+                    >
+                        ▶
+                    </button>
+
+                    <input
+                        class="volume-slider"
+                        id="volumeSlider"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="35"
+                    >
+
+                    <button
+                        class="mute-button"
+                        id="muteButton"
+                        type="button"
+                        aria-label="Mute"
+                    >
+                        🔊
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-divider"></div>
+
+
+        <!-- SOCIALS -->
+
+        <div class="socials">
+
+            <a
+                class="social"
+                href="https://x.com/sorawindy"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                title="X"
+            >
+                X
+            </a>
+
+            <a
+                class="social"
+                href="https://www.pixiv.net/en/users/50033895"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Pixiv"
+                title="Pixiv"
+            >
+                P
+            </a>
+
+            <a
+                class="social"
+                href="https://www.deviantart.com/dex-3"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="DeviantArt"
+                title="DeviantArt"
+            >
+                DA
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- ===================================================
+         RIGHT SIDE PANEL
+    =================================================== -->
+
+    <section
+        class="right-panel"
+        id="rightPanel"
+        aria-hidden="true"
+    >
+
+        <header class="panel-header">
+
+            <span
+                class="panel-title"
+                id="panelTitle"
+            >
+                CHARACTER
+            </span>
+
+            <button
+                class="panel-close"
+                id="panelClose"
+                type="button"
+            >
+                CLOSE ×
+            </button>
+
+        </header>
+
+
+        <div
+            class="panel-content"
+            id="panelContent"
+        ></div>
+
+    </section>
+
+
+    <!-- DEX-3 -->
+
+    <div class="brand">
         dex-3
-    </h1>
+    </div>
 
-
-    <div class="divider"></div>
-
-
-    <p class="follow">
-        Follow me on :
-    </p>
-
-
-    <nav
-        class="socials"
-        aria-label="Social media"
-    >
-
-        <a
-            href="https://x.com/sorawindy"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Twitter
-        </a>
-
-        <a
-            href="https://www.pixiv.net/en/users/50033895"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Pixiv
-        </a>
-
-        <a
-            href="https://www.deviantart.com/dex-3"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            DeviantArt
-        </a>
-
-    </nav>
-
-
-    <button
-        class="profile"
-        id="openProfile"
-        type="button"
-    >
-
-        <span class="profile-text">
-            CHARACTER PROFILE
-        </span>
-
-        <span class="triangle">
-            ▼
-        </span>
-
-    </button>
-
-
-    <span class="status">
-        PERSONAL CREATIVE PORTAL
-    </span>
 
 </main>
 
 
 <!-- =======================================================
-     CHARACTER SELECT
-     ======================================================= -->
+     BIO PANEL
+======================================================= -->
 
-<section
-    class="character-screen"
-    id="characterScreen"
+<div
+    class="bio-panel"
+    id="bioPanel"
     aria-hidden="true"
 >
 
-
-    <header class="character-header">
-
-        <div class="character-title">
-
-            <span class="character-title-main">
-                CHARACTER PROFILE
-            </span>
-
-            <!-- PRESETS -->
-            <a
-                class="presets-button"
-                href="https://drive.google.com/drive/u/1/folders/1a80VVGi8gMLn3PPjYD0iPaKx3eGbpyL9"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open presets"
-            >
-                <span class="presets-icon">📁</span>
-                PRESETS
-            </a>
-
-            <span class="character-title-sub">
-                CHARACTER DATABASE // 26 ENTRIES
-            </span>
-
-        </div>
+    <div class="bio-window">
 
 
         <button
-            class="close-profile"
-            id="closeProfile"
+            class="bio-close"
+            id="closeBio"
             type="button"
         >
             CLOSE ×
         </button>
 
-    </header>
 
-
-    <div class="character-select">
-
-
-        <div class="select-heading">
-
-            <span class="select-heading-main">
-                CHARACTER SELECT
-            </span>
-
-            <span class="select-heading-sub">
-                SELECT A CHARACTER
-            </span>
-
-        </div>
-
-
-        <div
-            class="character-grid"
-            id="characterGrid"
-        ></div>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- CHARACTER BIO PANEL -->
-<div class="bio-panel" id="bioPanel" aria-hidden="true">
-    <div class="bio-window">
-        <button class="bio-close" id="closeBio" type="button">CLOSE ×</button>
         <div class="bio-image">
-            <img id="bioImage" src="" alt="">
+
+            <img
+                id="bioImage"
+                src=""
+                alt=""
+            >
+
         </div>
+
+
         <div class="bio-content">
-            <div class="bio-label">CHARACTER DATABASE // PROFILE</div>
-            <h2 class="bio-name" id="bioName">CHARACTER NAME</h2>
-            <div class="bio-divider"></div>
-            <p class="bio-text" id="bioText">Biography not added yet.</p>
-            <div class="bio-stats">
-                <div class="bio-stat">
-                    <span class="bio-stat-label">STANCES</span>
-                    <span class="bio-stat-value" id="bioStatName">—</span>
-                </div>
-                <div class="bio-stat">
-                    <span class="bio-stat-label">AGE</span>
-                    <span class="bio-stat-value" id="bioStatAge">—</span>
-                </div>
-                <div class="bio-stat">
-                    <span class="bio-stat-label">NATIONALITY</span>
-                    <span class="bio-stat-value" id="bioStatNationality">—</span>
-                </div>
-                <div class="bio-stat">
-                    <span class="bio-stat-label">TYPE</span>
-                    <span class="bio-stat-value" id="bioStatType">—</span>
-                </div>
+
+            <div class="bio-label">
+                CHARACTER DATABASE // PROFILE
             </div>
+
+
+            <h2
+                class="bio-name"
+                id="bioName"
+            >
+                CHARACTER NAME
+            </h2>
+
+
+            <div class="bio-divider"></div>
+
+
+            <p
+                class="bio-text"
+                id="bioText"
+            >
+                Biography not added yet.
+            </p>
+
+
+            <div class="bio-stats">
+
+
+                <div class="bio-stat">
+
+                    <span class="bio-stat-label">
+                        STANCES
+                    </span>
+
+                    <span
+                        class="bio-stat-value"
+                        id="bioStatStances"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="bio-stat">
+
+                    <span class="bio-stat-label">
+                        AGE
+                    </span>
+
+                    <span
+                        class="bio-stat-value"
+                        id="bioStatAge"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="bio-stat">
+
+                    <span class="bio-stat-label">
+                        NATIONALITY
+                    </span>
+
+                    <span
+                        class="bio-stat-value"
+                        id="bioStatNationality"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="bio-stat">
+
+                    <span class="bio-stat-label">
+                        TYPE
+                    </span>
+
+                    <span
+                        class="bio-stat-value"
+                        id="bioStatType"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+            </div>
+
         </div>
+
     </div>
-</div>
-
-<!-- =======================================================
-     MUSIC CONTROL
-     ======================================================= -->
-
-<div class="music-control">
-
-    <span class="music-label">
-        MUSIC
-    </span>
-
-    <button
-        class="music-button"
-        id="muteButton"
-        type="button"
-        aria-label="Mute music"
-        title="Mute / Unmute"
-    >
-        🔊
-    </button>
-
-    <input
-        class="volume-slider"
-        id="volumeSlider"
-        type="range"
-        min="0"
-        max="100"
-        value="35"
-        aria-label="Music volume"
-    >
 
 </div>
 
@@ -1997,15 +1995,13 @@ audio{
 
 /* =========================================================
    PARTICLES
-   ========================================================= */
+========================================================= */
 
 const particleContainer =
     document.getElementById("particles");
 
 const particleCount =
-    window.innerWidth <= 600
-        ? 20
-        : 35;
+    window.innerWidth <= 600 ? 20 : 35;
 
 for(
     let i = 0;
@@ -2056,11 +2052,16 @@ for(
 
 /* =========================================================
    MUSIC
-   ========================================================= */
+========================================================= */
 
 const music =
     document.getElementById(
         "backgroundMusic"
+    );
+
+const playButton =
+    document.getElementById(
+        "playButton"
     );
 
 const muteButton =
@@ -2073,64 +2074,111 @@ const volumeSlider =
         "volumeSlider"
     );
 
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+const musicSection =
+    document.getElementById(
+        "musicSection"
+    );
+
+const musicArrow =
+    document.getElementById(
+        "musicArrow"
+    );
+
+
+let isPlaying = false;
 let isMuted = false;
+
 
 music.volume =
     Number(volumeSlider.value) / 100;
 
 
-function startMusic(){
+/* MUSIC COLLAPSE */
 
-    music.play().catch(
-        function(){}
-    );
-
-}
-
-startMusic();
-
-
-function firstInteraction(){
-
-    startMusic();
-
-    document.removeEventListener(
-        "click",
-        firstInteraction
-    );
-
-    document.removeEventListener(
-        "keydown",
-        firstInteraction
-    );
-
-    document.removeEventListener(
-        "pointerdown",
-        firstInteraction
-    );
-}
-
-document.addEventListener(
+musicButton.addEventListener(
     "click",
-    firstInteraction
+    function(){
+
+        const open =
+            musicSection.classList.toggle(
+                "open"
+            );
+
+        musicButton.classList.toggle(
+            "active",
+            open
+        );
+
+        musicArrow.textContent =
+            open ? "⌄" : ">";
+
+    }
 );
 
-document.addEventListener(
-    "keydown",
-    firstInteraction
+
+/* PLAY */
+
+function playMusic(){
+
+    music.play()
+        .then(function(){
+
+            isPlaying = true;
+
+            playButton.textContent =
+                "❚❚";
+
+        })
+        .catch(function(){
+
+            isPlaying = false;
+
+        });
+
+}
+
+
+function pauseMusic(){
+
+    music.pause();
+
+    isPlaying = false;
+
+    playButton.textContent =
+        "▶";
+
+}
+
+
+playButton.addEventListener(
+    "click",
+    function(){
+
+        if(isPlaying){
+
+            pauseMusic();
+
+        }
+        else{
+
+            playMusic();
+
+        }
+
+    }
 );
 
-document.addEventListener(
-    "pointerdown",
-    firstInteraction
-);
 
+/* MUTE */
 
 muteButton.addEventListener(
     "click",
-    function(event){
-
-        event.stopPropagation();
+    function(){
 
         if(isMuted){
 
@@ -2140,8 +2188,6 @@ muteButton.addEventListener(
                 "🔊";
 
             isMuted = false;
-
-            startMusic();
 
         }
         else{
@@ -2158,6 +2204,8 @@ muteButton.addEventListener(
     }
 );
 
+
+/* VOLUME */
 
 volumeSlider.addEventListener(
     "input",
@@ -2195,8 +2243,8 @@ volumeSlider.addEventListener(
 
 
 /* =========================================================
-   CHARACTERS
-   ========================================================= */
+   CHARACTER DATA
+========================================================= */
 
 const characters = [
 
@@ -2234,383 +2282,447 @@ const characters = [
 ];
 
 
-
 const characterBios = {
-    "Rion Adachi": {
-        age: "23",
-        nationality: "Japan",
-        type: "Balanced",
-        stances: "Friendly",
-        bio: ""
+
+    "Rion Adachi":{
+        age:"23",
+        nationality:"Japan",
+        type:"Balanced",
+        stances:"Friendly",
+        bio:""
     },
 
-   "Ayami Karasuma": {
-        age: "24",
-        nationality: "Japan",
-        type: "Powerful",
-        stances: "Neutral",
-        bio: ""
+    "Ayami Karasuma":{
+        age:"24",
+        nationality:"Japan",
+        type:"Powerful",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Elsa von Rietveld": {
-        age: "24",
-        nationality: "Netherlands",
-        type: "Powerful",
-        stances: "Hostile",
-        bio: ""
+    "Elsa von Rietveld":{
+        age:"24",
+        nationality:"Netherlands",
+        type:"Powerful",
+        stances:"Hostile",
+        bio:""
     },
 
-    "Raeda Baxley": {
-        age: "24",
-        nationality: "United Kingdom",
-        type: "Powerful",
-        stances: "Hostile",
-        bio: ""
+    "Raeda Baxley":{
+        age:"24",
+        nationality:"United Kingdom",
+        type:"Powerful",
+        stances:"Hostile",
+        bio:""
     },
 
-    "Alina Engel": {
-        age: "24",
-        nationality: "Germany",
-        type: "Agile",
-        stances: "Neutral",
-        bio: ""
+    "Alina Engel":{
+        age:"24",
+        nationality:"Germany",
+        type:"Agile",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Nova Meledyne": {
-        age: "27",
-        nationality: "United States of America",
-        type: "Balanced",
-        stances: "Neutral",
-        bio: ""
+    "Nova Meledyne":{
+        age:"27",
+        nationality:"United States of America",
+        type:"Balanced",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Kiyoko Karasu": {
-        age: "Aprrox. 1024",
-        nationality: "Japan (Ancient Era)",
-        type: "Powerful",
-        stances: "Hostile",
-        bio: ""
+    "Kiyoko Karasu":{
+        age:"Approx. 1024",
+        nationality:"Japan (Ancient Era)",
+        type:"Powerful",
+        stances:"Hostile",
+        bio:""
     },
 
-    "Yuzu Irumi": {
-        age: "22",
-        nationality: "Japan",
-        type: "Agile",
-        stances: "Neutral",
-        bio: ""
+    "Yuzu Irumi":{
+        age:"22",
+        nationality:"Japan",
+        type:"Agile",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Ro-Eun Yeong": {
-        age: "24",
-        nationality: "South Korea",
-        type: "Balanced",
-        stances: "Friendly",
-        bio: ""
+    "Ro-Eun Yeong":{
+        age:"24",
+        nationality:"South Korea",
+        type:"Balanced",
+        stances:"Friendly",
+        bio:""
     },
 
-    "Kouka Arisato": {
-        age: "25",
-        nationality: "Japan",
-        type: "Powerful",
-        stances: "Neutral",
-        bio: ""
+    "Kouka Arisato":{
+        age:"25",
+        nationality:"Japan",
+        type:"Powerful",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Claudine Celesta": {
-        age: "23",
-        nationality: "Austria",
-        type: "Agile",
-        stances: "Friendly",
-        bio: ""
+    "Claudine Celesta":{
+        age:"23",
+        nationality:"Austria",
+        type:"Agile",
+        stances:"Friendly",
+        bio:""
     },
 
-    "Fia Andini": {
-        age: "23",
-        nationality: "Indonesia",
-        type: "Balanced",
-        stances: "Friendly",
-        bio: ""
+    "Fia Andini":{
+        age:"23",
+        nationality:"Indonesia",
+        type:"Balanced",
+        stances:"Friendly",
+        bio:""
     },
 
-    "Finley Camelia": {
-        age: "21",
-        nationality: "United States of America",
-        type: "Powerful",
-        stances: "Hostile",
-        bio: ""
+    "Finley Camelia":{
+        age:"21",
+        nationality:"United States of America",
+        type:"Powerful",
+        stances:"Hostile",
+        bio:""
     },
 
-    "Yume Izumi": {
-        age: "22",
-        nationality: "Japan",
-        type: "Agile",
-        stances: "Friendly",
-        bio: ""
+    "Yume Izumi":{
+        age:"22",
+        nationality:"Japan",
+        type:"Agile",
+        stances:"Friendly",
+        bio:""
     },
 
-    "Milica Belic": {
-        age: "22",
-        nationality: "Serbia",
-        type: "Balanced",
-        stances: "Neutral",
-        bio: ""
+    "Milica Belic":{
+        age:"22",
+        nationality:"Serbia",
+        type:"Balanced",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Jasmine Lavenza": {
-        age: "24",
-        nationality: "United Kingdom",
-        type: "Powerful",
-        stances: "Hostile",
-        bio: ""
+    "Jasmine Lavenza":{
+        age:"24",
+        nationality:"United Kingdom",
+        type:"Powerful",
+        stances:"Hostile",
+        bio:""
     },
 
-    "Mayumi Inoue": {
-        age: "23",
-        nationality: "Japan",
-        type: "Balanced",
-        stances: "Neutral",
-        bio: ""
+    "Mayumi Inoue":{
+        age:"23",
+        nationality:"Japan",
+        type:"Balanced",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Ethyln Bernard": {
-        age: "24",
-        nationality: "Jamaica",
-        type: "Powerful",
-        stances: "Neutral",
-        bio: ""
+    "Ethyln Bernard":{
+        age:"24",
+        nationality:"Jamaica",
+        type:"Powerful",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Diane Cerezyna Tsoi": {
-        age: "25",
-        nationality: "Slovakia",
-        type: "Powerful",
-        stances: "Neutral",
-        bio: ""
+    "Diane Cerezyna Tsoi":{
+        age:"25",
+        nationality:"Slovakia",
+        type:"Powerful",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Vera Rochester": {
-        age: "25",
-        nationality: "Slovenia",
-        type: "Agile",
-        stances: "Neutral",
-        bio: ""
+    "Vera Rochester":{
+        age:"25",
+        nationality:"Slovenia",
+        type:"Agile",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Kira Marinka Orlova": {
-        age: "26",
-        nationality: "Belarus",
-        type: "Balanced",
-        stances: "Hostile",
-        bio: ""
+    "Kira Marinka Orlova":{
+        age:"26",
+        nationality:"Belarus",
+        type:"Balanced",
+        stances:"Hostile",
+        bio:""
     },
 
-    "Naomi Tausend": {
-        age: "24",
-        nationality: "Australia (mixed Japan)",
-        type: "Powerful",
-        stances: "Neutral",
-        bio: ""
+    "Naomi Tausend":{
+        age:"24",
+        nationality:"Australia (mixed Japan)",
+        type:"Powerful",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Eimi Shimizu": {
-        age: "23",
-        nationality: "Japan",
-        type: "Agile",
-        stances: "Neutral",
-        bio: ""
+    "Eimi Shimizu":{
+        age:"23",
+        nationality:"Japan",
+        type:"Agile",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Lin Hua Ying": {
-        age: "24",
-        nationality: "Macau",
-        type: "Powerful",
-        stances: "Neutral",
-        bio: ""
+    "Lin Hua Ying":{
+        age:"24",
+        nationality:"Macau",
+        type:"Powerful",
+        stances:"Neutral",
+        bio:""
     },
 
-    "Randall Gray": {
-        age: "25",
-        nationality: "United States of America",
-        type: "Agile",
-        stances: "Neutral",
-        bio: ""
+    "Mai Habara":{
+        age:"26",
+        nationality:"Japan",
+        type:"Balanced",
+        stances:"Friendly",
+        bio:""
     },
 
-    "Mai Habara": {
-        age: "26",
-        nationality: "Japan",
-        type: "Balanced",
-        stances: "Friendly",
-        bio: ""
+    "Randall Gray":{
+        age:"25",
+        nationality:"United States of America",
+        type:"Agile",
+        stances:"Neutral",
+        bio:""
     }
 
 };
 
+
 /* =========================================================
-   ROW STRUCTURE
-   ========================================================= */
+   RIGHT PANEL
+========================================================= */
 
-const rowSizes = [
-    6,
-    6,
-    6,
-    6,
-    2
-];
-
-
-const characterGrid =
+const rightPanel =
     document.getElementById(
-        "characterGrid"
+        "rightPanel"
+    );
+
+const panelTitle =
+    document.getElementById(
+        "panelTitle"
+    );
+
+const panelContent =
+    document.getElementById(
+        "panelContent"
+    );
+
+const panelClose =
+    document.getElementById(
+        "panelClose"
+    );
+
+const characterButton =
+    document.getElementById(
+        "characterButton"
+    );
+
+const aboutButton =
+    document.getElementById(
+        "aboutButton"
     );
 
 
+let currentPanel = null;
 
-const bioPanel = document.getElementById("bioPanel");
-const closeBio = document.getElementById("closeBio");
-const bioImage = document.getElementById("bioImage");
-const bioName = document.getElementById("bioName");
-const bioText = document.getElementById("bioText");
-const bioStatStances = document.getElementById("bioStatStances");
-const bioStatAge = document.getElementById("bioStatAge");
-const bioStatNationality = document.getElementById("bioStatNationality");
-const bioStatType = document.getElementById("bioStatType");
 
-function openBio(name){
-    const data = characterBios[name] || {
-        bio:"Biography not added yet.",
-        age:"—",
-        nationality:"—",
-        type:"—"
-    };
+/* =========================================================
+   IMAGE NAME
+========================================================= */
 
-    const imageName = name.toLowerCase()
-        .replace(/[^a-z0-9]+/g,"-")
-        .replace(/^-|-$/g,"");
+function getImageName(name){
 
-    bioName.textContent = name;
-    bioText.textContent = data.bio;
-    bioStatName.textContent = data.stances;
-    bioStatAge.textContent = data.age || "—";
-    bioStatNationality.textContent = data.nationality || "—";
-    bioStatType.textContent = data.type || "—";
-    bioImage.src = "images/" + imageName + ".png";
-    bioImage.alt = name;
+    return name
+        .toLowerCase()
+        .replace(
+            /[^a-z0-9]+/g,
+            "-"
+        )
+        .replace(
+            /^-|-$/g,
+            ""
+        );
 
-    bioPanel.classList.add("open");
-    bioPanel.setAttribute("aria-hidden","false");
 }
 
-function closeBioPanel(){
-    bioPanel.classList.remove("open");
-    bioPanel.setAttribute("aria-hidden","true");
+
+/* =========================================================
+   OPEN RIGHT PANEL
+========================================================= */
+
+function openPanel(type){
+
+    currentPanel = type;
+
+    characterButton.classList.remove(
+        "active"
+    );
+
+    aboutButton.classList.remove(
+        "active"
+    );
+
+
+    if(type === "character"){
+
+        characterButton.classList.add(
+            "active"
+        );
+
+        panelTitle.textContent =
+            "CHARACTER";
+
+        buildCharacterGrid();
+
+    }
+
+
+    if(type === "about"){
+
+        aboutButton.classList.add(
+            "active"
+        );
+
+        panelTitle.textContent =
+            "";
+
+        /*
+         * INTENTIONALLY BLANK.
+         *
+         * ABOUT PANEL HAS NO CONTENT.
+         */
+
+        panelContent.innerHTML =
+            "";
+
+    }
+
+
+    rightPanel.classList.add(
+        "open"
+    );
+
+    rightPanel.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
 }
 
-closeBio.addEventListener("click",closeBioPanel);
 
-bioPanel.addEventListener("click",function(event){
-    if(event.target === bioPanel) closeBioPanel();
-});
+/* =========================================================
+   CLOSE PANEL
+========================================================= */
 
+function closePanel(){
 
-let characterIndex = 0;
+    currentPanel = null;
 
+    rightPanel.classList.remove(
+        "open"
+    );
 
-rowSizes.forEach(
-    function(rowSize){
+    characterButton.classList.remove(
+        "active"
+    );
 
-        const row =
-            document.createElement("div");
+    aboutButton.classList.remove(
+        "active"
+    );
 
-        row.className =
-            "character-row";
+    rightPanel.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
-
-        for(
-            let i = 0;
-            i < rowSize;
-            i++
-        ){
-
-            const index =
-                characterIndex;
-
-            const name =
-                characters[index];
+}
 
 
-            const item =
-                document.createElement("button");
+/* =========================================================
+   CHARACTER GRID
+========================================================= */
 
-            item.className =
-                "character-item";
+function buildCharacterGrid(){
 
-            item.type =
+    panelContent.innerHTML = "";
+
+
+    const grid =
+        document.createElement(
+            "div"
+        );
+
+    grid.className =
+        "character-grid";
+
+
+    characters.forEach(
+        function(name){
+
+            const card =
+                document.createElement(
+                    "button"
+                );
+
+            card.type =
                 "button";
 
-            item.setAttribute(
-                "aria-label",
-                "Select " + name
-            );
+            card.className =
+                "character-item";
+
+	    if(name === "Kouka Arisato"){
+		    card.classList.add("new-row");
+		}
 
 
-            const imageName = name
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-|-$/g, "");
+            const imageName =
+                getImageName(name);
 
-            item.innerHTML = `
 
-                <span
-                    class="character-portrait"
-                    title="${name}"
-                >
+            card.innerHTML = `
+
+                <span class="character-portrait">
+
                     <img
                         src="images/${imageName}.png"
                         alt="${name}"
                         loading="lazy"
                     >
+
+                </span>
+
+                <span class="character-name">
+                    ${name}
                 </span>
 
             `;
 
-            const portraitImage =
-                item.querySelector(".character-portrait img");
 
-            portraitImage.addEventListener("error", function(){
-
-                this.style.display = "none";
-
-                const portrait =
-                    item.querySelector(".character-portrait");
-
-                portrait.style.background =
-                    "radial-gradient(circle at center, rgba(70,135,180,.14), rgba(3,8,14,.88) 72%)";
-
-                portrait.dataset.missing = "true";
-
-            });
+            const image =
+                card.querySelector("img");
 
 
-            item.addEventListener(
-                "click",
+            image.addEventListener(
+                "error",
                 function(){
 
-                    document
-                        .querySelectorAll(
-                            ".character-item"
-                        )
-                        .forEach(
-                            function(card){
-                                card.classList.remove(
-                                    "active"
-                                );
-                            }
-                        );
+                    this.style.display =
+                        "none";
 
-                    item.classList.add(
-                        "active"
-                    );
+                }
+            );
+
+
+            card.addEventListener(
+                "click",
+                function(){
 
                     openBio(name);
 
@@ -2618,161 +2730,339 @@ rowSizes.forEach(
             );
 
 
-            row.appendChild(
-                item
-            );
-
-
-            characterIndex++;
+            grid.appendChild(card);
 
         }
-
-
-        characterGrid.appendChild(
-            row
-        );
-
-    }
-);
-
-
-/* =========================================================
-   INITIAL CHARACTER
-   ========================================================= */
-
-const firstCharacter =
-    document.querySelector(
-        ".character-item"
     );
 
-if(firstCharacter){
 
-    firstCharacter.classList.add(
-        "active"
-    );
+    panelContent.appendChild(grid);
 
 }
 
 
 /* =========================================================
-   OPEN CHARACTER SELECT
-   ========================================================= */
+   BUTTON EVENTS
+========================================================= */
 
-const openProfile =
-    document.getElementById(
-        "openProfile"
-    );
-
-const closeProfile =
-    document.getElementById(
-        "closeProfile"
-    );
-
-const characterScreen =
-    document.getElementById(
-        "characterScreen"
-    );
-
-
-openProfile.addEventListener(
+characterButton.addEventListener(
     "click",
     function(){
 
-        document.body.classList.add(
-            "profile-open"
-        );
+        if(
+            currentPanel === "character"
+        ){
 
-        characterScreen.setAttribute(
-            "aria-hidden",
-            "false"
-        );
+            closePanel();
+
+        }
+        else{
+
+            openPanel("character");
+
+        }
+
+    }
+);
+
+
+aboutButton.addEventListener(
+    "click",
+    function(){
+
+        if(
+            currentPanel === "about"
+        ){
+
+            closePanel();
+
+        }
+        else{
+
+            openPanel("about");
+
+        }
+
+    }
+);
+
+
+panelClose.addEventListener(
+    "click",
+    closePanel
+);
+
+
+/* =========================================================
+   BIO
+========================================================= */
+
+const bioPanel =
+    document.getElementById(
+        "bioPanel"
+    );
+
+const closeBio =
+    document.getElementById(
+        "closeBio"
+    );
+
+const bioImage =
+    document.getElementById(
+        "bioImage"
+    );
+
+const bioName =
+    document.getElementById(
+        "bioName"
+    );
+
+const bioText =
+    document.getElementById(
+        "bioText"
+    );
+
+const bioStatStances =
+    document.getElementById(
+        "bioStatStances"
+    );
+
+const bioStatAge =
+    document.getElementById(
+        "bioStatAge"
+    );
+
+const bioStatNationality =
+    document.getElementById(
+        "bioStatNationality"
+    );
+
+const bioStatType =
+    document.getElementById(
+        "bioStatType"
+    );
+
+
+function openBio(name){
+
+    const data =
+        characterBios[name] || {
+
+            age:"—",
+
+            nationality:"—",
+
+            type:"—",
+
+            stances:"—",
+
+            bio:"Biography not added yet."
+
+        };
+
+
+    const imageName =
+        getImageName(name);
+
+
+    bioName.textContent =
+        name;
+
+    bioText.textContent =
+        data.bio ||
+        "Biography not added yet.";
+
+    bioStatStances.textContent =
+        data.stances || "—";
+
+    bioStatAge.textContent =
+        data.age || "—";
+
+    bioStatNationality.textContent =
+        data.nationality || "—";
+
+    bioStatType.textContent =
+        data.type || "—";
+
+
+    bioImage.src =
+        "images/" +
+        imageName +
+        ".png";
+
+    bioImage.alt =
+        name;
+
+
+    bioPanel.classList.add(
+        "open"
+    );
+
+    bioPanel.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+}
+
+
+function closeBioPanel(){
+
+    bioPanel.classList.remove(
+        "open"
+    );
+
+    bioPanel.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+}
+
+
+closeBio.addEventListener(
+    "click",
+    closeBioPanel
+);
+
+
+bioPanel.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === bioPanel
+        ){
+
+            closeBioPanel();
+
+        }
 
     }
 );
 
 
 /* =========================================================
-   CLOSE CHARACTER SELECT
-   ========================================================= */
-
-closeProfile.addEventListener(
-    "click",
-    function(){
-
-        document.body.classList.remove(
-            "profile-open"
-        );
-
-        characterScreen.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   ESC KEY
-   ========================================================= */
+   ESC
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
-        if(event.key === "Escape" && bioPanel.classList.contains("open")){
-            closeBioPanel();
-            return;
-        }
-
         if(
-            event.key === "Escape" &&
-            document.body.classList.contains(
-                "profile-open"
-            )
+            event.key === "Escape"
         ){
 
-            document.body.classList.remove(
-                "profile-open"
-            );
+            if(
+                bioPanel.classList.contains(
+                    "open"
+                )
+            ){
 
-            characterScreen.setAttribute(
-                "aria-hidden",
-                "true"
-            );
+                closeBioPanel();
+
+                return;
+
+            }
+
+
+            if(
+                rightPanel.classList.contains(
+                    "open"
+                )
+            ){
+
+                closePanel();
+
+            }
 
         }
 
     }
 );
 
-/* =========================================================
-   UNIVERSAL UI CLICK SOUND
-   ========================================================= */
 
-const clickSound = new Audio("audio/button-click.mp3");
-clickSound.preload = "auto";
+/* =========================================================
+   UNIVERSAL CLICK SOUND
+========================================================= */
+
+const clickSound =
+    new Audio(
+        "audio/button-click.mp3"
+    );
+
+clickSound.preload =
+    "auto";
+
 
 document.addEventListener(
     "click",
     function(event){
 
-        const target = event.target;
+        const target =
+            event.target;
 
-        if(!(target instanceof Element)) return;
+        if(
+            !(target instanceof Element)
+        ){
 
-        const clickable = target.closest(
-            "button, a, [role='button']"
-        );
+            return;
 
-        if(!clickable) return;
+        }
+
+
+        const clickable =
+            target.closest(
+                "button, a"
+            );
+
+
+        if(!clickable){
+
+            return;
+
+        }
+
+
+        /*
+         * Don't interfere with
+         * external links.
+         */
 
         clickSound.currentTime = 0;
 
-        clickSound.play().catch(function(){});
+        clickSound
+            .play()
+            .catch(
+                function(){}
+            );
 
     },
     true
+);
+
+
+/* =========================================================
+   FIRST USER INTERACTION
+========================================================= */
+
+document.addEventListener(
+    "pointerdown",
+    function(){
+
+        /*
+         * Browsers may block
+         * autoplay.
+         *
+         * Music will therefore
+         * start after the user
+         * opens the music controls
+         * and presses play.
+         */
+
+    },
+    {once:true}
 );
 
 </script>
