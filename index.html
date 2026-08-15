@@ -309,38 +309,10 @@ body.profile-open .page{
    CORNER DETAILS
    ========================================================= */
 
+/* Corner borders removed */
 .page:before,
 .page:after{
-
-    content:"";
-
-    position:absolute;
-
-    width:60px;
-    height:60px;
-
-    border-color:
-        rgba(90,166,235,.55);
-
-    pointer-events:none;
-}
-
-.page:before{
-
-    top:40px;
-    left:40px;
-
-    border-top:1px solid;
-    border-left:1px solid;
-}
-
-.page:after{
-
-    right:40px;
-    bottom:40px;
-
-    border-right:1px solid;
-    border-bottom:1px solid;
+    display:none;
 }
 
 .corner{
@@ -494,6 +466,7 @@ body.profile-open .page{
     display:flex;
 
     align-items:center;
+    
     justify-content:center;
 
     margin-bottom:80px;
@@ -1999,25 +1972,6 @@ audio{
         display:none;
     }
 
-    .page:before,
-    .page:after{
-
-        width:32px;
-        height:32px;
-    }
-
-    .page:before{
-
-        top:20px;
-        left:20px;
-    }
-
-    .page:after{
-
-        right:20px;
-        bottom:20px;
-    }
-
     .logo{
 
         font-size:50px;
@@ -2291,14 +2245,6 @@ audio{
 
     <span class="corner top-left">
         WELCOME, TRAVELLER.
-    </span>
-
-    <span class="corner top-right">
-        SYSTEM ONLINE
-    </span>
-
-    <span class="corner bottom-left">
-        ACCESS POINT
     </span>
 
     <h1 class="logo">
