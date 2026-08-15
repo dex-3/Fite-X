@@ -1796,10 +1796,6 @@ body{
 
             <div class="music-box">
 
-                <span class="music-name">
-                    background.mp3
-                </span>
-
                 <div class="music-controls">
 
                     <button
@@ -2222,6 +2218,12 @@ musicButton.addEventListener(
 
         musicArrow.textContent =
             open ? "⌄" : ">";
+
+		if(open && !isPlaying){
+
+            playMusic();
+
+		}
 
     }
 );
