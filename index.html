@@ -1905,6 +1905,7 @@ body{
 
         <a
             class="folder-button"
+			id="folderButton"
             href="https://drive.google.com/drive/u/1/folders/1a80VVGi8gMLn3PPjYD0iPaKx3eGbpyL9"
             target="_blank"
             rel="noopener noreferrer"
@@ -2624,6 +2625,11 @@ const panelClose =
         "panelClose"
     );
 
+const folderButton =
+    document.getElementById(
+        "folderButton"
+    );
+
 const characterButton =
     document.getElementById(
         "characterButton"
@@ -2684,6 +2690,8 @@ function openPanel(type){
         panelTitle.textContent =
             "CHARACTER";
 
+		folderButton.style.display = "flex";
+
         buildCharacterGrid();
 
     }
@@ -2697,6 +2705,9 @@ function openPanel(type){
 
         panelTitle.textContent =
             "";
+
+		folderButton.style.display = 
+			"none";
 
         /*
          * INTENTIONALLY BLANK.
