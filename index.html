@@ -853,6 +853,80 @@ body{
     color:#dceeff;
 }
 
+	.panel-title-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+
+.folder-button{
+
+    width:28px;
+    height:28px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid
+        rgba(90,166,235,.32);
+
+    background:
+        rgba(5,14,23,.55);
+
+    color:#8fd0ff;
+
+    text-decoration:none;
+
+    transition:
+        border-color .25s,
+        background .25s,
+        color .25s,
+        transform .25s,
+        box-shadow .25s;
+}
+
+
+.folder-button svg{
+
+    width:14px;
+    height:14px;
+
+    fill:none;
+
+    stroke:currentColor;
+
+    stroke-width:1.5;
+
+    stroke-linecap:round;
+
+    stroke-linejoin:round;
+}
+
+
+.folder-button:hover{
+
+    color:#bfe5ff;
+
+    border-color:
+        rgba(125,205,255,.75);
+
+    background:
+        rgba(40,100,150,.18);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 0 14px
+        rgba(80,170,240,.25);
+}
+
 .panel-close{
 
     border:0;
@@ -1818,25 +1892,56 @@ body{
         aria-hidden="true"
     >
 
-        <header class="panel-header">
+       <header class="panel-header">
 
-            <span
-                class="panel-title"
-                id="panelTitle"
+    <div class="panel-title-area">
+
+        <span
+            class="panel-title"
+            id="panelTitle"
+        >
+            CHARACTER
+        </span>
+
+        <a
+            class="folder-button"
+            href="https://drive.google.com/drive/u/1/folders/1a80VVGi8gMLn3PPjYD0iPaKx3eGbpyL9"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open Google Drive"
+            aria-label="Open Google Drive"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
             >
-                CHARACTER
-            </span>
+                <path
+                    d="M10 3H4
+                       C3.45 3 3 3.45 3 4
+                       V20
+                       C3 20.55 3.45 21 4 21
+                       H20
+                       C20.55 21 21 20.55 21 20
+                       V7
+                       H12
+                       L10 3Z"
+                />
+            </svg>
 
-            <button
-                class="panel-close"
-                id="panelClose"
-                type="button"
-            >
-                CLOSE ×
-            </button>
+        </a>
 
-        </header>
+    </div>
 
+    <button
+        class="panel-close"
+        id="panelClose"
+        type="button"
+    >
+        CLOSE ×
+    </button>
+
+</header>
 
         <div
             class="panel-content"
