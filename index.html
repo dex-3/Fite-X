@@ -1827,56 +1827,6 @@ body.profile-open
         rgba(100,190,255,.8);
 }
 
-.volume-slider{
-
-    width:90px;
-
-    appearance:none;
-    -webkit-appearance:none;
-
-    height:3px;
-
-    background:
-        rgba(120,180,220,.35);
-
-    outline:none;
-
-    cursor:pointer;
-}
-
-.volume-slider::-webkit-slider-thumb{
-
-    appearance:none;
-    -webkit-appearance:none;
-
-    width:10px;
-    height:10px;
-
-    border-radius:50%;
-
-    background:#8fd0ff;
-
-    box-shadow:
-        0 0 9px
-        rgba(100,190,255,.8);
-}
-
-.volume-slider::-moz-range-thumb{
-
-    width:10px;
-    height:10px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#8fd0ff;
-
-    box-shadow:
-        0 0 9px
-        rgba(100,190,255,.8);
-}
-
 .music-label{
 
     font-size:9px;
@@ -2162,10 +2112,6 @@ audio{
 
     .music-label{
         display:none;
-    }
-
-    .volume-slider{
-        width:65px;
     }
 
 }
@@ -2628,27 +2574,15 @@ audio{
         MUSIC
     </span>
 
-
     <button
         class="music-button"
-        id="muteButton"
+        id="musicButton"
         type="button"
-        aria-label="Mute music"
-        title="Mute / Unmute"
+        aria-label="Play music"
+        title="Play / Pause"
     >
-        🔊
+        ▶
     </button>
-
-
-    <input
-        class="volume-slider"
-        id="volumeSlider"
-        type="range"
-        min="0"
-        max="100"
-        value="35"
-        aria-label="Music volume"
-    >
 
 </div>
 
@@ -2723,20 +2657,22 @@ const music =
         "backgroundMusic"
     );
 
-const muteButton =
+const musicButton =
     document.getElementById(
-        "muteButton"
+        "musicButton"
     );
 
-const volumeSlider =
-    document.getElementById(
-        "volumeSlider"
-    );
+/* =========================================================
+   VOLUME
+   0.0 = silent
+   1.0 = maximum
 
-let isMuted = false;
+   Example:
+   0.25 = 25%
+   0.35 = 35%
+   ========================================================= */
 
-music.volume =
-    Number(volumeSlider.value) / 100;
+music.volume = 0.15;
 
 
 function startMusic(){
