@@ -2586,7 +2586,6 @@ audio{
 
 </div>
 
-
 <script>
 
 /* =========================================================
@@ -2662,106 +2661,34 @@ const musicButton =
         "musicButton"
     );
 
+
 /* =========================================================
    VOLUME
-   0.0 = silent
-   1.0 = maximum
 
-   Example:
+   0.10 = 10%
+   0.15 = 15%
    0.25 = 25%
-   0.35 = 35%
+   0.50 = 50%
+   1.00 = 100%
    ========================================================= */
 
 music.volume = 0.15;
 
 
-function startMusic(){
-
-    music.play().catch(
-        function(){}
-    );
-
-}
-
-startMusic();
-
-
-function firstInteraction(){
-
-    startMusic();
-
-    document.removeEventListener(
-        "click",
-        firstInteraction
-    );
-
-    document.removeEventListener(
-        "keydown",
-        firstInteraction
-    );
-
-    document.removeEventListener(
-        "pointerdown",
-        firstInteraction
-    );
-
-}
-
-document.addEventListener(
-    "click",
-    firstInteraction
-);
-
-document.addEventListener(
-    "keydown",
-    firstInteraction
-);
-
-document.addEventListener(
-    "pointerdown",
-    firstInteraction
-);
-
-function playMusic(){
-
-    music.play()
-        .then(
-            function(){
-
-                musicButton.textContent =
-                    "❚❚";
-
-                musicButton.setAttribute(
-                    "aria-label",
-                    "Pause music"
-                );
-
-            }
-        )
-        .catch(
-            function(){
-
-                musicButton.textContent =
-                    "▶";
-
-            }
-        );
-
-}
-
 /* =========================================================
-   PLAY / PAUSE BUTTON
+   PLAY / PAUSE
    ========================================================= */
 
 musicButton.addEventListener(
     "click",
-    function(event){
-
-        event.stopPropagation();
+    function(){
 
         if(music.paused){
 
-            playMusic();
+            music.play();
+
+            musicButton.textContent =
+                "❚❚";
 
         }
         else{
@@ -2771,55 +2698,9 @@ musicButton.addEventListener(
             musicButton.textContent =
                 "▶";
 
-            musicButton.setAttribute(
-                "aria-label",
-                "Play music"
-            );
-
         }
 
     }
-);
-
-    /* =========================================================
-   AUTOPLAY AFTER FIRST INTERACTION
-   ========================================================= */
-
-function firstInteraction(){
-
-    playMusic();
-
-    document.removeEventListener(
-        "click",
-        firstInteraction
-    );
-
-    document.removeEventListener(
-        "keydown",
-        firstInteraction
-    );
-
-    document.removeEventListener(
-        "pointerdown",
-        firstInteraction
-    );
-
-}
-
-
-document.addEventListener(
-    "click",
-    firstInteraction
-);
-
-document.addEventListener(
-    "keydown",
-    firstInteraction
-);
-
-document.addEventListener(
-    "pointerdown",
-    firstInteraction
 );
 
 /* =========================================================
