@@ -2685,10 +2685,21 @@ musicButton.addEventListener(
 
         if(music.paused){
 
-            music.play();
+            music.play()
+                .then(function(){
 
-            musicButton.textContent =
-                "❚❚";
+                    musicButton.textContent =
+                        "❚❚";
+
+                })
+                .catch(function(error){
+
+                    console.log(
+                        "Music could not play:",
+                        error
+                    );
+
+                });
 
         }
         else{
