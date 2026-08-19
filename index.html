@@ -2722,74 +2722,105 @@ document.addEventListener(
     firstInteraction
 );
 
+function playMusic(){
 
-muteButton.addEventListener(
+    music.play()
+        .then(
+            function(){
+
+                musicButton.textContent =
+                    "❚❚";
+
+                musicButton.setAttribute(
+                    "aria-label",
+                    "Pause music"
+                );
+
+            }
+        )
+        .catch(
+            function(){
+
+                musicButton.textContent =
+                    "▶";
+
+            }
+        );
+
+}
+
+/* =========================================================
+   PLAY / PAUSE BUTTON
+   ========================================================= */
+
+musicButton.addEventListener(
     "click",
     function(event){
 
         event.stopPropagation();
 
-        if(isMuted){
+        if(music.paused){
 
-            music.muted = false;
-
-            muteButton.textContent =
-                "🔊";
-
-            isMuted = false;
-
-            startMusic();
+            playMusic();
 
         }
         else{
 
-            music.muted = true;
+            music.pause();
 
-            muteButton.textContent =
-                "🔇";
+            musicButton.textContent =
+                "▶";
 
-            isMuted = true;
+            musicButton.setAttribute(
+                "aria-label",
+                "Play music"
+            );
 
         }
 
     }
 );
 
+    /* =========================================================
+   AUTOPLAY AFTER FIRST INTERACTION
+   ========================================================= */
 
-volumeSlider.addEventListener(
-    "input",
-    function(){
+function firstInteraction(){
 
-        const volume =
-            Number(this.value) / 100;
+    playMusic();
 
-        music.volume =
-            volume;
+    document.removeEventListener(
+        "click",
+        firstInteraction
+    );
 
-        if(volume === 0){
+    document.removeEventListener(
+        "keydown",
+        firstInteraction
+    );
 
-            music.muted = true;
+    document.removeEventListener(
+        "pointerdown",
+        firstInteraction
+    );
 
-            muteButton.textContent =
-                "🔇";
+}
 
-            isMuted = true;
 
-        }
-        else{
-
-            music.muted = false;
-
-            muteButton.textContent =
-                "🔊";
-
-            isMuted = false;
-
-        }
-
-    }
+document.addEventListener(
+    "click",
+    firstInteraction
 );
 
+document.addEventListener(
+    "keydown",
+    firstInteraction
+);
+
+document.addEventListener(
+    "pointerdown",
+    firstInteraction
+);
 
 /* =========================================================
    CHARACTERS
